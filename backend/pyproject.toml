@@ -1,0 +1,12 @@
+[build-system]
+requires = ["uv_build >= 0.9.9, <0.10.0"]
+build-backend = "uv_build"
+
+[project]
+name = "networkx-exploration-backend"
+version = "0.0.0"
+dependencies = [
+  "fastapi[standard]",
+  "networkx[default]",
+  "uuid"
+]
