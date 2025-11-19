@@ -48,6 +48,8 @@ export function GraphComponent({
       linkColor={(l) =>
         l.data.type === "idtype-mapping"
           ? "green"
+          : l.data.type === "1-1"
+          ? "green"
           : l.data.type === "1-n"
           ? "orange"
           : l.data.type === "n-1"
@@ -59,7 +61,9 @@ export function GraphComponent({
           : "gray"
       }
       linkLineDash={(l) =>
-        l.data.type === "ordino-drilldown-fragment" || l.data.type === "n-1"
+        ["ordino-drilldown-fragment", "n-1", "idtype-mapping"].includes(
+          l.data.type
+        )
           ? [3, 1]
           : undefined
       }
