@@ -1,173 +1,8 @@
 import networkx as nx
 
-# G = nx.DiGraph()
-
-# # Add visyn_kb.ordino.genes node
-# G.add_node(
-#     "visyn_kb.ordino.genes",
-#     data={
-#         "id": "visyn_kb.ordino.genes",
-#         "label": "Gene",
-#         "type": "entity",
-#         "columns": [
-#             {"name": "hgnc_symbol", "idtype": "GeneSymbol"},
-#             {"name": "ensembl_gene_id", "idtype": "EnsemblGeneID"},
-#             {"name": "entrez_gene_id", "idtype": "EntrezGeneID"},
-#         ],
-#         "origins": ["visyn_kb.json"],
-#     },
-# )
-
-# # Add visyn_kb.ordino.celllines and visyn_kb.ordino.mutations nodes
-# G.add_nodes_from(
-#     [
-#         (
-#             "visyn_kb.ordino.celllines",
-#             {
-#                 "data": {
-#                     "id": "visyn_kb.ordino.celllines",
-#                     "label": "Cell lines",
-#                     "type": "entity",
-#                     "columns": [
-#                         {"name": "depmap_id", "idtype": "DepMapID"},
-#                         {"name": "cell_line_name", "idtype": "CelllineName"},
-#                     ],
-#                     "origins": ["visyn_kb.json"],
-#                 }
-#             },
-#         ),
-#         (
-#             "visyn_kb.ordino.mutations",
-#             {
-#                 "data": {
-#                     "id": "visyn_kb.ordino.mutations",
-#                     "label": "Mutations",
-#                     "type": "entity",
-#                     "columns": [
-#                         {"name": "ensembl_gene_id", "idtype": "EnsemblGeneID"},
-#                         {"name": "depmap_id", "idtype": "DepMapID"},
-#                         {"name": "mutation_type"},
-#                     ],
-#                     "origins": ["visyn_kb.json"],
-#                 }
-#             },
-#         ),
-#     ]
-# )
-
-# # Add GeneSymbol idtype node
-# G.add_nodes_from(
-#     [
-#         (
-#             "GeneSymbol",
-#             {
-#                 "data": {
-#                     "id": "GeneSymbol",
-#                     "label": "Gene Symbol",
-#                     "type": "idtype",
-#                     "origins": ["visyn_kb.json"],
-#                 }
-#             },
-#         ),
-#         (
-#             "EntrezGeneID",
-#             {
-#                 "data": {
-#                     "id": "EntrezGeneID",
-#                     "label": "Entrez ID",
-#                     "type": "idtype",
-#                     "origins": ["visyn_kb.json"],
-#                 }
-#             },
-#         ),
-#         (
-#             "EnsemblGeneID",
-#             {
-#                 "data": {
-#                     "id": "EnselmblGeneID",
-#                     "label": "Ensembl Gene ID",
-#                     "type": "idtype",
-#                     "origins": ["visyn_kb.json"],
-#                 }
-#             },
-#         ),
-#         (
-#             "DepMapID",
-#             {
-#                 "data": {
-#                     "id": "DepMapID",
-#                     "label": "DepMap ID",
-#                     "type": "idtype",
-#                     "origins": ["visyn_kb.json"],
-#                 }
-#             },
-#         ),
-#         (
-#             "CelllineName",
-#             {
-#                 "data": {
-#                     "id": "CelllineName",
-#                     "label": "Cellline Name",
-#                     "type": "idtype",
-#                     "origins": ["visyn_kb.json"],
-#                 }
-#             },
-#         ),
-#     ]
-# )
-
-
-# # Add edge between genes and GeneSymbol idtype
-# G.add_edges_from(
-#     [
-#         (
-#             "visyn_kb.ordino.genes",
-#             "GeneSymbol",
-#             {
-#                 "data": {
-#                     "type": "idtype-mapping",
-#                     "columns": ["hgnc_symbol"],
-#                     "origins": ["visyn_kb.json"],
-#                 }
-#             },
-#         ),
-#         (
-#             "visyn_kb.ordino.mutations",
-#             "GeneSymbol",
-#             {
-#                 "data": {
-#                     "type": "idtype-mapping",
-#                     "columns": ["gene_symbol"],
-#                     "origins": ["visyn_kb.json"],
-#                 }
-#             },
-#         ),
-#     ]
-# )
-
-
-# # Add edge between genes and celllines via mutations
-# G.add_edge(
-#     "visyn_kb.ordino.genes",
-#     "visyn_kb.ordino.celllines",
-#     data={
-#         "type": "ordino-drilldown",
-#         "mapping": [
-#             {
-#                 "entity": "visyn_kb.ordino.mutations",
-#                 "sourceKey": "hgnc_symbol",
-#                 "targetKey": "depmap_id",
-#             }
-#         ],
-#         "source": {"key": "hgnc_symbol"},
-#         "target": {"key": "depmap_id"},
-#         "origins": ["visyn_kb.json"],
-#     },
-# )
-
 
 def populate_idtype_nodes(
-    G: nx.DiGraph, idtypes: list[dict], landscape_name: str
+    G: nx.MultiDiGraph, idtypes: list[dict], landscape_name: str
 ) -> None:
     for idtype in idtypes:
         G.add_node(
@@ -184,7 +19,7 @@ def populate_idtype_nodes(
 
 
 def populate_entity_nodes(
-    G: nx.DiGraph, entities: list[dict], landscape_name: str
+    G: nx.MultiDiGraph, entities: list[dict], landscape_name: str
 ) -> None:
     for entity in entities:
         G.add_node(
@@ -200,7 +35,7 @@ def populate_entity_nodes(
         )
 
 
-def populate_idtype_relations(G: nx.DiGraph, landscape_name: str) -> None:
+def populate_idtype_relations(G: nx.MultiDiGraph, landscape_name: str) -> None:
     entities_in_graph_with_idtype_columns = [
         (
             n,
@@ -234,8 +69,185 @@ def populate_idtype_relations(G: nx.DiGraph, landscape_name: str) -> None:
                 )
 
 
+def populate_one_to_n_relation(
+    G: nx.MultiDiGraph, relation: dict, landscape_name: str
+) -> None:
+    G.add_edge(
+        relation.get("source", {"id": None}).get("id"),
+        relation.get("target", {"id": None}).get("id"),
+        data={
+            **relation,
+            "origins": G.edges.get(
+                (
+                    relation.get("source", {"id": None}).get("id"),
+                    relation.get("target", {"id": None}).get("id"),
+                    0,  # For MultiDiGraph, need to specify the key
+                ),
+                {},
+            )
+            .get("data", {})
+            .get("origins", [])
+            + [landscape_name],
+        },
+    )
+    if relation.get("bidirectional", False):
+        G.add_edge(
+            relation.get("target", {"id": None}).get("id"),
+            relation.get("source", {"id": None}).get("id"),
+            data={
+                **relation,
+                "type": "n-1",
+                "origins": G.edges.get(
+                    (
+                        relation.get("target", {"id": None}).get("id"),
+                        relation.get("source", {"id": None}).get("id"),
+                        0,  # For MultiDiGraph, need to specify the key
+                    ),
+                    {},
+                )
+                .get("data", {})
+                .get("origins", [])
+                + [landscape_name],
+            },
+        )
+    pass
+
+
+def populate_ordino_drilldown_relation(
+    G: nx.MultiDiGraph, relation: dict, landscape_name: str
+) -> None:
+    for mapping_index, mapping in enumerate(relation.get("mapping", [])):
+        # direct connection from source to target
+        G.add_edge(
+            relation.get("source", {"id": None}).get("id"),
+            relation.get("target", {"id": None}).get("id"),
+            data={
+                **relation,
+                "mapping": mapping,
+                "origins": G.edges.get(
+                    (
+                        relation.get("source", {"id": None}).get("id"),
+                        relation.get("target", {"id": None}).get("id"),
+                        mapping_index,  # For MultiDiGraph, need to specify the key
+                    ),
+                    {},
+                )
+                .get("data", {})
+                .get("origins", [])
+                + [landscape_name],
+            },
+        )
+
+        # direct connection from target to source
+        G.add_edge(
+            relation.get("target", {"id": None}).get("id"),
+            relation.get("source", {"id": None}).get("id"),
+            data={
+                **relation,
+                "type": "ordino-drilldown",
+                "mapping": mapping,
+                "origins": G.edges.get(
+                    (
+                        relation.get("target", {"id": None}).get("id"),
+                        relation.get("source", {"id": None}).get("id"),
+                        mapping_index,  # For MultiDiGraph, need to specify the key
+                    ),
+                    {},
+                )
+                .get("data", {})
+                .get("origins", [])
+                + [landscape_name],
+            },
+        )
+
+        # connections via the mapping entity as a fragment of the drilldown relation
+        G.add_edge(
+            relation.get("source", {"id": None}).get("id"),
+            mapping.get("entity"),
+            data={
+                **relation,
+                "type": "ordino-drilldown-fragment",
+                "mapping": mapping,
+                "origins": G.edges.get(
+                    (
+                        relation.get("source", {"id": None}).get("id"),
+                        mapping.get("entity"),
+                        0,  # For MultiDiGraph, need to specify the key
+                    ),
+                    {},
+                )
+                .get("data", {})
+                .get("origins", [])
+                + [landscape_name],
+            },
+        )
+
+        G.add_edge(
+            mapping.get("entity"),
+            relation.get("source", {"id": None}).get("id"),
+            data={
+                **relation,
+                "type": "ordino-drilldown-fragment",
+                "mapping": mapping,
+                "origins": G.edges.get(
+                    (
+                        mapping.get("entity"),
+                        relation.get("source", {"id": None}).get("id"),
+                        0,  # For MultiDiGraph, need to specify the key
+                    ),
+                    {},
+                )
+                .get("data", {})
+                .get("origins", [])
+                + [landscape_name],
+            },
+        )
+
+        G.add_edge(
+            mapping.get("entity"),
+            relation.get("target", {"id": None}).get("id"),
+            data={
+                **relation,
+                "type": "ordino-drilldown-fragment",
+                "mapping": mapping,
+                "origins": G.edges.get(
+                    (
+                        mapping.get("entity"),
+                        relation.get("target", {"id": None}).get("id"),
+                        0,  # For MultiDiGraph, need to specify the key
+                    ),
+                    {},
+                )
+                .get("data", {})
+                .get("origins", [])
+                + [landscape_name],
+            },
+        )
+
+        G.add_edge(
+            relation.get("target", {"id": None}).get("id"),
+            mapping.get("entity"),
+            data={
+                **relation,
+                "type": "ordino-drilldown-fragment",
+                "mapping": mapping,
+                "origins": G.edges.get(
+                    (
+                        relation.get("target", {"id": None}).get("id"),
+                        mapping.get("entity"),
+                        0,  # For MultiDiGraph, need to specify the key
+                    ),
+                    {},
+                )
+                .get("data", {})
+                .get("origins", [])
+                + [landscape_name],
+            },
+        )
+
+
 def populate_configured_relations(
-    G: nx.DiGraph, relations: list[dict], landscape_name: str
+    G: nx.MultiDiGraph, relations: list[dict], landscape_name: str
 ) -> None:
     for relation in relations:
         match relation.get("type"):
@@ -249,45 +261,7 @@ def populate_configured_relations(
                 # Most likely not configured, as it is covered by idtype relations
                 pass
             case "1-n":
-                G.add_edge(
-                    relation.get("source", {"id": None}).get("id"),
-                    relation.get("target", {"id": None}).get("id"),
-                    data={
-                        **relation,
-                        "origins": G.edges.get(
-                            (
-                                relation.get("source", {"id": None}).get("id"),
-                                relation.get("target", {"id": None}).get("id"),
-                                0, # For MultiDiGraph, need to specify the key
-                            ),
-                            {},
-                        )
-                        .get("data", {})
-                        .get("origins", [])
-                        + [landscape_name],
-                    },
-                )
-                if relation.get("bidirectional", False):
-                    G.add_edge(
-                        relation.get("target", {"id": None}).get("id"),
-                        relation.get("source", {"id": None}).get("id"),
-                        data={
-                            **relation,
-                            "type": "n-1",
-                            "origins": G.edges.get(
-                                (
-                                    relation.get("target", {"id": None}).get("id"),
-                                    relation.get("source", {"id": None}).get("id"),
-                                    0,  # For MultiDiGraph, need to specify the key
-                                ),
-                                {},
-                            )
-                            .get("data", {})
-                            .get("origins", [])
-                            + [landscape_name],
-                        },
-                    )
-                # pass
+                populate_one_to_n_relation(G, relation, landscape_name)
             case "n-1":
                 # Most likely not configured directly, as it is covered by 1-n relations with bidirectional=True
                 pass
@@ -298,12 +272,12 @@ def populate_configured_relations(
             case "m-n-selection":
                 pass
             case "ordino-drilldown":
-                pass
+                populate_ordino_drilldown_relation(G, relation, landscape_name)
 
 
-def get_graph(payload: dict, landscape_name: str) -> nx.Graph:
-    G = nx.MultiDiGraph()
-
+def populate_graph(
+    G: nx.MultiDiGraph, payload: dict, landscape_name: str
+) -> nx.MultiDiGraph:
     populate_idtype_nodes(G, payload.get("idtypes", []), landscape_name=landscape_name)
 
     entities = [
@@ -317,9 +291,22 @@ def get_graph(payload: dict, landscape_name: str) -> nx.Graph:
     ]
 
     populate_entity_nodes(G, entities, landscape_name=landscape_name)
+    return G
 
-    populate_idtype_relations(G, landscape_name=landscape_name)
-    populate_configured_relations(
-        G, payload.get("relations", []), landscape_name=landscape_name
-    )
+
+def populate_one_to_n_relations(
+    G: nx.MultiDiGraph, payload: dict, landscape_name: str
+) -> nx.MultiDiGraph:
+    for relation in payload.get("relations", []):
+        if relation.get("type") == "1-n":
+            populate_one_to_n_relation(G, relation, landscape_name)
+    return G
+
+
+def populate_ordino_drilldown_relations(
+    G: nx.MultiDiGraph, payload: dict, landscape_name: str
+) -> nx.MultiDiGraph:
+    for relation in payload.get("relations", []):
+        if relation.get("type") == "ordino-drilldown":
+            populate_ordino_drilldown_relation(G, relation, landscape_name)
     return G
