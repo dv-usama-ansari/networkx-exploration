@@ -116,3 +116,45 @@ def get_relations_route(node_id: str):
 
     relations = get_relations_for_node(G, node_id)
     return relations
+
+
+@graph_router.post("/add_test_db1")
+def add_test_db1_route():
+    global G, landscape
+    # Load landscape data from file
+    landscape = json.load(open("data/test_db1.json"))
+    # Create the initial graph
+    populate_graph(G, landscape, landscape_name="test_db1")
+    populate_idtype_relations(G, landscape_name="test_db1")
+    populate_one_to_n_relations(G, landscape, landscape_name="test_db1")
+    populate_ordino_drilldown_relations(G, landscape, landscape_name="test_db1")
+    data = json_graph.node_link_data(G)
+    return data
+
+
+@graph_router.post("/add_test_db2")
+def add_test_db2_route():
+    global G, landscape
+    # Load landscape data from file
+    landscape = json.load(open("data/test_db2.json"))
+    # Create the initial graph
+    populate_graph(G, landscape, landscape_name="test_db2")
+    populate_idtype_relations(G, landscape_name="test_db2")
+    populate_one_to_n_relations(G, landscape, landscape_name="test_db2")
+    populate_ordino_drilldown_relations(G, landscape, landscape_name="test_db2")
+    data = json_graph.node_link_data(G)
+    return data
+
+
+@graph_router.post("/add_ordino_public")
+def add_ordino_public_route():
+    global G, landscape
+    # Load landscape data from file
+    landscape = json.load(open("data/ordino_public.json"))
+    # Create the initial graph
+    populate_graph(G, landscape, landscape_name="ordino_public")
+    populate_idtype_relations(G, landscape_name="ordino_public")
+    populate_one_to_n_relations(G, landscape, landscape_name="ordino_public")
+    populate_ordino_drilldown_relations(G, landscape, landscape_name="ordino_public")
+    data = json_graph.node_link_data(G)
+    return data

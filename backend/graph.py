@@ -429,7 +429,9 @@ def populate_graph(G: nx.MultiDiGraph, payload: dict, landscape_name: str) -> No
 
     entities = [
         {
-            "id": f"{db.get('id')}.{schema.get('name') or 'public'}.{entity.get('tableName')}",
+            "id": f"{db.get('id')}.{schema.get('name')}.{entity.get('tableName')}"
+            if schema.get("name") is not None
+            else f"{db.get('id')}.{entity.get('tableName')}",
             **entity,
         }
         for db in payload.get("databases", [])

@@ -1,0 +1,932 @@
+{
+  "databases": [
+    {
+      "id": "test_db",
+      "dbEngine": "postgresql",
+      "schemas": [
+        {
+          "entities": [
+            {
+              "name": "Cell Line from test_db1 config",
+              "tableName": "tdp_cellline",
+              "enableQueryAll": true,
+              "columns": [
+                {
+                  "columnName": "celllinename",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true,
+                  "idtype": "Cellline"
+                },
+                {
+                  "columnName": "species",
+                  "width": 120,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "defaultQueryEnum": ["human"],
+                  "primary": true,
+                  "categories": [
+                    { "name": "human", "label": "Human", "value": 0 },
+                    { "name": "mouse", "label": "Mouse Test Label", "value": 1 }
+                  ]
+                },
+                {
+                  "columnName": "Organ",
+                  "width": 120,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "Tumortype",
+                  "label": "Tumor Type",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "searchable": true
+                },
+                {
+                  "columnName": "Gender",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "Histology_type",
+                  "label": "Histology Type",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "Morphology",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "Cosmicid",
+                  "label": "COSMIC",
+                  "initialRanking": false,
+                  "type": "number",
+                  "idtype": "Cosmic"
+                }
+              ],
+              "icon": "dv-cell-line",
+              "formatting": {
+                "tokenSeparatorsRegex": "/[\r\n;,]+/mg",
+                "defaultTokenSeparator": ";"
+              },
+              "workbench": {
+                "views": [
+                  {
+                    "type": "visualization",
+                    "name": "Custom General Vis",
+                    "visConfig": {
+                      "type": "Bar chart",
+                      "catColumnSelected": { "name": "Morphology" },
+                      "sortState": {
+                        "x": null,
+                        "y": null
+                      }
+                    },
+                    "open": true
+                  }
+                ]
+              },
+              "color": "#337ab7",
+              "sortingColumnName": "celllinename",
+              "sortingColumnOrder": "ascending"
+            },
+            {
+              "name": "Gene",
+              "tableName": "tdp_gene",
+              "enableQueryAll": true,
+              "columns": [
+                {
+                  "columnName": "ensg",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "STRING",
+                  "searchable": true,
+                  "primary": true,
+                  "idtype": "EnsemblGene"
+                },
+                {
+                  "columnName": "symbol",
+                  "label": "Gene Symbol",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "https://aevidence.app.datavisyn.io/app?q=Gene~${value}",
+                  "searchable": true,
+                  "icon": "fas fa-quote-left"
+                },
+                {
+                  "columnName": "biotype",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "chromosome",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "species",
+                  "label": "Species",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": [
+                    { "name": "human", "label": "Human", "value": 0 },
+                    { "name": "mouse", "label": "Mouse", "value": 1 }
+                  ],
+                  "defaultQueryEnum": ["human"],
+                  "primary": true
+                }
+              ],
+              "icon": "dv-gene",
+              "formatting": {
+                "titleColumn": "symbol"
+              },
+              "color": "#ec6836",
+              "order": 10,
+              "sortingColumnName": "symbol",
+              "sortingColumnOrder": "ascending"
+            },
+            {
+              "name": "Small molecule tractability bucket",
+              "itemName": "Gene",
+              "tableName": "tractability_bucket",
+              "columns": [
+                {
+                  "columnName": "ensg",
+                  "label": "Ensembl",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "idtype": "EnsemblGene"
+                },
+                {
+                  "columnName": "symbol",
+                  "label": "Gene Symbol",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "searchable": true,
+                  "icon": "fas fa-quote-left"
+                },
+                {
+                  "columnName": "idg_tdl",
+                  "label": "IDG TDL",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "idg_fam",
+                  "label": "IDG Family",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "Bucket_7_sm",
+                  "label": "Bucket 7",
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_8_sm",
+                  "label": "Bucket 8",
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_sum_sm",
+                  "label": "Bucket sum",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "High_Quality_ChEMBL_compounds",
+                  "label": "High Quality ChEMBL compounds",
+                  "initialRanking": true,
+                  "type": "number",
+                  "map": {
+                    "type": "log",
+                    "domain": [0, null],
+                    "range": [0, 1]
+                  }
+                },
+                {
+                  "columnName": "DrugEBIlity_score",
+                  "label": "DrugEBIlity score",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "Small_Molecule_Druggable_Genome_Member",
+                  "label": "Small Molecule Druggable Genome Member",
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Category_sm",
+                  "label": "Category",
+                  "initialRanking": true,
+                  "type": "categorical"
+                }
+              ],
+              "icon": "dv-gene",
+              "formatting": {
+                "titleColumn": "symbol"
+              },
+              "description": "Small molecule tractability bucket",
+              "color": "#4285f4",
+              "sortingColumnName": "symbol",
+              "sortingColumnOrder": "ascending"
+            },
+            {
+              "name": "Copy Number",
+              "tableName": "tdp_copynumber",
+              "connectorType": "SupersetDBConnector",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "enableQueryAll": false,
+              "columns": [
+                {
+                  "columnName": "cellname",
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "ensg",
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "totalabscopynumber",
+                  "label": "Total Absolute Copy Number",
+                  "mapping": true,
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "number",
+                  "filterAccuracy": "1.0",
+                  "showMinimumRepresentation": true,
+                  "color": "#39A2A1",
+                  "order": 3
+                },
+                {
+                  "columnName": "copynumberclass",
+                  "label": "Copy Number Class",
+                  "mapping": true,
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    { "name": 2, "label": "Amplification", "color": "#efb3bc" },
+                    { "name": -2, "label": "Deep Deletion", "color": "#92c5de" },
+                    { "name": 0, "label": "NORMAL", "color": "#dcdcdc" }
+                  ],
+                  "order": 4
+                },
+                {
+                  "columnName": "Relativecopynumber",
+                  "label": "Relative Copy Number",
+                  "mapping": true,
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "number",
+                  "order": 1
+                },
+                {
+                  "columnName": "log2relativecopynumber",
+                  "label": "Log2 Relative Copy Number",
+                  "mapping": true,
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "number",
+                  "order": 2
+                }
+              ]
+            },
+            {
+              "name": "Expression",
+              "tableName": "tdp_expression",
+              "connectorType": "SupersetDBConnector",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "enableQueryAll": false,
+              "columns": [
+                {
+                  "columnName": "celllinename",
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "ensg",
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "tpm",
+                  "label": "TPM",
+                  "mapping": true,
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "number",
+                  "map": {
+                    "type": "log",
+                    "domain": [0, null],
+                    "range": [0, 1]
+                  }
+                },
+                {
+                  "columnName": "counts",
+                  "label": "Count",
+                  "mapping": true,
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "number",
+                  "map": {
+                    "type": "log",
+                    "domain": [0, null],
+                    "range": [0, 1]
+                  }
+                }
+              ]
+            },
+            {
+              "name": "Mutation",
+              "tableName": "tdp_mutation",
+              "connectorType": "SupersetDBConnector",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "enableQueryAll": false,
+              "columns": [
+                {
+                  "columnName": "ensg",
+                  "label": "Ensembl",
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "celllinename",
+                  "label": "Cell line",
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-cell-line"
+                },
+                {
+                  "columnName": "dna_mutated",
+                  "label": "DNA mutated",
+                  "mapping": true,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    { "name": "true", "label": "Mutated", "color": "#1BA64E" },
+                    { "name": "false", "label": "Not mutated", "color": "#aaa" }
+                  ]
+                },
+                {
+                  "columnName": "dnamutation",
+                  "label": "DNA mutation",
+                  "mapping": true,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "aa_mutated",
+                  "label": "AA mutated",
+                  "mapping": true,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    { "name": "true", "label": "Mutated", "color": "#1BA64E" },
+                    { "name": "false", "label": "Not mutated", "color": "#aaa" }
+                  ]
+                },
+                {
+                  "columnName": "aamutation",
+                  "label": "AA mutation",
+                  "mapping": true,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "zygosity",
+                  "label": "Zygosity",
+                  "mapping": true,
+                  "initialRanking": true,
+                  "type": "number",
+                  "min": 0
+                }
+              ]
+            },
+            {
+              "name": "Drug",
+              "itemName": "Drug",
+              "tableName": "tdp_drug",
+              "columns": [
+                {
+                  "columnName": "drugid",
+                  "label": "Drug id",
+                  "description": "The ID of the drug",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "searchable": true,
+                  "idtype": "DrugID"
+                },
+                {
+                  "columnName": "moa",
+                  "label": "MOA",
+                  "description": "The mechanism of action of the drug",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "target",
+                  "label": "Target",
+                  "description": "Drug target",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "scientificname",
+                  "label": "Scientific name",
+                  "description": "The scientific name of the drug",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                }
+              ],
+              "icon": "dv-drug",
+              "formatting": {
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              },
+              "color": "#B42865"
+            },
+            {
+              "name": "Drug score",
+              "tableName": "tdp_drugscore",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "enableQueryAll": false,
+              "columns": [
+                {
+                  "columnName": "celllinename",
+                  "label": "Cell line",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-cell-line"
+                },
+                {
+                  "columnName": "drugid",
+                  "label": "Drug id",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-drug"
+                },
+                {
+                  "columnName": "ic50",
+                  "label": "IC50",
+                  "initialRanking": true,
+                  "mapping": true,
+                  "type": "number",
+                  "order": 2
+                },
+                {
+                  "columnName": "ec50",
+                  "label": "EC50",
+                  "initialRanking": true,
+                  "mapping": true,
+                  "type": "number",
+                  "order": 3
+                },
+                {
+                  "columnName": "gi50",
+                  "label": "GI50",
+                  "initialRanking": true,
+                  "mapping": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "actarea",
+                  "label": "Activity area",
+                  "initialRanking": true,
+                  "mapping": true,
+                  "type": "number",
+                  "order": 1
+                },
+                {
+                  "columnName": "campaign",
+                  "label": "Campaign",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true,
+                  "categories": ["CCLE", "GDSC", "Prism"]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "test_db.tdp_cellline",
+      "mapping": [
+        {
+          "column": "celllinename",
+          "idtype": "Cellline"
+        },
+        {
+          "column": "Cosmicid",
+          "idtype": "Cosmic"
+        }
+      ]
+    },
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "test_db.tractability_bucket",
+      "mapping": [
+        {
+          "column": "ensg",
+          "idtype": "EnsemblGene"
+        }
+      ]
+    },
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "test_db.tdp_drug",
+      "mapping": [
+        {
+          "column": "drugid",
+          "idtype": "DrugID"
+        }
+      ]
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "test_db.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "test_db.tractability_bucket",
+        "key": "ensg"
+      },
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "test_db.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "test_db.tdp_cellline",
+        "key": "celllinename"
+      },
+      "mapping": [
+        {
+          "name": "Copy Number",
+          "entity": "test_db.tdp_copynumber",
+          "sourceKey": "ensg",
+          "targetKey": "cellname",
+          "order": 2
+        },
+        {
+          "entity": "test_db.tdp_expression",
+          "name": "Expression",
+          "sourceKey": "ensg",
+          "targetKey": "celllinename",
+          "order": 1
+        },
+        {
+          "entity": "test_db.tdp_mutation",
+          "name": "Mutation",
+          "sourceKey": "ensg",
+          "targetKey": "celllinename",
+          "order": 3
+        }
+      ],
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 50
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "bidirectional": false,
+      "source": {
+        "id": "test_db.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "test_db.tdp_cellline",
+        "key": "celllinename"
+      },
+      "order": 2,
+      "mapping": [
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "test_db.tdp_expression",
+          "sourceKey": "ensg",
+          "targetKey": "celllinename"
+        }
+      ],
+      "isMappingEditable": false,
+      "workbench": {
+        "minSelection": 2,
+        "views": [
+          {
+            "type": "co-expression",
+            "name": "Co-expression",
+            "icon": "fas fa-chart-bar",
+            "xAxis": {
+              "entityId": "test_db.tdp_expression",
+              "defaultColumn": "tpm"
+            },
+            "yAxis": {
+              "entityId": "test_db.tdp_expression",
+              "defaultColumn": "tpm"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "bidirectional": false,
+      "source": {
+        "id": "test_db.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "test_db.tdp_cellline",
+        "key": "celllinename"
+      },
+      "order": 1,
+      "mapping": [
+        {
+          "name": "Copy number",
+          "connectorType": "GenericDBScore",
+          "entity": "test_db.tdp_copynumber",
+          "sourceKey": "ensg",
+          "targetKey": "cellname"
+        },
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "test_db.tdp_expression",
+          "sourceKey": "ensg",
+          "targetKey": "celllinename"
+        }
+      ],
+      "isMappingEditable": false,
+      "workbench": {
+        "views": [
+          {
+            "type": "expression-vs-copynumber",
+            "name": "Expression vs copynumber",
+            "icon": "fas fa-chart-bar",
+            "xAxis": {
+              "entityId": "test_db.tdp_copynumber",
+              "defaultColumn": "totalabscopynumber"
+            },
+            "yAxis": {
+              "entityId": "test_db.tdp_expression",
+              "defaultColumn": "tpm"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "bidirectional": false,
+      "source": {
+        "id": "test_db.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "test_db.tdp_cellline",
+        "key": "celllinename"
+      },
+      "mapping": [
+        {
+          "name": "Copy number",
+          "connectorType": "GenericDBScore",
+          "entity": "test_db.tdp_copynumber",
+          "sourceKey": "ensg",
+          "targetKey": "cellname"
+        },
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "test_db.tdp_expression",
+          "sourceKey": "ensg",
+          "targetKey": "celllinename"
+        }
+      ],
+      "isMappingEditable": false,
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 50,
+        "views": [
+          {
+            "type": "oncoprint",
+            "name": "Oncoprint",
+            "icon": "fas fa-chart-bar",
+            "copynumber": {
+              "entityId": "test_db.tdp_copynumber",
+              "defaultColumn": "copynumberclass",
+              "mapping": {
+                "2": "Amp",
+                "1": "Gain",
+                "0": "Diploid",
+                "-1": "Hetloss",
+                "-2": "Homdel"
+              },
+              "colorMapping": {
+                "Amp": "#1f77b4",
+                "Gain": "#316395",
+                "Diploid": "#3bc3f2",
+                "Hetloss": "#22aa99",
+                "Homdel": "#ff7f0e"
+              }
+            },
+            "mutation": {
+              "entityId": "test_db.tdp_expression",
+              "defaultColumn": "aa_mutated",
+              "colorMapping": {
+                "Missense_Mutation": "#2ca02c",
+                "Silent": "#66c2a5",
+                "Nonsense_Mutation": "#d62728",
+                "Nonstop_Mutation": "#9467bd",
+                "De_novo_Start_OutOfFrame": "#8c564b",
+                "Splice_Site": "#e377c2",
+                "Splice_Region": "#e377c2",
+                "Frame_Shift_Del": "#bcbd22",
+                "Frame_Shift_Ins": "#6a3d9a",
+                "In_Frame_Del": "#17becf",
+                "In_Frame_Ins": "#e7298a",
+                "Start_Codon_SNP": "#7f7f7f",
+                "5'UTR": "#329262",
+                "5'Flank": "#5574a6",
+                "3'UTR": "#3311bb",
+                "3'Flank": "#3571a6",
+                "Intron": "#8da0cb",
+                "RNA": "#102418"
+              },
+              "disabledMutations": ["Silent"]
+            },
+            "clinicalData": {
+              "entityId": "test_db.tdp_cellline",
+              "columns": ["Tumortype", "Gender"]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "label": "Drug screen",
+      "scoreType": ["single"],
+      "source": {
+        "id": "test_db.tdp_drug",
+        "key": "drugid"
+      },
+      "target": {
+        "id": "test_db.tdp_cellline",
+        "key": "celllinename"
+      },
+      "order": 3,
+      "mapping": [
+        {
+          "name": "Pharmacological parameters",
+          "entity": "test_db.tdp_drugscore",
+          "sourceKey": "drugid",
+          "targetKey": "celllinename",
+          "categoryKey": "campaign"
+        }
+      ],
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 50
+      }
+    }
+  ],
+  "idtypes": [
+    {
+      "id": "Cellline",
+      "label": "Cell Line",
+      "icon": "dv-cell-line"
+    },
+    {
+      "id": "EnsemblGene",
+      "label": "Ensembl Gene ID",
+      "icon": "dv-gene"
+    },
+    {
+      "id": "Cosmic",
+      "label": "COSMIC",
+      "viewGroups": [
+        {
+          "name": "External resources",
+          "order": 0,
+          "filter": {
+            "col": "species",
+            "op": "IN",
+            "val": "human"
+          },
+          "views": [
+            {
+              "name": "COSMIC",
+              "site": "https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=${cosmicid}&genome=38",
+              "fallbackSite": "https://cancer.sanger.ac.uk/cosmic/search?q=${cosmicid}",
+              "argument": "cosmicid",
+              "selection": "chooser",
+              "topics": ["cellline", "external"]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "namedIdSets": [
+    {
+      "providerType": "dataTableProvider",
+      "databaseId": "test_db",
+      "entityId": "tdp_cellline",
+      "metadata": {
+        "databaseId": "test_db",
+        "tableName": "tdp_panel",
+        "schemaName": "cellline",
+        "nameColumn": "panel",
+        "descriptionColumn": "paneldescription",
+        "globalQueryColumn": "species"
+      },
+      "data": {
+        "databaseId": "test_db",
+        "tableName": "tdp_panelassignment",
+        "schemaName": "cellline",
+        "idColumn": "celllinename",
+        "keyColumn": "panel"
+      }
+    },
+    {
+      "providerType": "configProvider",
+      "databaseId": "test_db",
+      "entityId": "tdp_cellline",
+      "namedIdSets": [
+        {
+          "name": "CCLE config",
+          "idSet": ["1321N1", "143B", "184A1", "201T", "22Rv1"],
+          "description": "CCLE",
+          "globalQueryName": "species",
+          "globalQueryAppliedCategories": [{ "name": "human", "label": "Human", "value": 0 }]
+        }
+      ]
+    }
+  ],
+  "dashboards": [
+    {
+      "id": "test-dashboard-1",
+      "name": "Test dashboard from test_db1",
+      "description": "Duplicate dashboard should be overwritten by the one in test_db2",
+      "workbench": {}
+    }
+  ]
+}

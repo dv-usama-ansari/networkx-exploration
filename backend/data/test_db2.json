@@ -1,0 +1,1136 @@
+{
+  "databases": [
+    {
+      "id": "test_db",
+      "dbEngine": "postgresql",
+      "schemas": [
+        {
+          "entities": [
+            {
+              "name": "Regions",
+              "ItemName": "Region",
+              "tableName": "tracndrug_regions",
+              "enableQueryAll": true,
+              "columns": [
+                {
+                  "columnName": "protein_id",
+                  "idtype": "UniProtAcc",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true,
+                  "description": "Id of the protein"
+                },
+                {
+                  "columnName": "UniProt_accession",
+                  "initialRanking": true,
+                  "idtype": "UniProtID",
+                  "description": "UniProt accession of the protein"
+                },
+                {
+                  "columnName": "gene_id",
+                  "initialRanking": true,
+                  "description": "Id of the gene"
+                },
+                {
+                  "columnName": "Ensembl_gene",
+                  "initialRanking": true,
+                  "idtype": "EnsemblGene",
+                  "description": "Ensembl gene of the protein"
+                },
+                {
+                  "columnName": "region_id",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "primary": true,
+                  "description": "Id of the region"
+                },
+                {
+                  "columnName": "region_interval",
+                  "initialRanking": true,
+                  "description": "Interval of the region",
+                  "width": 125
+                },
+                {
+                  "columnName": "region_len",
+                  "initialRanking": true,
+                  "description": "Length of the region"
+                },
+                {
+                  "columnName": "Construct_coverage_score",
+                  "initialRanking": false,
+                  "description": "Coverage score of the construct"
+                },
+                {
+                  "columnName": "construct_coverage_score",
+                  "description": "should be removed during loading, because there is no corresponding column existing in the table",
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "EA_score",
+                  "initialRanking": false,
+                  "description": "EA score of the region"
+                },
+                {
+                  "columnName": "In_house_lit_str",
+                  "initialRanking": true,
+                  "description": "In house literature structure of the region"
+                },
+                {
+                  "columnName": "PRECEDENCE",
+                  "initialRanking": true,
+                  "description": "Precedence of the region"
+                },
+                {
+                  "columnName": "str_coverage_score",
+                  "initialRanking": true,
+                  "description": "Coverage score of the region"
+                },
+                {
+                  "columnName": "str_resolution_score",
+                  "initialRanking": true,
+                  "description": "Resolution score of the region"
+                },
+                {
+                  "columnName": "str_identity_score",
+                  "initialRanking": true,
+                  "description": "Identity score of the region"
+                },
+                {
+                  "columnName": "str_number_score",
+                  "initialRanking": false,
+                  "description": "Number score of the structure"
+                },
+                {
+                  "columnName": "Exp_structure_score",
+                  "initialRanking": true,
+                  "description": "Score of the experimental structure"
+                },
+                {
+                  "columnName": "Af2_model",
+                  "initialRanking": true,
+                  "description": "Model of the Af2"
+                },
+                {
+                  "columnName": "STRUCTURE",
+                  "initialRanking": true,
+                  "description": "Structure of the protein"
+                },
+                {
+                  "columnName": "Ligands_PDB",
+                  "initialRanking": true,
+                  "description": "Ligands of the protein in PDB format"
+                },
+                {
+                  "columnName": "fPocket_drug_score",
+                  "initialRanking": true,
+                  "description": "Drug score of the fPocket"
+                },
+                {
+                  "columnName": "Pocket_af2",
+                  "initialRanking": true,
+                  "description": "Af2 of the pocket"
+                },
+                {
+                  "columnName": "Pocket_score",
+                  "initialRanking": true,
+                  "min": 0,
+                  "description": "Score of the pocket"
+                },
+                {
+                  "columnName": "SMDI",
+                  "initialRanking": true,
+                  "min": 0,
+                  "max": 4,
+                  "description": "SMDI score of the region"
+                },
+                {
+                  "columnName": "gProbe",
+                  "initialRanking": true,
+                  "description": "gProbe score of the region"
+                },
+                {
+                  "columnName": "ChEMBL",
+                  "initialRanking": true,
+                  "description": "ChEMBL score of the region"
+                },
+                {
+                  "columnName": "SM",
+                  "initialRanking": true,
+                  "description": "SM score of the region"
+                },
+                {
+                  "columnName": "covL_Reactive",
+                  "initialRanking": false,
+                  "description": "Reactive score of the covL"
+                },
+                {
+                  "columnName": "covL_ligandability",
+                  "initialRanking": false,
+                  "description": "Ligandability score of the covL"
+                },
+                {
+                  "columnName": "covL_promiscuity",
+                  "initialRanking": false,
+                  "description": "Promiscuity score of the covL"
+                },
+                {
+                  "columnName": "covL_unique",
+                  "initialRanking": false,
+                  "description": "Uniqueness score of the covL"
+                },
+                {
+                  "columnName": "covL",
+                  "initialRanking": true,
+                  "description": "Score of the covL"
+                },
+                {
+                  "columnName": "TRACTABILITY",
+                  "initialRanking": true,
+                  "description": "The tractability score of the protein region"
+                },
+                {
+                  "columnName": "DRUGGABILITY",
+                  "initialRanking": true,
+                  "description": "The druggability score of the protein region"
+                },
+                {
+                  "columnName": "FINAL_REGION",
+                  "initialRanking": true,
+                  "description": "The final region of the protein"
+                },
+                {
+                  "columnName": "FINAL_AGR",
+                  "initialRanking": true,
+                  "description": "The final AGR of the protein"
+                },
+                {
+                  "columnName": "region_scores",
+                  "initialRanking": true,
+                  "description": "A number array column",
+                  "type": "numberArray",
+                  "label": "Region scores",
+                  "renderer": "heatmap"
+                },
+                {
+                  "columnName": "drug_targets",
+                  "initialRanking": true,
+                  "description": "A string array column",
+                  "type": "stringArray",
+                  "label": "Drug Targets"
+                },
+                {
+                  "columnName": "protein_family_members",
+                  "initialRanking": true,
+                  "description": "A string array column containing related protein family members",
+                  "type": "set",
+                  "label": "Protein family members"
+                }
+              ],
+              "color": "#337ab7",
+              "formatting": {
+                "titleColumn": "protein_id",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              },
+              "workbench": {
+                "views": [
+                  {
+                    "type": "ranking",
+                    "open": true
+                  },
+                  {
+                    "type": "visualization",
+                    "name": "Scatter plot",
+                    "visConfig": {
+                      "type": "Scatter plot"
+                    },
+                    "open": true
+                  }
+                ]
+              }
+            },
+            {
+              "name": "PDB Ligands",
+              "itemName": "Ligand",
+              "tableName": "tracndrug_pdb_ligands",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInColumnSidebar": false,
+                "hiddenInViewChooser": false
+              },
+              "color": "#711366",
+              "enableQueryAll": true,
+              "columns": [
+                {
+                  "columnName": "UniProt_entry",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true,
+                  "description": "The UniProt entry of the protein"
+                },
+                {
+                  "columnName": "UniProt_accession",
+                  "initialRanking": true,
+                  "idtype": "UniProtID",
+                  "description": "The UniProt accession ID of the protein"
+                },
+                {
+                  "columnName": "Structure_source",
+                  "initialRanking": true,
+                  "description": "The source of the structure"
+                },
+                {
+                  "columnName": "Structure_id",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "description": "The ID of the structure"
+                },
+                {
+                  "columnName": "Region_id",
+                  "initialRanking": true,
+                  "primary": true,
+                  "description": "The ID of the region"
+                },
+                {
+                  "columnName": "Region_interval",
+                  "initialRanking": true,
+                  "description": "The interval of the region",
+                  "width": 125
+                },
+                {
+                  "columnName": "Full_chain_id",
+                  "initialRanking": true,
+                  "description": "The ID of the full chain"
+                },
+                {
+                  "columnName": "Ligand_contact_pos",
+                  "initialRanking": true,
+                  "description": "The position of the ligand contact"
+                },
+                {
+                  "columnName": "Ligand_type",
+                  "initialRanking": true,
+                  "description": "The type of the ligand"
+                },
+                {
+                  "columnName": "Ligand_smiles",
+                  "initialRanking": true,
+                  "description": "The SMILES representation of the ligand"
+                },
+                {
+                  "columnName": "Ligand_name",
+                  "initialRanking": true,
+                  "description": "The name of the ligand"
+                },
+                {
+                  "columnName": "Ligand_residue",
+                  "initialRanking": true,
+                  "description": "The residue of the ligand"
+                },
+                {
+                  "columnName": "Ligand_id",
+                  "initialRanking": true,
+                  "description": "The ID of the ligand"
+                },
+                {
+                  "columnName": "Ligand_residue_id",
+                  "initialRanking": true,
+                  "primary": true,
+                  "description": "The ID of the ligand residue"
+                },
+                {
+                  "columnName": "Ligand_contact_pos_uniprot",
+                  "initialRanking": true,
+                  "primary": true,
+                  "description": "The position of the ligand contact in UniProt"
+                },
+                {
+                  "columnName": "Region_identity",
+                  "initialRanking": true,
+                  "description": "The identity of the region"
+                },
+                {
+                  "columnName": "Region_coverage",
+                  "initialRanking": true,
+                  "description": "The coverage of the region"
+                },
+                {
+                  "columnName": "random_category",
+                  "initialRanking": true,
+                  "description": "A random cateogry",
+                  "type": "categorical",
+                  "label": "Random category"
+                },
+                {
+                  "columnName": "region_scores",
+                  "initialRanking": true,
+                  "description": "A number array column",
+                  "type": "numberArray",
+                  "label": "Region scores",
+                  "renderer": "histogram"
+                },
+                {
+                  "columnName": "drug_targets",
+                  "initialRanking": true,
+                  "description": "A string array column",
+                  "type": "stringArray",
+                  "label": "Drug Targets"
+                }
+              ],
+              "formatting": {
+                "titleColumn": "UniProt_entry",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              }
+            },
+            {
+              "name": "Cell Line",
+              "itemName": "Cell line",
+              "description": "Description with link: https://depmap.org/portal/ccle/\n\nLink with label: [depmap](https://depmap.org/portal/ccle/)",
+              "tableName": "tdp_cellline",
+              "enableQueryAll": true,
+              "columns": [
+                {
+                  "columnName": "celllinename",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true,
+                  "idtype": "Cellline",
+                  "description": "Name of the cell line"
+                },
+                {
+                  "columnName": "species",
+                  "label": "Species",
+                  "width": 120,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "defaultQueryEnum": ["human"],
+                  "categories": [
+                    { "name": "human", "label": "Human", "icon": "fas fa-person", "value": 0 },
+                    { "name": "mouse", "label": "Mouse", "icon": "dv-mouse", "value": 1 }
+                  ],
+                  "description": "Species of the cell line"
+                },
+                {
+                  "columnName": "Organ",
+                  "width": 120,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "searchable": true,
+                  "description": "Organ from which the cell line was derived"
+                },
+                {
+                  "columnName": "Tumortype",
+                  "label": "Tumor type",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "searchable": true,
+                  "description": "Type of tumor from which the cell line was derived"
+                },
+                {
+                  "columnName": "Gender",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "description": "Gender of the cell line donor"
+                },
+                {
+                  "columnName": "Histology_type",
+                  "label": "Histology Type",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "description": "Type of tissue or cell structure"
+                },
+                {
+                  "columnName": "Morphology",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "description": "Physical appearance of the cell line"
+                },
+                {
+                  "columnName": "Cosmicid",
+                  "label": "COSMIC",
+                  "initialRanking": false,
+                  "type": "number",
+                  "idtype": "Cosmic",
+                  "numberFormat": ".0f",
+                  "renderer": "dot",
+                  "description": "COSMIC identifier"
+                }
+              ],
+              "icon": "dv-cell-line",
+              "formatting": {
+                "tokenSeparatorsRegex": "/[\r\n;,]+/mg",
+                "defaultTokenSeparator": ";"
+              },
+              "workbench": {
+                "views": [
+                  {
+                    "type": "ranking",
+                    "name": "My favorite data table",
+                    "icon": "fas fa-star",
+                    "config": {
+                      "showRank": false,
+                      "showAggregate": false,
+                      "groupBy": [
+                        { "column": "Organ", "priority": 2 },
+                        { "column": "Morphology", "priority": 1 }
+                      ]
+                    }
+                  },
+                  {
+                    "type": "visualization",
+                    "name": "Custom General Vis",
+                    "visConfig": {
+                      "type": "Bar chart",
+                      "catColumnSelected": { "name": "Morphology" },
+                      "sortState": {
+                        "x": null,
+                        "y": null
+                      }
+                    },
+                    "open": true
+                  }
+                ]
+              },
+              "color": "#337ab7",
+              "sortingColumnName": "celllinename",
+              "sortingColumnOrder": "ascending"
+            },
+            {
+              "name": "Gene",
+              "itemName": "Gene",
+              "tableName": "tdp_gene",
+              "enableQueryAll": true,
+              "order": 10,
+              "chunkSize": 25,
+              "alert": {
+                "icon": "exclamation",
+                "message": "Please check the [documentation](https://example.com) for more info."
+              },
+              "columns": [
+                {
+                  "columnName": "ensg",
+                  "description": "Ensembl Id of a gene",
+                  "label": "Ensembl",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true,
+                  "idtype": "EnsemblGene",
+                  "order": 1
+                },
+                {
+                  "columnName": "symbol",
+                  "description": "Symbol of the gene",
+                  "label": "Gene symbol",
+                  "width": 150,
+                  "initialRanking": true,
+                  "idtype": "GeneSymbol",
+                  "type": "link",
+                  "pattern": "${AEVIDENCE_URL}/app?q=Gene~${value}",
+                  "searchable": true,
+                  "icon": "fas fa-quote-left",
+                  "order": 2
+                },
+                {
+                  "columnName": "biotype",
+                  "description": "Biotype of the gene",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "chromosome",
+                  "description": "Chromosome where the gene is located",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes",
+                  "order": 3
+                },
+                {
+                  "columnName": "species",
+                  "description": "Species of the gene",
+                  "label": "Species",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "defaultQueryEnum": ["human"],
+                  "categories": [
+                    { "name": "human", "label": "Human", "icon": "fas fa-person", "value": 0 },
+                    { "name": "mouse", "label": "Mouse", "icon": "dv-mouse", "value": 1 }
+                  ],
+                  "primary": true,
+                  "order": 4
+                },
+                {
+                  "columnName": "seqregionstart",
+                  "initialRanking": true,
+                  "type": "number",
+                  "map": {
+                    "type": "log",
+                    "domain": [0, null],
+                    "range": [0, 1]
+                  }
+                },
+                {
+                  "columnName": "seqregionend",
+                  "initialRanking": true,
+                  "type": "number",
+                  "map": {
+                    "type": "log",
+                    "domain": [0, null],
+                    "range": [0, 1]
+                  }
+                },
+                {
+                  "columnName": "tdpid",
+                  "excluded": true
+                }
+              ],
+              "icon": "dv-gene",
+              "formatting": {
+                "titleColumn": "symbol"
+              },
+              "dashboardId": "test-dashboard-1",
+              "workbench": {
+                "sortCriteria": [{ "asc": true, "sortBy": "biotype" }],
+                "views": [
+                  {
+                    "type": "ranking",
+                    "name": "Data table",
+                    "config": {
+                      "dataProviderDump": {
+                        "rankings": [
+                          {
+                            "columns": [
+                              {
+                                "desc": {
+                                  "type": "aggregate",
+                                  "label": "Aggregate Groups",
+                                  "fixed": true,
+                                  "width": 44
+                                },
+                                "width": 44
+                              },
+                              {
+                                "desc": {
+                                  "type": "rank",
+                                  "label": "Rank",
+                                  "width": 50
+                                }
+                              },
+                              {
+                                "desc": {
+                                  "type": "selection",
+                                  "label": "Selections",
+                                  "width": 50
+                                }
+                              },
+                              {
+                                "column": "ensg"
+                              },
+                              {
+                                "column": "symbol"
+                              },
+                              {
+                                "column": "biotype"
+                              },
+                              {
+                                "desc": {
+                                  "type": "imposition",
+                                  "label": "Imposition",
+                                  "renderer": "number",
+                                  "groupRenderer": "boxplot",
+                                  "summaryRenderer": "histogram",
+                                  "width": 100
+                                },
+
+                                "label": "Seqregionstart (Chromosome)",
+                                "children": [
+                                  {
+                                    "column": "seqregionstart"
+                                  },
+                                  {
+                                    "column": "chromosome"
+                                  }
+                                ]
+                              },
+                              {
+                                "desc": {
+                                  "type": "stack",
+                                  "label": "Weighted sum",
+                                  "showNestedSummaries": true,
+                                  "renderer": "stack",
+                                  "groupRenderer": "stack",
+                                  "summaryRenderer": "stack",
+                                  "width": 200
+                                },
+
+                                "children": [
+                                  {
+                                    "column": "seqregionend"
+                                  },
+                                  {
+                                    "column": "seqregionstart"
+                                  }
+                                ]
+                              }
+                            ],
+                            "groupColumns": ["biotype"],
+                            "groupSortCriteria": [{ "asc": true, "sortBy": "biotype" }],
+                            "sortCriteria": [{ "asc": false, "sortBy": "biotype" }]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "type": "ranking",
+                    "name": "Duplicate ranking should be filtered out from the workbench",
+                    "open": true
+                  },
+                  {
+                    "type": "visualization",
+                    "name": "Custom General Vis",
+                    "visConfig": {
+                      "type": "Bar chart",
+                      "catColumnSelected": { "name": "biotype" },
+                      "group": { "name": "biotype" },
+                      "sortState": {
+                        "x": null,
+                        "y": null
+                      }
+                    },
+                    "open": true
+                  }
+                ]
+              },
+              "color": "#ec6836",
+              "sortingColumnName": "symbol",
+              "sortingColumnOrder": "ascending"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "test_db.tdp_gene",
+      "mapping": [
+        {
+          "column": "ensg",
+          "idtype": "EnsemblGene"
+        },
+        {
+          "column": "symbol",
+          "idtype": "GeneSymbol"
+        }
+      ]
+    },
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "test_db.tdp_cellline",
+      "mapping": [
+        {
+          "column": "celllinename",
+          "idtype": "Cellline"
+        },
+        {
+          "column": "Cosmicid",
+          "idtype": "Cosmic"
+        }
+      ]
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "test_db.tracndrug_regions",
+        "filterColumn": "region_interval",
+        "key": "region_id"
+      },
+      "target": {
+        "id": "test_db.tracndrug_pdb_ligands",
+        "filterColumn": "Region_interval",
+        "key": "Region_id",
+        "categoryKeys": ["random_category"]
+      },
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 100
+      }
+    },
+    {
+      "type": "1-n",
+      "bidirectional": false,
+      "source": {
+        "id": "test_db.tdp_gene",
+        "key": "chromosome"
+      },
+      "target": {
+        "id": "test_db.tdp_gene",
+        "key": "chromosome",
+        "label": "Genes by Chromosome"
+      }
+    },
+    {
+      "type": "1-n",
+      "bidirectional": false,
+      "source": {
+        "id": "test_db.tdp_gene",
+        "key": "biotype"
+      },
+      "target": {
+        "id": "test_db.tdp_gene",
+        "key": "biotype",
+        "label": "Genes by Biotype"
+      }
+    },
+    {
+      "label": "1-n-selection relation",
+      "type": "1-n-selection",
+      "bidirectional": false,
+      "source": {
+        "id": "test_db.tracndrug_pdb_ligands",
+        "key": "Region_id"
+      },
+      "target": {
+        "id": "test_db.tracndrug_regions",
+        "key": "region_id"
+      },
+      "workbench": {
+        "minSelection": 0
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "test_db.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "test_db.tdp_cellline",
+        "key": "celllinename"
+      },
+      "mapping": [
+        {
+          "name": "Copy Number",
+          "entity": "test_db.tdp_copynumber",
+          "sourceKey": "ensg",
+          "targetKey": "cellname",
+          "order": 2
+        },
+        {
+          "entity": "test_db.tdp_expression",
+          "name": "Expression",
+          "sourceKey": "ensg",
+          "targetKey": "celllinename",
+          "order": 1
+        },
+        {
+          "name": "Mutation",
+          "connectorType": "GenericDBScore",
+          "entity": "test_db.tdp_mutation",
+          "sourceKey": "ensg",
+          "targetKey": "celllinename",
+          "order": 3
+        }
+      ],
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 30
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "bidirectional": false,
+      "source": {
+        "id": "test_db.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "test_db.tdp_cellline",
+        "key": "celllinename"
+      },
+      "order": 2,
+      "mapping": [
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "test_db.tdp_expression",
+          "sourceKey": "ensg",
+          "targetKey": "celllinename"
+        }
+      ],
+      "isMappingEditable": false,
+      "workbench": {
+        "minSelection": 1,
+
+        "views": [
+          {
+            "type": "co-expression",
+            "name": "Co-expression",
+            "description": "Co-expression test description",
+            "icon": "fas fa-chart-bar",
+            "xAxis": {
+              "entityId": "test_db.tdp_expression",
+              "defaultColumn": "tpm"
+            },
+            "yAxis": {
+              "entityId": "test_db.tdp_expression",
+              "defaultColumn": "tpm"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "bidirectional": false,
+      "source": {
+        "id": "test_db.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "test_db.tdp_cellline",
+        "key": "celllinename"
+      },
+      "order": 1,
+      "mapping": [
+        {
+          "name": "Copy number",
+          "connectorType": "GenericDBScore",
+          "entity": "test_db.tdp_copynumber",
+          "sourceKey": "ensg",
+          "targetKey": "cellname"
+        },
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "test_db.tdp_expression",
+          "sourceKey": "ensg",
+          "targetKey": "celllinename"
+        }
+      ],
+      "isMappingEditable": false,
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 10,
+        "views": [
+          {
+            "type": "expression-vs-copynumber",
+            "name": "Expression vs copynumber",
+            "icon": "fas fa-chart-bar",
+            "xAxis": {
+              "entityId": "test_db.tdp_copynumber",
+              "defaultColumn": "totalabscopynumber"
+            },
+            "yAxis": {
+              "entityId": "test_db.tdp_expression",
+              "defaultColumn": "tpm"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "idtypes": [
+    {
+      "id": "Cellline",
+      "label": "Cell Line",
+      "icon": "dv-cell-line"
+    },
+    {
+      "id": "GeneSymbol",
+      "label": "Gene symbol",
+      "icon": "dv-gene"
+    },
+    {
+      "id": "EnsemblGene",
+      "label": "Ensembl Gene ID",
+      "icon": "dv-gene",
+      "scores": [{ "type": "generic", "name": "Generic score", "description": "Ensembl" }],
+      "viewGroups": [
+        {
+          "name": "External resources",
+          "order": 5,
+          "filter": {
+            "col": "species",
+            "op": "IN",
+            "val": "human"
+          },
+          "views": [
+            {
+              "name": "Open Targets Genetics",
+              "order": 50,
+              "site": "https://genetics.opentargets.org/gene/${ensemblid}",
+              "argument": "ensemblid",
+              "selection": "chooser",
+              "topics": ["cellline", "external"],
+              "icon": "external-link"
+            }
+          ]
+        }
+      ],
+      "campaignType": {
+        "name": "Gene",
+        "type": "Gene",
+        "description": "Target campaigns are used to prioritize and answer questions of targets",
+        "color": "#4BB268",
+        "predefinedQuestions": [
+          {
+            "text": "Is there literature supporting the rationale of gene-disease association?",
+            "type": "freetext"
+          },
+          {
+            "text": "What is the druggability of the target?",
+            "type": "freetext"
+          },
+          {
+            "text": "What is the competition status of the target? Are there advanced clinical programs?",
+            "type": "freetext"
+          },
+          {
+            "text": "For the target, what is the gene/protein expression level in the relevant tissue?",
+            "type": "freetext"
+          }
+        ]
+      }
+    },
+    {
+      "id": "Cosmic",
+      "label": "COSMIC",
+      "viewGroups": [
+        {
+          "name": "External resources",
+          "filter": {
+            "col": "species",
+            "op": "IN",
+            "val": "human"
+          },
+          "views": [
+            {
+              "name": "COSMIC",
+              "site": "https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=${cosmicid}&genome=38",
+              "fallbackSite": "https://cancer.sanger.ac.uk/cosmic/search?q=${cosmicid}",
+              "mappingFallbackEnd": "Cellline",
+              "argument": "cosmicid",
+              "selection": "chooser",
+              "topics": ["cellline", "external"],
+              "icon": "external-link"
+            },
+            {
+              "name": "COSMIC no fallback",
+              "site": "https://cancer.sanger.ac.uk/cell_lines/sample/overview?id=${cosmicid}&genome=38",
+              "fallbackSite": "",
+              "argument": "cosmicid",
+              "selection": "chooser",
+              "topics": ["cellline", "external"],
+              "icon": "external-link"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "dashboards": [
+    {
+      "id": "test-dashboard-1",
+      "name": "Test dashboard 1",
+      "description": "Dashboard containing a data table and a scatter plot",
+      "workbench": {
+        "maxSelection": 2,
+        "primaryView": {
+          "type": "ranking",
+          "open": true
+        },
+        "views": [
+          {
+            "type": "visualization",
+            "name": "Scatter plot",
+            "visConfig": {
+              "type": "Scatter plot"
+            },
+            "open": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "test-dashboard-2",
+      "name": "Test dashboard 2",
+      "description": "Dashboard containing a data table and a bar chart",
+      "workbench": {
+        "primaryView": {
+          "type": "ranking",
+          "open": true
+        },
+        "views": [
+          {
+            "type": "visualization",
+            "name": "Bar chart",
+            "visConfig": {
+              "type": "Bar chart"
+            },
+            "open": true
+          }
+        ]
+      }
+    }
+  ],
+  "namedIdSets": [
+    {
+      "providerType": "dataTableProvider",
+      "databaseId": "test_db",
+      "entityId": "tdp_cellline",
+      "metadata": {
+        "databaseId": "test_db",
+        "tableName": "tdp_panel",
+        "schemaName": "cellline",
+        "nameColumn": "panel",
+        "descriptionColumn": "paneldescription",
+        "globalQueryColumn": "species"
+      },
+      "data": {
+        "databaseId": "test_db",
+        "tableName": "tdp_panelassignment",
+        "schemaName": "cellline",
+        "idColumn": "celllinename",
+        "keyColumn": "panel"
+      }
+    },
+    {
+      "providerType": "configProvider",
+      "databaseId": "test_db",
+      "entityId": "tdp_cellline",
+      "namedIdSets": [
+        {
+          "name": "CCLE config",
+          "idSet": ["1321N1", "143B", "184A1", "201T", "22Rv1", "HEC-151"],
+          "description": "CCLE",
+          "globalQueryName": "species",
+          "globalQueryAppliedCategories": [{ "name": "human", "label": "Human", "value": 0 }]
+        }
+      ]
+    }
+  ],
+
+  "app": {
+    "customerLogo": {
+      "link": "https://www.boehringer-ingelheim.com/",
+      "white": "PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAwIDMwMiI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5jbHMtMSB7CiAgICAgICAgZmlsbDogI2ZmZjsKICAgICAgICBzdHJva2Utd2lkdGg6IDBweDsKICAgICAgfQogICAgPC9zdHlsZT4KICA8L2RlZnM+CiAgPHBhdGggY2xhc3M9ImNscy0xIiBkPSJtNjUuMDgsMjY1LjJjLTIwLjY4LTE0LjktMzEuNjMtMjUuODUtNDEuOTctNDEuNjZDOC4yMSwyMDAuNDIsMCwxNzIuNDQsMCwxNDQuNzYsMCw2NC43OCw2NC40OCwwLDE0NC40NiwwczE0NC40Niw2NC43OCwxNDQuNDYsMTQ0LjQ2YzAsMzIuODUtMTEuMjUsNjUuNjktMzEuMDIsOTAuMDItOC4yMSwxMC4zNC0xNS4yMSwxNi40Mi0zNC4wNiwzMC43MnYtODQuNTVoMTQuMjl2NTcuNzhjMTAuNjQtMTIuNDcsMTUuODItMjAuMDcsMjAuOTktMjkuMiwxMC42NC0xOC44NiwxNi40Mi00Mi4yNywxNi40Mi02NC43OCwwLTcyLjk5LTU4LjctMTMyLjMtMTMxLjA4LTEzMi4zUzEzLjM4LDcxLjQ3LDEzLjM4LDE0NS4zN2MwLDMzLjc2LDExLjg2LDYzLjU2LDM3LjEsOTMuMDZ2LTU3Ljc4aDE0LjZ2ODQuNTVabTI4LjU5LDE0LjZjLTIuNzQtLjYxLTkuMTItMy42NS0xNC4yOS02LjM5di05Mi43NmgxNC4yOXY5OS4xNFptODYuOTgtMjAzLjc3bC0zNi4xOS0yNy45OC0zNi4xOSwyNy45OC03LjkxLTEwLjM0LDQ0LjEtMzQuMzcsNDQuMSwzNC4zNy03LjkxLDEwLjM0Wm0tNTguMDksMjExLjM3Yy01LjE3LS45MS01LjQ3LS45MS03LjMtMS41Mi0xLjUyLS4zLTIuMTMtLjMtNi45OS0xLjUyVjg2LjY4aDE0LjI5djIwMC43MlptMjguODksMS4yMmMtMi4xMy4zLTIuNzQuMy01Ljc4LjMtNC41NiwwLTYuMDgsMC04LjUyLS4zVjg2LjY4aDE0LjI5djIwMS45NFptMjguODktNC41NmMtNC41NiwxLjUyLTguNTIsMi40My0xNC4yOSwzLjY1Vjg2LjY4aDE0LjI5djE5Ny4zOFptMjkuMi0xMC42NGMtNC41NiwyLjEzLTcuMywzLjM1LTE0LjYsNi42OXYtOTkuNDVoMTQuNnY5Mi43NloiLz4KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Im0zNzQuNywxNC4yOWM0LjU2LS4zLDguMjEtLjYxLDkuNDMtLjYxLDE3LjMzLDAsMjguODksMTAuMDQsMjguODksMjUuNTUsMCwxMC42NC01Ljc4LDE4LjI1LTE4LjI1LDI0LjMzLDE1LjgxLDMuMzUsMjQuMzMsMTMuMzgsMjQuMzMsMjguMjgsMCwxMS41Ni02LjM5LDIxLjI5LTE2LjQyLDI1LjI0LTQuNTYsMS44Mi0xMC4wNCwyLjQzLTIwLjA3LDIuNDNoLTkuNDNjLTUuMTctLjMtOS4xMi0uMy0xMi4xNi0uM2gtMTcuNjR2LTYuMDhsMTAuMzQtMS44MlYyMi44MWwtMTAuMzQtMS44MnYtNi4zOWgxOC41NWwxMi43Ny0uM1ptLTMwLjcyLDI2MC4zM3YtNi4wOGw5LjczLTEuODJ2LTg4LjhsLTkuNzMtMS41MnYtNi42OWgzNC45N3Y2LjM5bC05LjEyLDEuODJ2ODguNWw4LjgyLDEuODJ2Ni4zOWgtMzQuNjdabTMyLjU0LTIxMy44YzEzLjA4LDAsMTkuMTYtNi42OSwxOS4xNi0yMC45OCwwLTEyLjE3LTYuMzktMTkuNDYtMTcuMzMtMTkuNDYtMy4wNCwwLTUuMTcuMy05LjQzLDEuODJ2MzguNjJoNy42Wm0tNy42LDQ5Ljg4YzMuMDQsMS44Miw1LjE3LDIuNDMsOS40MywyLjQzLDE0LjI5LDAsMjMuMTEtOC44MiwyMy4xMS0yMy4xMXMtOC4yMS0yMS45LTI1Ljg1LTIxLjloLTYuNjl2NDIuNThabTU4LjA5LDE2My45MnYtNi4wOGw3LjkxLTEuNTJ2LTQ0LjRjMC04LjUyLTIuNzQtMTIuNDctOC41Mi0xMi40Ny00LjU2LDAtOC41MiwxLjgyLTE0LjI5LDYuNjl2NDkuNTdsNy45MSwxLjgydjYuMzloLTMxLjMydi02LjA4bDguODItMS44MnYtNTUuMzVsLTguODItMS4yMnYtNi4wOGwxOC44Ni00Ljg3aDQuMjZ2OS4xMmM5LjEyLTYuOTksMTMuMzgtOC44MiwyMC4wNy04LjgyLDExLjU2LDAsMTcuOTQsNy4zLDE3Ljk0LDE5Ljc3djQ3LjE0bDcuOTEsMS44MnY2LjM5aC0zMC43MlptNjMuNTYtMTk0LjAzYzAsMjQuMDMtMTIuNDcsNDAuMTQtMzAuNzIsNDAuMTRzLTI5LjItMTUuMjEtMjkuMi0zNy40MWMwLTIzLjcyLDEyLjQ3LTQwLjE1LDMwLjcyLTQwLjE1czI5LjIsMTQuOSwyOS4yLDM3LjQxWm0tNDMuNzksMi4xM2MwLDE5LjQ2LDQuODcsMzAuNDEsMTMuMzgsMzAuNDEsOS4xMiwwLDEzLjk5LTExLjU2LDEzLjk5LTM0LjM3LDAtMTguMjUtNC44Ny0yOC4yOC0xMy4zOC0yOC4yOHMtMTMuOTksMTEuODYtMTMuOTksMzIuMjRabTY5LjY1LDEyNi44MmM0LjI2LDUuNDcsNS40Nyw5LjEyLDUuNDcsMTQuOSwwLDEzLjk5LTEwLjk1LDI0LjMzLTI1LjU1LDI0LjMzLTMuMDQsMC01LjQ3LS4zLTguMjEtMS4yMi0zLjY1LDIuNDMtNS43OCw0Ljg3LTUuNzgsNi42OXMxLjgyLDIuNzQsNi4zOSwzLjA0bDE4LjI1LjkxYzE0LjI5LjYxLDIwLjk4LDYuMDgsMjAuOTgsMTcuMzMsMCwxNi4xMi0xNC4yOSwyNi40Ni0zNi4xOSwyNi40Ni0xNi40MiwwLTI3LjA3LTYuMDgtMjcuMDctMTUuNTEsMC02LjA4LDMuMDQtMTAuMDQsMTEuODYtMTUuODItNi4wOC0yLjQzLTguNTItNS4xNy04LjUyLTkuNDMsMC01LjQ3LDMuOTUtMTAuMzQsMTMuNjktMTYuNDItOS4xMi01Ljc4LTEyLjQ3LTExLjU2LTEyLjQ3LTIwLjk4LDAtMTQuMjksMTAuOTUtMjUuMjQsMjUuMjQtMjUuMjQsMy4wNCwwLDQuMjYuMyw5LjczLDEuNTIsMy4wNC45MSw1LjE3LDEuMjIsNi42OSwxLjIyLjMsMCwxLjUyLDAsMi43NC0uM2gyLjc0bDEyLjQ3LS4zdjguODJoLTEyLjQ3Wm0tMzEuNjMsNjIuMzVjLTMuOTUsMy42NS01LjQ3LDYuNjktNS40NywxMS4yNSwwLDYuNjksNi4wOCwxMC42NCwxNi4xMiwxMC42NCwxMi40NywwLDIxLjktNS4xNywyMS45LTEyLjQ3LDAtNi4zOS0zLjM1LTcuNi0yNi43Ni05LjEybC01Ljc4LS4zWm0uNjEtNDguNjZjMCwxMi43NywzLjA0LDE4LjU1LDEwLjM0LDE4LjU1czEwLjM0LTUuNzgsMTAuMzQtMTcuMDNjMC0xMy4zOC0zLjY1LTE5Ljc3LTEwLjk1LTE5Ljc3LTYuNjksMC05LjczLDUuNzgtOS43MywxOC4yNVptMzEuNjMtMTQyLjMzYzEuNTIsMjAuNjgsNi42OSwyOS4yLDE3LjY0LDI5LjIsNS40NywwLDkuNDMtMi43NCwxMy45OS05LjczbDYuNjksMi43NGMtNy42LDEzLjY5LTEzLjA4LDE3LjY0LTI0Ljk0LDE3LjY0LTE4LjI1LDAtMjguNTktMTMuMDgtMjguNTktMzYuOCwwLTI1LjI0LDEwLjY0LTQwLjQ1LDI4LjI4LTQwLjQ1czI1LjI0LDEyLjE2LDI1LjU1LDM3LjQxaC0zOC42MlptMjMuMTEtNy4zYy0uNjEtMTYuNDItMy42NS0yMi44MS0xMC42NC0yMi44MXMtMTAuNjQsNi45OS0xMi40NywyMi44MWgyMy4xMVoiLz4KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Im01NTIuMzIsMjM2YzEuNTIsMjAuOTgsNi42OSwyOS41LDE3LjY0LDI5LjUsNS43OCwwLDkuNzMtMi43NCwxNC4yOS05LjczbDYuNjksMi43NGMtNi45OSwxMy4wOC0xMy4zOCwxNy42NC0yNS4yNCwxNy42NC0xOC4yNSwwLTI4LjU5LTEzLjY5LTI4LjU5LTM3LjEsMC0yNS4yNCwxMC42NC00MC4xNSwyOC4yOC00MC4xNSwxMi4xNywwLDIwLjA3LDYuMzksMjMuNzIsMTguMjUsMS4yMiwzLjk1LDEuNTIsOC44MiwyLjEzLDE4Ljg2aC0zOC45M1ptMjMuMTEtNi45OWMtLjMtMTUuODEtMy4zNS0yMi44MS0xMC4zNC0yMi44MXMtMTAuOTUsNi42OS0xMi43NywyMi44MWgyMy4xMVptMjcuMzctMTA5Ljc5di02LjA4bDcuMy0xLjUydi00MS4wNmMwLTEwLjk1LTIuNDMtMTQuOS04LjgyLTE0LjktNC41NiwwLTcuOTEsMS41Mi0xMy45OSw2LjY5djQ4Ljk2bDcuMywxLjUydjYuMzloLTMxLjAydi02LjA4bDkuMTItMS44MlYxOC41NWwtOC41Mi0xLjgydi01LjE3bDE4Ljg2LTMuOTVoNC4yNnY0NS45MmM4LjUyLTYuNjksMTMuMzgtOC44MiwxOS43Ny04LjgyLDExLjg2LDAsMTcuOTQsNi45OSwxNy45NCwyMC42OHY0NS45Mmw3LjkxLDEuNTJ2Ni4zOWgtMzAuMTFabS0yLjc0LDE1NS40MXYtNi4wOGw4LjgyLTEuODJ2LTkzLjY3bC04LjUyLS45MXYtNS4xN2wxOS4xNi00LjI2aDMuOTV2MTAzLjcxbDguMjEsMS44MnY2LjM5aC0zMS42M1ptODAuNTksMHYtNi4wOGw3LjMtMS41MnYtNDEuMzZjMC0xMC45NS0yLjQzLTE0LjktOC44Mi0xNC45LTQuMjYsMC03LjkxLDEuODItMTMuOTksN3Y0OC42Nmw3LjMsMS44MnY2LjM5aC0zMC43MnYtNi4wOGw4LjgyLTEuODJ2LTkzLjA2bC04LjUyLTEuNTJ2LTUuMTdsMTkuMTYtNC4yNmgzLjk1djQ2LjIzYzguMjEtNi42OSwxMy4wOC04LjgyLDIwLjA3LTguODIsMTEuMjUsMCwxNy42NCw2Ljk5LDE3LjY0LDE5LjQ2djQ2Ljg0bDguMjEsMS44MnY2LjM5aC0zMC40MVptLTE0LjYtMjE2LjU0YzYuMDgtMTAuMzQsOS4xMi0xMy4wOCwxNC42LTEzLjA4czguODIsMy4zNSw4LjgyLDguODJjMCwzLjM1LTEuODIsNi4wOC01Ljc4LDkuMTJsLTcuOTEtNC4yNmMtNS4xNywyLjc0LTkuNDMsOC41Mi05LjQzLDEyLjc3djM5Ljg0bDEwLjY0LDEuNTJ2Ni4zOWgtMzMuNzZ2LTYuMDhsOC44Mi0xLjgydi01NS45NmwtOC44Mi0xLjUydi00Ljg3bDE4LjI1LTQuODdoNC41NnYxMy45OVptMzEuMDIsNjEuMTN2LTYuMDhsOC4yMS0xLjgydi01NC43NGwtOC4yMS0xLjgydi01LjE3bDE5LjE2LTQuODdoMy42NXY2Ni42bDguNTIsMS41MnY2LjM5aC0zMS4zMlptMjQuMDItMTAxLjg4YzAsNS40Ny00LjI2LDkuNzMtOS43Myw5Ljczcy05LjczLTQuMjYtOS43My05LjczLDQuMjYtOS43Myw5LjczLTkuNzMsOS43Myw0LjI2LDkuNzMsOS43M1ptMTQuOSwyMTguNjdjMS41MiwyMC45OCw2LjY5LDI5LjUsMTcuNjQsMjkuNSw1Ljc4LDAsOS43My0yLjc0LDE0LjI5LTkuNzNsNi42OSwyLjc0Yy02Ljk5LDEzLjA4LTEzLjM4LDE3LjY0LTI1LjI0LDE3LjY0LTE4LjI1LDAtMjguNTktMTMuNjktMjguNTktMzcuMSwwLTI1LjI0LDEwLjY0LTQwLjE1LDI4LjI4LTQwLjE1LDEyLjE3LDAsMjAuMDcsNi4zOSwyMy43MiwxOC4yNSwxLjIyLDMuOTUsMS41Miw4LjgyLDIuMTMsMTguODZoLTM4LjkzWm0yMy4xMS02Ljk5Yy0uMzEtMTUuODEtMy4zNS0yMi44MS0xMC4zNC0yMi44MXMtMTAuOTUsNi42OS0xMi43NywyMi44MWgyMy4xMVoiLz4KICA8cGF0aCBjbGFzcz0iY2xzLTEiIGQ9Im03NzcuMzgsMTE5LjIydi02LjA4bDcuOTEtMS41MnYtNDQuNGMwLTguNTItMi43NC0xMi40Ny04LjUxLTEyLjQ3LTQuNTYsMC04LjUyLDEuODItMTQuMjksNi42OXY0OS41N2w3LjkxLDEuODJ2Ni4zOWgtMzEuMzJ2LTYuMDhsOC44Mi0xLjgydi01NS4zNWwtOC44Mi0xLjIydi02LjA4bDE4Ljg2LTQuODdoNC4yNnY5LjEyYzkuMTItNi45OSwxMy4zOC04LjgyLDIwLjA3LTguODIsMTEuNTYsMCwxNy45NCw3LjMsMTcuOTQsMTkuNzd2NDcuMTRsNy45MSwxLjgydjYuMzloLTMwLjcyWm05LjQzLDE1NS40MXYtNi4wOGw4LjIxLTEuODJ2LTU1LjA1bC04LjIxLTEuODJ2LTQuODdsMTkuMTYtNC44N2gzLjY1djY2LjNsOC41MiwxLjgydjYuMzloLTMxLjMyWm0yNC4zMy0xMDIuMTljMCw1LjQ3LTQuNTYsMTAuMDQtMTAuMDQsMTAuMDRzLTkuNzMtNC4yNi05LjczLTkuNzMsNC41Ni0xMC4wNCwxMC4zNC0xMC4wNGM1LjE3LDAsOS40Myw0LjU2LDkuNDMsOS43M1ptNTUuMzUtMTE4LjMxYzQuMjYsNS40Nyw1LjQ3LDkuMTIsNS40NywxNC45LDAsMTMuOTktMTAuOTUsMjQuMzMtMjUuNTUsMjQuMzMtMy4wNCwwLTUuNDctLjMtOC4yMS0xLjIyLTMuNjUsMi40My01Ljc4LDQuODctNS43OCw2LjM5LDAsMi4xMywxLjgyLDMuMDQsNi4zOSwzLjM1bDE4LjI1LjkxYzE0LjI5LjYxLDIwLjk5LDYuMDgsMjAuOTksMTcuMzMsMCwxNi4xMi0xNC4yOSwyNi40Ni0zNi4xOSwyNi40Ni0xNi40MiwwLTI3LjA3LTYuMDgtMjcuMDctMTUuNTEsMC02LjA4LDMuMzQtMTAuMzQsMTEuODYtMTUuODItNi4wOC0yLjQzLTguNTItNS40Ny04LjUyLTkuNzMsMC01LjE3LDMuOTUtMTAuMDQsMTMuNjktMTYuMTItOS4xMi01Ljc4LTEyLjQ3LTExLjU2LTEyLjQ3LTIwLjk4LDAtMTQuMjksMTAuOTUtMjUuMjQsMjUuMjQtMjUuMjQsMy4wNCwwLDQuMjYuMyw5LjczLDEuNTIsMy4wNC45MSw1LjE3LDEuMjIsNi42OSwxLjIyLjMxLDAsMS41MiwwLDIuNzQtLjNoMi43NGwxMi40Ny0uM3Y4LjgyaC0xMi40N1ptMzkuMjMsMjIwLjQ5di02LjA4bDguMjEtMS44MnYtNDIuMjdjMC0xMC4wNC0yLjc0LTEzLjk5LTkuMTItMTMuOTktNC44NywwLTguMjEsMS44Mi0xNC4yOSw3LjN2NDguNjZsNy42LDEuODJ2Ni4zOWgtMzAuNzJ2LTYuMDhsOC41MS0xLjgydi00Mi41OGMwLTkuNDMtMy4wNC0xMy42OS05LjczLTEzLjY5LTQuODYsMC04LjUxLDEuODItMTMuNjksNi45OXY0OC45Nmw3LDEuODJ2Ni4zOWgtMzEuMDJ2LTYuMDhsOC44Mi0xLjgydi01NS45NmwtOC44Mi0xLjUydi01LjE3bDE5LjE2LTQuODdoMy45NnYxMC4wNGM3LjYtNi4zOSwxMy4zOC04LjgyLDIwLjY4LTguODJzMTIuNzcsMy4wNCwxNy4wMyw5LjczYzcuOTEtNy4zLDEzLjA4LTEwLjA0LDIwLjk5LTEwLjA0LDEzLjA4LDAsMTguNTUsNi4zOSwxOC41NSwyMS41OXY0NC43MWw4LjUyLDEuODJ2Ni4zOWgtMzEuNjNabS03Ni4zNC0xNDYuODljMCw2LjY5LDYuMDgsMTAuNjQsMTYuMTIsMTAuNjQsMTIuNDcsMCwyMS45LTUuNDcsMjEuOS0xMi40N3MtMi40My03LjYtMzIuNTQtOS40M2MtMy45NSwzLjY1LTUuNDcsNi42OS01LjQ3LDExLjI1Wm02LjA4LTU5LjkxYzAsMTIuNzcsMy4wNCwxOC41NSwxMC4zNCwxOC41NXMxMC4zNC01Ljc4LDEwLjM0LTE3LjAzYzAtMTMuMzgtMy42NS0xOS43Ny0xMC45NS0xOS43Ny02LjY5LDAtOS43Myw1Ljc4LTkuNzMsMTguMjVabTY3LjIxLDEzLjA4YzEuNTIsMjAuNjgsNi42OSwyOS4yLDE3LjY0LDI5LjIsNS40NywwLDkuNDMtMi43NCwxMy45OS05LjczbDYuNjksMi43NGMtNy42LDEzLjY5LTEzLjA4LDE3LjY0LTI0Ljk0LDE3LjY0LTE4LjI1LDAtMjguNTktMTMuMDgtMjguNTktMzYuOCwwLTI1LjI0LDEwLjY0LTQwLjQ1LDI4LjI4LTQwLjQ1czI1LjI0LDEyLjE2LDI1LjU1LDM3LjQxaC0zOC42MlptMjMuMTEtNy4zYy0uNjEtMTYuNDItMy42NS0yMi44MS0xMC42NC0yMi44MXMtMTAuNjQsNi45OS0xMi40NywyMi44MWgyMy4xMVptNTAuNzktMTUuNTFjNi4wOC0xMC4zNCw5LjEyLTEzLjA4LDE0LjYtMTMuMDhzOC44MiwzLjM1LDguODIsOC44MmMwLDMuMzUtMS44Miw2LjA4LTUuNzgsOS4xMmwtNy45MS00LjI2Yy01LjE3LDIuNzQtOS40Myw4LjUyLTkuNDMsMTIuNzd2MzkuODRsMTAuNjQsMS41MnY2LjM5aC0zMy43NnYtNi4wOGw4LjgyLTEuODJ2LTU1Ljk2bC04LjgyLTEuNTJ2LTQuODdsMTguMjUtNC44N2g0LjU2djEzLjk5WiIvPgo8L3N2Zz4=",
+      "headerHeight": 24,
+      "showInHeader": true
+    }
+  }
+}

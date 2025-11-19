@@ -118,6 +118,45 @@ export default function Home() {
     }
   }, [hideIdtypeNodes]);
 
+  const addTestDb1 = React.useCallback(async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/graph/add_test_db1",
+        { method: "POST" }
+      );
+      const data: GraphConfig = await response.json();
+      setGraph(data);
+    } catch (error) {
+      console.error("Error adding test db:", error);
+    }
+  }, []);
+
+  const addTestDb2 = React.useCallback(async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/graph/add_test_db2",
+        { method: "POST" }
+      );
+      const data: GraphConfig = await response.json();
+      setGraph(data);
+    } catch (error) {
+      console.error("Error adding test db:", error);
+    }
+  }, []);
+
+  const addOrdinoPublic = React.useCallback(async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/graph/add_ordino_public",
+        { method: "POST" }
+      );
+      const data: GraphConfig = await response.json();
+      setGraph(data);
+    } catch (error) {
+      console.error("Error adding test db:", error);
+    }
+  }, []);
+
   return (
     <Box
       style={{
@@ -144,9 +183,9 @@ export default function Home() {
       <Fieldset legend="Controls" p="md" ref={sidebarRef}>
         <Box h="100%" style={{ display: "grid", gridTemplateRows: "1fr 1fr" }}>
           <Stack>
-            <Button onClick={fetchInitialGraph}>Load graph</Button>
+            <Button onClick={fetchInitialGraph}>Load visyn_kb graph</Button>
             <Button onClick={fetchIdtypeRelations} disabled={!graph}>
-              Load idtype relations
+              Load visyn_kb idtype relations
             </Button>
             <Switch
               checked={hideIdtypeNodes}
@@ -158,11 +197,15 @@ export default function Home() {
               disabled={!graph}
             />
             <Button onClick={fetchOneToNRelations} disabled={!graph}>
-              Load 1-n relations
+              Load visyn_kb 1-n relations
             </Button>
             <Button onClick={fetchOrdinoDrilldownRelations} disabled={!graph}>
-              Load ordino drilldown relations
+              Load visyn_kb drilldown relations
             </Button>
+            <Divider />
+            <Button onClick={addTestDb1}>Add test db 1</Button>
+            <Button onClick={addTestDb2}>Add test db 2</Button>
+            <Button onClick={addOrdinoPublic}>Add ordino public</Button>
             <Divider />
             <Button onClick={fetchResetGraph} disabled={!graph} color="red">
               Reset graph
