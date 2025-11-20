@@ -6,8 +6,10 @@ import {
   Button,
   Divider,
   ScrollArea,
+  SegmentedControl,
   Stack,
   Switch,
+  Text,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import * as React from "react";
@@ -15,9 +17,13 @@ import * as React from "react";
 export function Controls({
   graph,
   setGraph,
+  graphMode,
+  setGraphMode,
 }: {
   graph: GraphConfig | null;
   setGraph: React.Dispatch<React.SetStateAction<GraphConfig | null>>;
+  graphMode: "2d" | "3d";
+  setGraphMode: React.Dispatch<React.SetStateAction<"2d" | "3d">>;
 }) {
   const [withIdtypeNodes, { toggle: toggleIdtypeNodes }] = useDisclosure(true);
   const [withIntermediateEdges, { toggle: toggleIntermediateEdges }] =
@@ -231,6 +237,17 @@ export function Controls({
           <Accordion.Panel>
             <ScrollArea.Autosize mah={200}>
               <Stack px="md" pb="md">
+                <Stack>
+                  <Text>Graph type</Text>
+                  <SegmentedControl
+                    data={["2D", "3D"]}
+                    value={graphMode.toUpperCase()}
+                    onChange={(v) =>
+                      setGraphMode(v.toLowerCase() as "2d" | "3d")
+                    }
+                    disabled={!graph}
+                  />
+                </Stack>
                 <Switch
                   checked={withIdtypeNodes}
                   onChange={fetchGraphWithIdtypeNodes}

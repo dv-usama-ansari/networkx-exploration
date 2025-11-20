@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
-import { GraphConfig } from "../types";
+import { GraphConfig } from "../../types";
 
 const ForceGraph = dynamic(() => import("react-force-graph-2d"), {
   ssr: false,
 });
 
-export function GraphComponent({
+export function Graph2D({
   graph,
   width,
   height,
