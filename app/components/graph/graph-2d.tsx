@@ -1,4 +1,7 @@
+"use client";
+
 import dynamic from "next/dynamic";
+import * as React from "react";
 import { GraphConfig } from "../../types";
 
 const ForceGraph = dynamic(() => import("react-force-graph-2d"), {
@@ -14,12 +17,63 @@ export function Graph2D({
   width: number;
   height: number;
 }) {
+  // Count links in each direction separately
+  const directedLinkCount = React.useMemo(
+    () =>
+      graph.links.reduce((acc, l) => {
+        const key = `${l.source}-${l.target}`;
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>),
+    [graph.links]
+  );
+
+  // Create curvature arrays for each direction
+  const linkCurvatureMap = React.useMemo(
+    () =>
+      Object.keys(directedLinkCount).reduce((acc, key) => {
+        const count = directedLinkCount[key];
+        acc[key] =
+          count > 1
+            ? Array.from({ length: count }, (_, i) => 0.15 * (i + 1))
+            : [0.15];
+        return acc;
+      }, {} as Record<string, number[]>),
+    [directedLinkCount]
+  );
+
+  // Assign each link a specific curvature index based on direction
+  const linkToCurvatureIndex = React.useMemo(() => {
+    const indexMap: Record<string, number> = {};
+    const counters: Record<string, number> = {};
+
+    graph.links.forEach((l) => {
+      const directionKey = `${l.source}-${l.target}`;
+      const linkId = `${l.source}-${l.target}-${
+        (l.data as { type: string })?.type || ""
+      }-${
+        (
+          l.data as { workbench: { views: { name: string }[] } }
+        )?.workbench?.views
+          ?.map((v) => v.name)
+          .join(",") || ""
+      }`;
+
+      if (!counters[directionKey]) {
+        counters[directionKey] = 0;
+      }
+
+      indexMap[linkId] = counters[directionKey]++;
+    });
+
+    return indexMap;
+  }, [graph.links]);
+
   return (
     <ForceGraph
       height={height}
       width={width}
       graphData={{ nodes: graph.nodes, links: graph.links }}
-      nodeLabel={(n) => n.id!}
       nodeColor={(n) =>
         n.data?.type === "entity"
           ? "orange"
@@ -51,11 +105,34 @@ export function Graph2D({
           l.data.type
         )
           ? [3, 1]
-          : undefined
+          : null
       }
       linkDirectionalArrowLength={3.5}
       linkDirectionalArrowRelPos={1}
-      linkCurvature={0.15}
+      linkCurvature={(l) => {
+        const directionKey = `${(l.source as { id: string })?.id}-${
+          (l.target as { id: string })?.id
+        }`;
+        const linkId = `${(l.source as { id: string })?.id}-${
+          (l.target as { id: string })?.id
+        }-${(l.data as { type: string })?.type || ""}-${
+          (
+            l.data as { workbench: { views: { name: string }[] } }
+          )?.workbench?.views
+            ?.map((v) => v.name)
+            .join(",") || ""
+        }`;
+
+        if (linkCurvatureMap[directionKey]?.length > 1) {
+          const index = linkToCurvatureIndex[linkId] || 0;
+          const curvature =
+            linkCurvatureMap[directionKey][
+              index % linkCurvatureMap[directionKey].length
+            ];
+          return curvature;
+        }
+        return 0.15;
+      }}
       // dagMode="bu"
       nodeCanvasObject={(node, ctx, globalScale) => {
         const label = node.id as string;
@@ -95,7 +172,6 @@ export function Graph2D({
         node.fy = node.y;
         node.fz = node.z;
       }}
-      zoomToFit
     />
   );
 }
