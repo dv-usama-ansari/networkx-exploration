@@ -1,23 +1,9 @@
 import dynamic from "next/dynamic";
+import { GraphConfig } from "../types";
 
 const ForceGraph = dynamic(() => import("react-force-graph-2d"), {
   ssr: false,
 });
-
-export type GraphConfig = {
-  directed: boolean;
-  multigraph: boolean;
-  graph: unknown;
-  nodes: {
-    id: string;
-    data: unknown;
-  }[];
-  links: {
-    source: string;
-    target: string;
-    data: unknown;
-  }[];
-};
 
 export function GraphComponent({
   graph,
