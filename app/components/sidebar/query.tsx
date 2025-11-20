@@ -57,22 +57,17 @@ export function Query({
           Query relations
         </Button>
         {relations ? (
-          <ActionIcon
+          <CloseButton
             onClick={() => {
               setRelations(null);
             }}
-            variant="subtle"
-          >
-            <CloseButton />
-          </ActionIcon>
+          />
         ) : null}
       </Box>
       {relations ? (
-        <Fieldset legend="Relations">
-          <ScrollArea.Autosize maw={320} mah={400} scrollbars="xy">
-            <Code block>{JSON.stringify(relations, null, 2)}</Code>
-          </ScrollArea.Autosize>
-        </Fieldset>
+        <ScrollArea.Autosize maw={320} mah={400} scrollbars="xy">
+          <Code block>{JSON.stringify(relations, null, 2)}</Code>
+        </ScrollArea.Autosize>
       ) : null}
     </Stack>
   );

@@ -29,7 +29,7 @@ export default function Home() {
             <Fieldset p={0} m={0}>
               <GraphComponent
                 graph={graph}
-                height={height - 72}
+                height={height - 86}
                 width={width - (sidebarWidth ?? 0) - 96}
               />
             </Fieldset>

@@ -472,9 +472,9 @@ def get_relations_for_node(G: nx.MultiDiGraph, node_id: str) -> list[dict]:
     if node_id not in G:
         return relations
 
-    for neighbor in G.neighbors(node_id):
-        for key in G[node_id][neighbor]:
-            edge_data = G[node_id][neighbor][key].get("data", {})
+    for adjacent in list(G.neighbors(node_id)) + list(G.predecessors(node_id)):
+        for key in G[node_id][adjacent]:
+            edge_data = G[node_id][adjacent][key].get("data", {})
             if edge_data.get("type") not in [
                 "ordino-drilldown-fragment",
                 "idtype-mapping",
@@ -482,24 +482,57 @@ def get_relations_for_node(G: nx.MultiDiGraph, node_id: str) -> list[dict]:
                 relations.append(
                     {
                         "source": node_id,
-                        "target": neighbor,
-                        "data": edge_data,
-                    }
-                )
-
-    for predecessor in G.predecessors(node_id):
-        for key in G[predecessor][node_id]:
-            edge_data = G[predecessor][node_id][key].get("data", {})
-            if edge_data.get("type") not in [
-                "ordino-drilldown-fragment",
-                "idtype-mapping",
-            ]:
-                relations.append(
-                    {
-                        "source": predecessor,
-                        "target": node_id,
+                        "target": adjacent,
                         "data": edge_data,
                     }
                 )
 
     return relations
+
+
+def get_subgraph_with_idtype_nodes(
+    G: nx.MultiDiGraph, with_idtype_nodes: bool
+) -> nx.MultiDiGraph:
+    if with_idtype_nodes:
+        return G
+    else:
+        SG = G.copy()
+        nodes_to_hide = [
+            n
+            for n, attr in G.nodes(data=True)
+            if attr.get("data", {}).get("type") == "idtype"
+        ]
+        filter = nx.filters.hide_nodes(nodes_to_hide)
+        SG = nx.subgraph_view(SG, filter_node=filter)
+        return SG
+
+
+def get_subgraph_with_intermediate_edges(
+    G: nx.MultiDiGraph, with_intermediate_edges: bool
+) -> nx.MultiDiGraph:
+    if with_intermediate_edges:
+        return G
+    else:
+        edges_to_remove = []
+        for u, v, k, attr in G.edges(data=True, keys=True):
+            if attr.get("data", {}).get("type") in [
+                "idtype-mapping",
+                "ordino-drilldown-fragment",
+            ]:
+                edges_to_remove.append((u, v, k))
+
+        SG = G.copy()
+        filter = nx.filters.hide_multidiedges(edges_to_remove)
+        SG = nx.subgraph_view(SG, filter_edge=filter)
+        return SG
+
+
+def get_subgraph_with_isolated_nodes_removed(
+    G: nx.MultiDiGraph, remove_isolated_nodes: bool
+) -> nx.MultiDiGraph:
+    SG = G.copy()
+
+    if remove_isolated_nodes:
+        SG.remove_nodes_from(list(nx.isolates(G)))
+
+    return SG

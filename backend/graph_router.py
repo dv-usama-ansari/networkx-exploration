@@ -1,9 +1,13 @@
 from fastapi import APIRouter, HTTPException
 import json
+import logging
 from networkx.readwrite import json_graph
 import networkx as nx
 from graph import (
     get_relations_for_node,
+    get_subgraph_with_idtype_nodes,
+    get_subgraph_with_intermediate_edges,
+    get_subgraph_with_isolated_nodes_removed,
     populate_graph,
     populate_idtype_relations,
     populate_one_to_n_relations,
@@ -15,6 +19,8 @@ graph_router = APIRouter(prefix="/api/graph")
 # In-memory storage for the graph and landscape data
 G = nx.MultiDiGraph()
 landscape = {}
+
+_log = logging.getLogger(__name__)
 
 
 @graph_router.post("/populate_graph")
@@ -29,24 +35,27 @@ def populate_graph_route():
 
 
 @graph_router.get("/get_graph")
-def get_graph_route(with_idtype_nodes: bool = False):
+def get_graph_route(
+    with_idtype_nodes: bool, with_intermediate_edges: bool, remove_isolated_nodes: bool
+):
     global G, landscape
     if G is None or landscape is None:
         raise HTTPException(
             status_code=400,
             detail="Graph not initialized. Please populate the graph first.",
         )
-    if with_idtype_nodes:
-        data = json_graph.node_link_data(G)
-    else:
-        # Create a subgraph without idtype nodes
-        nodes_to_include = [
-            n
-            for n, attr in G.nodes(data=True)
-            if attr.get("data", {}).get("type") != "idtype"
-        ]
-        SG = G.subgraph(nodes_to_include)
-        data = json_graph.node_link_data(SG)
+
+    _log.debug(
+        f"Getting graph with_idtype_nodes={with_idtype_nodes}, with_intermediate_edges={with_intermediate_edges}"
+    )
+
+    SG = G.copy()
+    SG = get_subgraph_with_idtype_nodes(SG, with_idtype_nodes)
+    SG = get_subgraph_with_intermediate_edges(SG, with_intermediate_edges)
+    SG = get_subgraph_with_isolated_nodes_removed(SG, remove_isolated_nodes)
+
+    data = json_graph.node_link_data(SG)
+
     return data
 
 

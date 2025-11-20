@@ -1,7 +1,9 @@
-import { Box, Fieldset } from "@mantine/core";
+"use client";
+
+import { GraphConfig } from "@/app/types";
+import { Box, Divider, Stack } from "@mantine/core";
 import { Controls } from "./controls";
 import { Query } from "./query";
-import { GraphConfig } from "@/app/types";
 
 export function Sidebar({
   graph,
@@ -11,12 +13,16 @@ export function Sidebar({
   setGraph: React.Dispatch<React.SetStateAction<GraphConfig | null>>;
 }) {
   return (
-    <Box h="100%" style={{ display: "grid", gridTemplateRows: "1fr 1fr" }}>
+    <Box
+      h="100%"
+      style={{ display: "grid", gridTemplateRows: "1fr 1fr", gap: "1rem" }}
+    >
       <Controls graph={graph} setGraph={setGraph} />
       {graph ? (
-        <Fieldset legend="Fetch relations for node" miw={320}>
+        <Stack>
+          <Divider />
           <Query graph={graph} setGraph={setGraph} />
-        </Fieldset>
+        </Stack>
       ) : null}
     </Box>
   );
