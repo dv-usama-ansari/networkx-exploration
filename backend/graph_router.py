@@ -4,6 +4,7 @@ import logging
 from networkx.readwrite import json_graph
 import networkx as nx
 from graph import (
+    deduplicate_relations,
     get_relations_for_node,
     get_subgraph_with_idtype_nodes,
     get_subgraph_with_intermediate_edges,
@@ -30,6 +31,7 @@ def populate_graph_route():
     landscape = json.load(open("data/visyn_kb.json"))
     # Create the initial graph
     populate_graph(G, landscape, landscape_name="visyn_kb")
+    deduplicate_relations(G)
     data = json_graph.node_link_data(G)
     return data
 
@@ -45,15 +47,11 @@ def get_graph_route(
             detail="Graph not initialized. Please populate the graph first.",
         )
 
-    _log.debug(
-        f"Getting graph with_idtype_nodes={with_idtype_nodes}, with_intermediate_edges={with_intermediate_edges}"
-    )
-
     SG = G.copy()
     SG = get_subgraph_with_idtype_nodes(SG, with_idtype_nodes)
     SG = get_subgraph_with_intermediate_edges(SG, with_intermediate_edges)
     SG = get_subgraph_with_isolated_nodes_removed(SG, remove_isolated_nodes)
-
+    deduplicate_relations(SG)
     data = json_graph.node_link_data(SG)
 
     return data
@@ -69,6 +67,7 @@ def populate_idtype_relations_route():
         )
 
     populate_idtype_relations(G, landscape_name="visyn_kb")
+    deduplicate_relations(G)
     data = json_graph.node_link_data(G)
     return data
 
@@ -83,6 +82,7 @@ def populate_one_to_n_relations_route():
         )
 
     populate_one_to_n_relations(G, landscape, landscape_name="visyn_kb")
+    deduplicate_relations(G)
     data = json_graph.node_link_data(G)
     return data
 
@@ -97,6 +97,7 @@ def populate_ordino_drilldown_relations_route():
         )
 
     populate_ordino_drilldown_relations(G, landscape, landscape_name="visyn_kb")
+    deduplicate_relations(G)
     data = json_graph.node_link_data(G)
     return data
 
@@ -137,6 +138,7 @@ def add_test_db1_route():
     populate_idtype_relations(G, landscape_name="test_db1")
     populate_one_to_n_relations(G, landscape, landscape_name="test_db1")
     populate_ordino_drilldown_relations(G, landscape, landscape_name="test_db1")
+    deduplicate_relations(G)
     data = json_graph.node_link_data(G)
     return data
 
@@ -151,6 +153,7 @@ def add_test_db2_route():
     populate_idtype_relations(G, landscape_name="test_db2")
     populate_one_to_n_relations(G, landscape, landscape_name="test_db2")
     populate_ordino_drilldown_relations(G, landscape, landscape_name="test_db2")
+    deduplicate_relations(G)
     data = json_graph.node_link_data(G)
     return data
 
@@ -165,5 +168,6 @@ def add_ordino_public_route():
     populate_idtype_relations(G, landscape_name="ordino_public")
     populate_one_to_n_relations(G, landscape, landscape_name="ordino_public")
     populate_ordino_drilldown_relations(G, landscape, landscape_name="ordino_public")
+    deduplicate_relations(G)
     data = json_graph.node_link_data(G)
     return data

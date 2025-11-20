@@ -490,6 +490,37 @@ def get_relations_for_node(G: nx.MultiDiGraph, node_id: str) -> list[dict]:
     return relations
 
 
+def deduplicate_relations(G: nx.MultiDiGraph) -> None:
+    idtype_relations = [
+        (u, v, k)
+        for u, v, k, attr in G.edges(data=True, keys=True)
+        if attr.get("data", {}).get("type") == "1-1"
+        and attr.get("data", {}).get("via_idtype") is not None
+    ]
+
+    one_to_n_relations = [
+        (u, v, k)
+        for u, v, k, attr in G.edges(data=True, keys=True)
+        if attr.get("data", {}).get("type") == "1-n"
+    ]
+
+    # find all the edges which have the same u and v
+    uniques = []
+    duplicates = []
+    duplicated_data = []
+    for relations in [one_to_n_relations, idtype_relations]:
+        for u, v, k in relations:
+            edge_signature = f"{u}-{v}"
+            if edge_signature not in uniques:
+                uniques.append(edge_signature)
+            else:
+                duplicates.append((u, v, k))
+                duplicated_data.append(G.edges[u, v, k]["data"])
+
+    for u, v, k in duplicates:
+        G.remove_edge(u, v, k)
+
+
 def get_subgraph_with_idtype_nodes(
     G: nx.MultiDiGraph, with_idtype_nodes: bool
 ) -> nx.MultiDiGraph:
