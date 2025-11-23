@@ -104,9 +104,7 @@ export function Graph2D({
           : "gray"
       }
       linkLineDash={(l) =>
-        ["ordino-drilldown-fragment", "n-1", "idtype-mapping"].includes(
-          l.data.type
-        )
+        l.data.is_derived
           ? [3, 1]
           : null
       }
