@@ -71,14 +71,19 @@ def populate_idtype_mapping_relations(G: nx.MultiDiGraph, landscape_name: str) -
         for col in columns:
             idtype = col.get("idtype")
             if idtype in idtypes_in_graph:
+                relation = {
+                    "type": "idtype-mapping",
+                    "column": col.get("columnName"),
+                    "entityId": entity,
+                    "is_derived": True,
+                }
+                relation_hash, _ = get_relation_string(relation)
                 G.add_edge(
                     entity,
                     idtype,
+                    key=relation_hash,
                     data={
-                        "type": "idtype-mapping",
-                        "column": col.get("columnName"),
-                        "entityId": entity,
-                        "is_derived": True,
+                        **relation,
                         "origins": {
                             *(
                                 list(
@@ -86,7 +91,7 @@ def populate_idtype_mapping_relations(G: nx.MultiDiGraph, landscape_name: str) -
                                         (
                                             entity,
                                             idtype,
-                                            0,  # For MultiDiGraph, need to specify the key
+                                            relation_hash,  # For MultiDiGraph, need to specify the key
                                         ),
                                         {},
                                     )
@@ -166,6 +171,7 @@ def derive_one_to_one_relations_from_idtype(
             G.add_edge(
                 connected_entities[i],
                 connected_entities[j],
+                key=forward_relation_hash,
                 data={
                     "via_idtype": idtype_node_id,
                     "origins": {
@@ -186,12 +192,12 @@ def derive_one_to_one_relations_from_idtype(
                         )
                     },
                     **forward_relation,
-                    "hash": forward_relation_hash,
                 },
             )
             G.add_edge(
                 connected_entities[j],
                 connected_entities[i],
+                key=reverse_relation_hash,
                 data={
                     "via_idtype": idtype_node_id,
                     "origins": {
@@ -212,7 +218,6 @@ def derive_one_to_one_relations_from_idtype(
                         )
                     },
                     **reverse_relation,
-                    "hash": reverse_relation_hash,
                 },
             )
 
@@ -259,9 +264,9 @@ def populate_one_to_n_relations(
             G.add_edge(
                 relation.get("source", {"id": None}).get("id"),
                 relation.get("target", {"id": None}).get("id"),
+                key=relation_hash,
                 data={
                     **relation,
-                    "hash": relation_hash,
                     "origins": {
                         *(
                             list(
@@ -286,9 +291,9 @@ def populate_one_to_n_relations(
                 G.add_edge(
                     relation.get("target", {"id": None}).get("id"),
                     relation.get("source", {"id": None}).get("id"),
+                    key=reverse_relation_hash,
                     data={
                         **relation,
-                        "hash": reverse_relation_hash,
                         "type": "n-1",
                         "is_derived": True,
                         "origins": {
@@ -327,9 +332,9 @@ def populate_ordino_drilldown_relations(
             G.add_edge(
                 relation.get("source", {"id": None}).get("id"),
                 relation.get("target", {"id": None}).get("id"),
+                key=relation_hash,
                 data={
                     **relation,
-                    "hash": relation_hash,
                     "origins": {
                         *(
                             list(
@@ -361,9 +366,9 @@ def populate_ordino_drilldown_relations(
             G.add_edge(
                 relation.get("target", {"id": None}).get("id"),
                 relation.get("source", {"id": None}).get("id"),
+                key=reverse_relation_hash,
                 data={
                     **reverse_relation,
-                    "hash": reverse_relation_hash,
                     "origins": {
                         *(
                             list(
@@ -383,127 +388,127 @@ def populate_ordino_drilldown_relations(
                     },
                 },
             )
-            for mapping_index, mapping in enumerate(relation.get("mapping", [])):
-                # connections via the mapping entity as a fragment of the drilldown relation
-                G.add_edge(
-                    relation.get("source", {"id": None}).get("id"),
-                    mapping.get("entity"),
-                    data={
-                        **relation,
-                        "type": "ordino-drilldown-fragment",
-                        "is_derived": True,
-                        "mapping": mapping,
-                        "origins": {
-                            *(
-                                list(
-                                    G.edges.get(
-                                        (
-                                            relation.get("source", {"id": None}).get(
-                                                "id"
-                                            ),
-                                            mapping.get("entity"),
-                                            0,  # For MultiDiGraph, need to specify the key
-                                        ),
-                                        {},
-                                    )
-                                    .get("data", {})
-                                    .get("origins", [])
-                                )
-                                + [landscape_name]
-                            )
-                        },
-                    },
-                )
+            # for mapping_index, mapping in enumerate(relation.get("mapping", [])):
+            #     # connections via the mapping entity as a fragment of the drilldown relation
+            #     G.add_edge(
+            #         relation.get("source", {"id": None}).get("id"),
+            #         mapping.get("entity"),
+            #         data={
+            #             **relation,
+            #             "type": "ordino-drilldown-fragment",
+            #             "is_derived": True,
+            #             "mapping": mapping,
+            #             "origins": {
+            #                 *(
+            #                     list(
+            #                         G.edges.get(
+            #                             (
+            #                                 relation.get("source", {"id": None}).get(
+            #                                     "id"
+            #                                 ),
+            #                                 mapping.get("entity"),
+            #                                 0,  # For MultiDiGraph, need to specify the key
+            #                             ),
+            #                             {},
+            #                         )
+            #                         .get("data", {})
+            #                         .get("origins", [])
+            #                     )
+            #                     + [landscape_name]
+            #                 )
+            #             },
+            #         },
+            #     )
 
-                G.add_edge(
-                    mapping.get("entity"),
-                    relation.get("source", {"id": None}).get("id"),
-                    data={
-                        **relation,
-                        "type": "ordino-drilldown-fragment",
-                        "is_derived": True,
-                        "mapping": mapping,
-                        "origins": {
-                            *(
-                                list(
-                                    G.edges.get(
-                                        (
-                                            mapping.get("entity"),
-                                            relation.get("source", {"id": None}).get(
-                                                "id"
-                                            ),
-                                            0,  # For MultiDiGraph, need to specify the key
-                                        ),
-                                        {},
-                                    )
-                                    .get("data", {})
-                                    .get("origins", [])
-                                )
-                                + [landscape_name]
-                            )
-                        },
-                    },
-                )
+            #     G.add_edge(
+            #         mapping.get("entity"),
+            #         relation.get("source", {"id": None}).get("id"),
+            #         data={
+            #             **relation,
+            #             "type": "ordino-drilldown-fragment",
+            #             "is_derived": True,
+            #             "mapping": mapping,
+            #             "origins": {
+            #                 *(
+            #                     list(
+            #                         G.edges.get(
+            #                             (
+            #                                 mapping.get("entity"),
+            #                                 relation.get("source", {"id": None}).get(
+            #                                     "id"
+            #                                 ),
+            #                                 0,  # For MultiDiGraph, need to specify the key
+            #                             ),
+            #                             {},
+            #                         )
+            #                         .get("data", {})
+            #                         .get("origins", [])
+            #                     )
+            #                     + [landscape_name]
+            #                 )
+            #             },
+            #         },
+            #     )
 
-                G.add_edge(
-                    mapping.get("entity"),
-                    relation.get("target", {"id": None}).get("id"),
-                    data={
-                        **relation,
-                        "type": "ordino-drilldown-fragment",
-                        "is_derived": True,
-                        "mapping": mapping,
-                        "origins": {
-                            *(
-                                list(
-                                    G.edges.get(
-                                        (
-                                            mapping.get("entity"),
-                                            relation.get("target", {"id": None}).get(
-                                                "id"
-                                            ),
-                                            0,  # For MultiDiGraph, need to specify the key
-                                        ),
-                                        {},
-                                    )
-                                    .get("data", {})
-                                    .get("origins", [])
-                                )
-                                + [landscape_name]
-                            )
-                        },
-                    },
-                )
+            #     G.add_edge(
+            #         mapping.get("entity"),
+            #         relation.get("target", {"id": None}).get("id"),
+            #         data={
+            #             **relation,
+            #             "type": "ordino-drilldown-fragment",
+            #             "is_derived": True,
+            #             "mapping": mapping,
+            #             "origins": {
+            #                 *(
+            #                     list(
+            #                         G.edges.get(
+            #                             (
+            #                                 mapping.get("entity"),
+            #                                 relation.get("target", {"id": None}).get(
+            #                                     "id"
+            #                                 ),
+            #                                 0,  # For MultiDiGraph, need to specify the key
+            #                             ),
+            #                             {},
+            #                         )
+            #                         .get("data", {})
+            #                         .get("origins", [])
+            #                     )
+            #                     + [landscape_name]
+            #                 )
+            #             },
+            #         },
+            #     )
 
-                G.add_edge(
-                    relation.get("target", {"id": None}).get("id"),
-                    mapping.get("entity"),
-                    data={
-                        **relation,
-                        "type": "ordino-drilldown-fragment",
-                        "is_derived": True,
-                        "mapping": mapping,
-                        "origins": {
-                            *(
-                                list(
-                                    G.edges.get(
-                                        (
-                                            relation.get("target", {"id": None}).get(
-                                                "id"
-                                            ),
-                                            mapping.get("entity"),
-                                            0,  # For MultiDiGraph, need to specify the key
-                                        ),
-                                        {},
-                                    )
-                                    .get("data", {})
-                                    .get("origins", [])
-                                )
-                                + [landscape_name]
-                            )
-                        },
-                    },
-                )
+            #     G.add_edge(
+            #         relation.get("target", {"id": None}).get("id"),
+            #         mapping.get("entity"),
+            #         data={
+            #             **relation,
+            #             "type": "ordino-drilldown-fragment",
+            #             "is_derived": True,
+            #             "mapping": mapping,
+            #             "origins": {
+            #                 *(
+            #                     list(
+            #                         G.edges.get(
+            #                             (
+            #                                 relation.get("target", {"id": None}).get(
+            #                                     "id"
+            #                                 ),
+            #                                 mapping.get("entity"),
+            #                                 0,  # For MultiDiGraph, need to specify the key
+            #                             ),
+            #                             {},
+            #                         )
+            #                         .get("data", {})
+            #                         .get("origins", [])
+            #                     )
+            #                     + [landscape_name]
+            #                 )
+            #             },
+            #         },
+            #     )
     return G
 
 
@@ -536,23 +541,29 @@ def merge_graphs(
 
 def deduplicate_relations(G: nx.MultiDiGraph) -> nx.MultiDiGraph:
     idtype_relations = [
-        (u, v, k)
+        (u, v, k, attr)
         for u, v, k, attr in G.edges(data=True, keys=True)
         if attr.get("data", {}).get("type") == "1-1"
         and attr.get("data", {}).get("via_idtype") is not None
     ]
 
     one_to_n_relations = [
-        (u, v, k)
+        (u, v, k, attr)
         for u, v, k, attr in G.edges(data=True, keys=True)
         if attr.get("data", {}).get("type") == "1-n"
     ]
+
+    # ordino_drilldown_relations = [
+    #     (u, v, k, attr)
+    #     for u, v, k, attr in G.edges(data=True, keys=True)
+    #     if attr.get("data", {}).get("type") == "ordino-drilldown"
+    # ]
 
     # find all the edges which have the same u and v
     uniques = []
     duplicates = []
     for relations in [one_to_n_relations, idtype_relations]:
-        for u, v, k in relations:
+        for u, v, k, _ in relations:
             edge_signature = f"{u}-{v}"
             if edge_signature not in uniques:
                 uniques.append(edge_signature)
@@ -561,6 +572,24 @@ def deduplicate_relations(G: nx.MultiDiGraph) -> nx.MultiDiGraph:
 
     for u, v, k in duplicates:
         G.remove_edge(u, v, k)
+
+    # # find all the edges which have the same u and v
+    # uniques = []
+    # duplicates = []
+    # for relations in [ordino_drilldown_relations, idtype_relations]:
+    #     for u, v, k, attr in relations:
+    #         edge_signature = f"{u}-{v}"
+    #         if attr.get("data", {}).get("type", "") == "ordino_drilldown":
+    #             reverse_edge_signature = f"{v}-{u}"
+    #             uniques.append(edge_signature)
+    #             uniques.append(reverse_edge_signature)
+    #         elif edge_signature not in uniques:
+    #             uniques.append(edge_signature)
+    #         else:
+    #             duplicates.append((u, v, k))
+
+    # for u, v, k in duplicates:
+    #     G.remove_edge(u, v, k)
 
     return G
 
@@ -579,26 +608,6 @@ def get_subgraph_with_idtype_nodes(
         ]
         filter = nx.filters.hide_nodes(nodes_to_hide)
         SG = nx.subgraph_view(SG, filter_node=filter)
-        return SG
-
-
-def get_subgraph_with_intermediate_edges(
-    G: nx.MultiDiGraph, with_intermediate_edges: bool
-) -> nx.MultiDiGraph:
-    if with_intermediate_edges:
-        return G
-    else:
-        edges_to_remove = []
-        for u, v, k, attr in G.edges(data=True, keys=True):
-            if attr.get("data", {}).get("type") in [
-                "idtype-mapping",
-                "ordino-drilldown-fragment",
-            ]:
-                edges_to_remove.append((u, v, k))
-
-        SG = G.copy()
-        filter = nx.filters.hide_multidiedges(edges_to_remove)
-        SG = nx.subgraph_view(SG, filter_edge=filter)
         return SG
 
 

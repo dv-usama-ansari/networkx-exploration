@@ -23,7 +23,6 @@ import {
   Text,
   Textarea,
   TextInput,
-  Tooltip,
   useCombobox,
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
@@ -172,10 +171,6 @@ export function Controls({
     { toggle: toggleIdtypeNodes, open: enableWithIdtypeNodes },
   ] = useDisclosure(true);
   const [
-    withIntermediateEdges,
-    { toggle: toggleIntermediateEdges, open: enableWithIntermediateEdges },
-  ] = useDisclosure(true);
-  const [
     removeIsolatedNodes,
     { toggle: toggleRemoveIsolatedNodes, close: disableRemoveIsolatedNodes },
   ] = useDisclosure(false);
@@ -255,7 +250,7 @@ export function Controls({
   const fetchGraphWithIdtypeNodes = React.useCallback(async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/graph/get_graph?with_idtype_nodes=${!withIdtypeNodes}&with_intermediate_edges=${withIntermediateEdges}&remove_isolated_nodes=${removeIsolatedNodes}`,
+        `http://localhost:8000/api/graph/get_graph?with_idtype_nodes=${!withIdtypeNodes}&remove_isolated_nodes=${removeIsolatedNodes}`,
         { method: "GET" }
       );
       const data: GraphConfig = await response.json();
@@ -264,38 +259,12 @@ export function Controls({
     } catch (error) {
       console.error("Error fetching graph data:", error);
     }
-  }, [
-    withIdtypeNodes,
-    withIntermediateEdges,
-    removeIsolatedNodes,
-    setGraph,
-    toggleIdtypeNodes,
-  ]);
-
-  const fetchGraphWithIntermediateEdges = React.useCallback(async () => {
-    try {
-      const response = await fetch(
-        `http://localhost:8000/api/graph/get_graph?with_idtype_nodes=${withIdtypeNodes}&with_intermediate_edges=${!withIntermediateEdges}&remove_isolated_nodes=${removeIsolatedNodes}`,
-        { method: "GET" }
-      );
-      const data: GraphConfig = await response.json();
-      setGraph(data);
-      toggleIntermediateEdges();
-    } catch (error) {
-      console.error("Error fetching graph data:", error);
-    }
-  }, [
-    withIdtypeNodes,
-    withIntermediateEdges,
-    removeIsolatedNodes,
-    setGraph,
-    toggleIntermediateEdges,
-  ]);
+  }, [withIdtypeNodes, removeIsolatedNodes, setGraph, toggleIdtypeNodes]);
 
   const fetchGraphWithRemoveIsolatedNodes = React.useCallback(async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/graph/get_graph?with_idtype_nodes=${withIdtypeNodes}&with_intermediate_edges=${withIntermediateEdges}&remove_isolated_nodes=${!removeIsolatedNodes}`,
+        `http://localhost:8000/api/graph/get_graph?with_idtype_nodes=${withIdtypeNodes}&remove_isolated_nodes=${!removeIsolatedNodes}`,
         { method: "GET" }
       );
       const data: GraphConfig = await response.json();
@@ -306,7 +275,6 @@ export function Controls({
     }
   }, [
     withIdtypeNodes,
-    withIntermediateEdges,
     removeIsolatedNodes,
     setGraph,
     toggleRemoveIsolatedNodes,
@@ -315,7 +283,7 @@ export function Controls({
   const fetchGraph = React.useCallback(async () => {
     try {
       const response = await fetch(
-        `http://localhost:8000/api/graph/get_graph?with_idtype_nodes=${withIdtypeNodes}&with_intermediate_edges=${withIntermediateEdges}&remove_isolated_nodes=${removeIsolatedNodes}`,
+        `http://localhost:8000/api/graph/get_graph?with_idtype_nodes=${withIdtypeNodes}&remove_isolated_nodes=${removeIsolatedNodes}`,
         { method: "GET" }
       );
       const data: GraphConfig = await response.json();
@@ -323,7 +291,8 @@ export function Controls({
     } catch (error) {
       console.error("Error fetching graph data:", error);
     }
-  }, [withIdtypeNodes, withIntermediateEdges, removeIsolatedNodes, setGraph]);
+  }, [withIdtypeNodes, removeIsolatedNodes, setGraph]);
+
 
   const addLandscapes = React.useCallback(async () => {
     try {
@@ -535,13 +504,6 @@ export function Controls({
                   disabled={!graph}
                 />
                 <Switch
-                  checked={withIntermediateEdges}
-                  onChange={fetchGraphWithIntermediateEdges}
-                  label="Show intermediate edges"
-                  description="This setting will only disable intermediate edges for drilldown relations."
-                  disabled={!graph}
-                />
-                <Switch
                   checked={removeIsolatedNodes}
                   onChange={fetchGraphWithRemoveIsolatedNodes}
                   label="Remove isolated nodes"
@@ -561,7 +523,6 @@ export function Controls({
             fetchResetGraph();
             setSelectedFileList([]);
             enableWithIdtypeNodes();
-            enableWithIntermediateEdges();
             disableRemoveIsolatedNodes();
           }}
           disabled={!graph}

@@ -7,7 +7,6 @@ from graph import (
     deduplicate_relations,
     get_relations_for_node,
     get_subgraph_with_idtype_nodes,
-    get_subgraph_with_intermediate_edges,
     get_subgraph_with_isolated_nodes_removed,
     merge_graphs,
     populate_graph,
@@ -106,9 +105,7 @@ def populate_ordino_drilldown_relations_route():
 
 
 @graph_router.get("/get_graph")
-def get_graph_route(
-    with_idtype_nodes: bool, with_intermediate_edges: bool, remove_isolated_nodes: bool
-):
+def get_graph_route(with_idtype_nodes: bool, remove_isolated_nodes: bool):
     global G
     if G is None:
         raise HTTPException(
@@ -119,7 +116,6 @@ def get_graph_route(
     SG = G.copy()
     SG = deduplicate_relations(SG)
     SG = get_subgraph_with_idtype_nodes(SG, with_idtype_nodes)
-    SG = get_subgraph_with_intermediate_edges(SG, with_intermediate_edges)
     SG = get_subgraph_with_isolated_nodes_removed(SG, remove_isolated_nodes)
     data = json_graph.node_link_data(SG)
 
