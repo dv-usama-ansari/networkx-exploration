@@ -1,0 +1,232 @@
+{
+  "databases": [
+    {
+      "id": "bioinfo_hg38",
+      "dbEngine": "postgresql",
+      "schemas": [
+        {
+          "name": "cellline",
+          "entities": [
+            {
+              "name": "Cell line samples",
+              "itemName": "Cell line",
+              "tableName": "rnaseqrun",
+              "columns": [
+                {
+                  "columnName": "rnaseqrunid",
+                  "width": 120,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "celllinename",
+                  "label": "Name",
+                  "width": 120,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true,
+                  "idtype": "Cellline"
+                },
+                {
+                  "columnName": "ngsprotocolid",
+                  "type": "number"
+                },
+                {
+                  "columnName": "rnaseqgroupid",
+                  "type": "number"
+                },
+                {
+                  "columnName": "laboratory",
+                  "type": "string",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "cellbatchid",
+                  "type": "number",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "directory",
+                  "type": "string"
+                },
+                {
+                  "columnName": "isxenograft",
+                  "type": "boolean",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "publish",
+                  "type": "boolean",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "comment",
+                  "type": "string"
+                },
+                {
+                  "columnName": "canonical",
+                  "type": "boolean",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "sourceid",
+                  "type": "string"
+                }
+              ],
+              "icon": "dv-cell-line",
+              "formatting": {
+                "titleColumn": "celllinename",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              },
+              "color": "#39A2A1",
+              "order": 2,
+              "sortingColumnName": "celllinename",
+              "sortingColumnOrder": "ascending",
+              "workbench": {
+                "overrideColumns": [
+                  {
+                    "desc": {
+                      "type": "aggregate",
+                      "label": "Aggregate Groups",
+                      "fixed": true,
+                      "width": 44
+                    },
+                    "width": 44
+                  },
+                  {
+                    "desc": {
+                      "type": "rank",
+                      "label": "Rank",
+                      "width": 50
+                    }
+                  },
+                  {
+                    "desc": {
+                      "type": "selection",
+                      "label": "Selections",
+                      "width": 50
+                    }
+                  },
+                  { "column": "rnaseqrunid" },
+                  {
+                    "column": "celllinename",
+                    "groupCriteria": {
+                      "type": "value",
+                      "values": []
+                    }
+                  },
+                  { "column": "laboratory" },
+                  { "column": "cellbatchid" },
+                  { "column": "isxenograft" },
+                  { "column": "publish" },
+                  { "column": "canonical" }
+                ],
+                "groupColumns": ["celllinename"]
+              }
+            },
+            {
+              "name": "Gene expression",
+              "tableName": "processedrnaseq",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "enableQueryAll": false,
+              "columns": [
+                {
+                  "columnName": "rnaseqrunid",
+                  "label": "RNA-seq Run ID",
+                  "type": "string",
+                  "primary": true,
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "ensg",
+                  "label": "Ensembl Gene ID",
+                  "type": "string",
+                  "primary": true,
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "log2fpkm",
+                  "label": "log2(FPKM)",
+                  "type": "number"
+                },
+                {
+                  "columnName": "log2tpm",
+                  "label": "log2(TPM)",
+                  "type": "number",
+                  "mapping": true,
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "log2cpm",
+                  "label": "log2(CPM)",
+                  "type": "number"
+                },
+                {
+                  "columnName": "counts",
+                  "label": "Counts",
+                  "type": "number",
+                  "mapping": true,
+                  "initialRanking": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "bioinfo_hg38.public.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "bioinfo_hg38.cellline.rnaseqrun",
+        "key": "rnaseqrunid"
+      },
+      "order": 1,
+      "mapping": [
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "bioinfo_hg38.cellline.processedrnaseq",
+          "sourceKey": "ensg",
+          "targetKey": "rnaseqrunid",
+          "order": 1
+        }
+      ],
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 50
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "bioinfo_hg38.cellline.tdp_cellline",
+        "key": "celllinename"
+      },
+      "target": {
+        "id": "bioinfo_hg38.cellline.rnaseqrun",
+        "key": "celllinename"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    }
+  ],
+  "idtypes": [],
+  "namedIdSets": []
+}

@@ -1,0 +1,97 @@
+{
+    "databases": [
+      {
+        "id": "visyn_kb",
+        "dbEngine": "postgresql",
+        "schemas": [
+          {
+            "name": "ordino",
+            "entities": [
+              {
+                "name": "Transcript",
+                "description": "The Transcript entity represents individual RNA transcripts associated with genes, capturing their expression levels (TPM) across GTEx samples. It links to the Genes entity and provides detailed transcript-level data and sample-specific expression. This entity enables analysis of transcript diversity and tissue-specific expression patterns.",
+                "color": "#008080",
+                "tableName": "transcript",
+                "enableQueryAll": false,
+                "columns": [
+                  {
+                    "columnName": "ensemblid",
+                    "label": "Ensembl ID",
+                    "width": 200,
+                    "initialRanking": true,
+                    "type": "string",
+                    "primary": true
+                  },
+                  {
+                    "columnName": "transcript_id",
+                    "label": "Transcript ID",
+                    "width": 200,
+                    "initialRanking": true,
+                    "type": "string",
+                    "searchable": true
+                  },
+                  {
+                    "columnName": "gtex_sample_id",
+                    "label": "GTEx sample ID",
+                    "width": 200,
+                    "initialRanking": true,
+                    "type": "string",
+                    "searchable": true
+                  },
+                  {
+                    "columnName": "tpm",
+                    "label": "mRNA expression log2(TPM + 1)",
+                    "initialRanking": true,
+                    "type": "number",
+                    "searchable": false
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "relations": [
+      {
+        "type": "1-n",
+        "source": {
+          "id": "visyn_kb.ordino.genes",
+          "key": "ensemblid"
+        },
+        "target": {
+          "id": "visyn_kb.ordino.transcript",
+          "key": "ensemblid"
+        },
+        "workbench": {
+          "minSelection": 0,
+          "maxSelection": 2000
+        },
+        "bidirectional": false
+      },
+      {
+        "type": "1-n",
+        "source": {
+          "id": "visyn_kb.ordino.transcript",
+          "key": "transcript_id"
+        },
+        "target": {
+          "id": "visyn_kb.ordino.protein",
+          "key": "transcript_id"
+        },
+        "workbench": {
+          "minSelection": 0,
+          "maxSelection": 2000
+        },
+        "bidirectional": false
+      }
+    ],
+    "entities": [],
+    "idtypes": [],
+    "namedIdSets": [],
+    "app": {
+      "ui": {
+        "defaultEntity": null
+      }
+    }
+  }

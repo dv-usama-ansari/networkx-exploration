@@ -1,0 +1,420 @@
+{
+  "databases": [
+    {
+      "id": "ordino_public",
+      "dbEngine": "postgresql",
+      "schemas": [
+        {
+          "name": "tmp_pdb_ligands",
+          "entities": [
+            {
+              "name": "Region",
+              "itemName": "Region",
+              "tableName": "tracndrug_regions",
+              "enableQueryAll": true,
+              "columns": [
+                {
+                  "columnName": "protein_id",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "UniProt_accession",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "gene_id",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Ensembl_gene",
+                  "initialRanking": true,
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "region_id",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "searchable": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "region_interval",
+                  "type": "categorical",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "region_len",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Construct_coverage_score",
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "EA_score",
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "In_house_lit_str",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "PRECEDENCE",
+                  "initialRanking": true,
+                  "description": "Precedence of the region"
+                },
+                {
+                  "columnName": "str_coverage_score",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "str_resolution_score",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "str_identity_score",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "str_number_score",
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "Exp_structure_score",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Af2_model",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "STRUCTURE",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Ligands_PDB",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "fPocket_drug_score",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Pocket_af2",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Pocket_score",
+                  "initialRanking": true,
+                  "min": 0
+                },
+                {
+                  "columnName": "SMDI",
+                  "initialRanking": true,
+                  "min": 0,
+                  "max": 4
+                },
+                {
+                  "columnName": "gProbe",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "ChEMBL",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "SM",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "covL_Reactive",
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "covL_ligandability",
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "covL_promiscuity",
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "covL_unique",
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "covL",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "TRACTABILITY",
+                  "initialRanking": true,
+                  "description": "The tractability score of the protein region"
+                },
+                {
+                  "columnName": "DRUGGABILITY",
+                  "initialRanking": true,
+                  "description": "The druggability score of the protein region"
+                },
+                {
+                  "columnName": "FINAL_REGION",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "FINAL_AGR",
+                  "initialRanking": true
+                }
+              ],
+              "formatting": {
+                "template": "{{protein_id}}",
+                "idColumn": "protein_id",
+                "titleColumn": "protein_id",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              }
+            },
+            {
+              "name": "PDB Ligands",
+              "itemName": "Ligand",
+              "tableName": "tracndrug_pdb_ligands",
+              "enableQueryAll": false,
+              "columns": [
+                {
+                  "columnName": "UniProt_entry",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true,
+                  "description": "The UniProt entry of the protein"
+                },
+                {
+                  "columnName": "UniProt_accession",
+                  "initialRanking": true,
+                  "description": "The UniProt accession ID of the protein"
+                },
+                {
+                  "columnName": "Structure_source",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Structure_id",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Full_chain_id",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Ligand_contact_pos",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Ligand_type",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Ligand_smiles",
+                  "initialRanking": true,
+                  "description": "The SMILES representation of the ligand"
+                },
+                {
+                  "columnName": "Ligand_name",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Ligand_residue",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Ligand_id",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Ligand_residue_id",
+                  "initialRanking": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "Ligand_contact_pos_uniprot",
+                  "initialRanking": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "Region_id",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "primary": true
+                },
+                {
+                  "columnName": "Region_identity",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Region_coverage",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Region_interval",
+                  "type": "categorical",
+                  "initialRanking": true
+                }
+              ],
+              "formatting": {
+                "template": "{{UniProt_entry}}",
+                "idColumn": "UniProt_entry",
+                "titleColumn": "UniProt_entry",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              },
+              "workbench": {
+                "views": [
+                  {
+                    "type": "ranking",
+                    "config": {
+                      "dataProviderDump": {
+                        "rankings": [
+                          {
+                            "columns": [
+                              {
+                                "desc": {
+                                  "type": "aggregate",
+                                  "fixed": true,
+                                  "label": "Aggregate Groups",
+                                  "width": 44
+                                },
+                                "width": 44
+                              },
+                              {
+                                "desc": {
+                                  "type": "selection",
+                                  "label": "Selections",
+                                  "width": 50
+                                }
+                              },
+                              {
+                                "column": "UniProt_entry"
+                              },
+                              {
+                                "column": "UniProt_accession"
+                              },
+                              {
+                                "column": "Structure_source"
+                              },
+                              {
+                                "column": "Structure_id"
+                              },
+                              {
+                                "column": "Full_chain_id"
+                              },
+                              {
+                                "column": "Ligand_contact_pos",
+                                "filter": {
+                                  "max": null,
+                                  "min": 17,
+                                  "filterMissing": false
+                                }
+                              },
+                              {
+                                "column": "Ligand_type"
+                              },
+                              {
+                                "column": "Ligand_smiles",
+
+                                "description": "The SMILES representation of the ligand"
+                              },
+                              {
+                                "column": "Ligand_name"
+                              },
+                              {
+                                "column": "Ligand_residue"
+                              },
+                              {
+                                "column": "Ligand_id"
+                              },
+                              {
+                                "column": "Ligand_residue_id"
+                              },
+                              {
+                                "column": "Ligand_contact_pos_uniprot"
+                              },
+                              {
+                                "column": "Region_id"
+                              },
+                              {
+                                "column": "Region_identity"
+                              },
+                              {
+                                "column": "Region_coverage"
+                              },
+                              {
+                                "column": "Region_interval"
+                              }
+                            ],
+                            "groupSortCriteria": [],
+                            "groupColumns": ["Region_interval"]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "type": "visualization",
+                    "name": "Visualization",
+                    "visConfig": {
+                      "type": "Bar chart",
+                      "catColumnSelected": {
+                        "name": "Region_id"
+                      },
+                      "sortState": {
+                        "x": "Descending"
+                      },
+                      "aggregateType": "Average",
+
+                      "display": "Absolute",
+                      "facets": {
+                        "name": "Region_interval"
+                      },
+                      "aggregateColumn": {
+                        "name": "Region_identity"
+                      },
+                      "group": {
+                        "name": "Ligand_residue_id"
+                      },
+                      "groupType": "Stacked",
+                      "direction": "Horizontal"
+                    },
+                    "open": true
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_public.tmp_pdb_ligands.tracndrug_regions",
+        "key": "region_id"
+      },
+      "target": {
+        "id": "ordino_public.tmp_pdb_ligands.tracndrug_pdb_ligands",
+        "key": "Region_id"
+      },
+      "bidirectional": false,
+      "workbench": {
+        "maxSelection": 20
+      }
+    }
+  ],
+  "idtypes": [],
+  "app": {
+    "ui": {}
+  }
+}

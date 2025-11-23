@@ -1,0 +1,1022 @@
+{
+  "databases": [
+    {
+      "id": "ordino_bundle_gsk",
+      "dbEngine": "postgresql",
+      "boxplotAggregationSchemaName": "ordino",
+      "schemas": [
+        {
+          "name": "gsk",
+          "entities": [
+            {
+              "name": "HPA slice",
+              "description": "This table is derived from hpa_exp_specificity_slice.txt and contains a slice of the expression specificity calculations from HPA (direct download from HPA). This dataset is for a demo with the Applied Genetics team",
+              "color": "#d35edd",
+              "tableName": "HPA",
+              "sortingColumnName": "gene",
+              "sortingColumnOrder": "ascending",
+              "columns": [
+                {
+                  "columnName": "id",
+                  "type": "string",
+                  "fixed": false,
+                  "label": "Id",
+                  "width": 150,
+                  "column": "id",
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "gene",
+                  "label": "Gene Symbol",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "https://aevidence.app.datavisyn.io/app?q=Gene~${value}",
+                  "primary": true,
+                  "searchable": true,
+                  "idtype": "GeneSymbol"
+                },
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "gene_description",
+                  "label": "Gene description",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "gene_synonym",
+                  "label": "Gene Synonym",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "uniprot",
+                  "label": "Uniprot",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "width": 100,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "position",
+                  "label": "Position",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "protein_class",
+                  "label": "Protein Class",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "biological_process",
+                  "label": "Biological Process",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "molecular_function",
+                  "label": "Molecular Function",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "disease_involvement",
+                  "label": "Disease Involvement",
+                  "width": 250,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "evidence",
+                  "label": "Evidence",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_tissue_specificity",
+                  "label": "RNA Tissue Specificity",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_tissue_distribution",
+                  "label": "RNA Tissue Distribution",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_tissue_specificity_score",
+                  "label": "RNA Tissue Specificity Score",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_tissue_specific_ntpm",
+                  "label": "RNA Tissue Specific nTPM",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_single_cell_type_specificity",
+                  "label": "RNA Single Cell Type Specificity",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_single_cell_type_distribution",
+                  "label": "RNA Single Cell Type Distribution",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_single_cell_type_specificity_score",
+                  "label": "RNA Single Cell Type Specificity Score",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_single_cell_type_specific_ntpm",
+                  "label": "RNA Single Cell Type Specific nTPM",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_single_nuclei_brain_specificity",
+                  "label": "RNA Single Nuclei Brain Specificity",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_single_nuclei_brain_distribution",
+                  "label": "RNA Single Nuclei Brain Distribution",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_single_nuclei_brain_specificity_score",
+                  "label": "RNA Single Nuclei Brain Specificity Score",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_single_nuclei_brain_specific_ntpm",
+                  "label": "RNA Single Nuclei Brain Specific nTPM",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rna_tissue_cell_type_enrichment",
+                  "label": "RNA Tissue Cell Type Enrichment",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "subcellular_location",
+                  "label": "Subcellular Location",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "secretome_location",
+                  "label": "Secretome Location",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "secretome_function",
+                  "label": "Secretome Function",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "ingestion_ts",
+                  "label": "Ingestion Timestamp",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                }
+              ],
+              "formatting": {
+                "template": "{{gene_symbol}}",
+                "idColumn": "gene_symbol",
+                "titleColumn": "gene_symbol",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              }
+            },
+            {
+              "name": "HBV DEG",
+              "description": "This data is from HBV_DE_ranomised.txt which contains differential expression analysis results from healthy vs cHBV from a bulk RNAseq dataset (randomized content). This dataset is for the Ordino demo with GSK's Applied Genetics team",
+              "color": "#c19f56",
+              "tableName": "HBV",
+              "sortingColumnName": "GeneSymbol",
+              "sortingColumnOrder": "ascending",
+              "columns": [
+                {
+                  "columnName": "id",
+                  "type": "string",
+                  "fixed": false,
+                  "label": "Id",
+                  "width": 150,
+                  "column": "id",
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "GeneSymbol",
+                  "label": "Gene symbol",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "https://aevidence-gsk.app.datavisyn.io/app?q=Gene~${value}",
+                  "idtype": "GeneSymbol",
+                  "searchable": true
+                },
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl gene ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "Chromosome",
+                  "label": "Chromosome",
+                  "width": 100,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "Start",
+                  "label": "Start",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "End",
+                  "label": "End",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "Class",
+                  "label": "Class",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "Strand",
+                  "label": "Strand",
+                  "width": 80,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "entrez",
+                  "label": "Entrez",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "logFC",
+                  "label": "Log fold change",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "AveExpr",
+                  "label": "Average expression",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "t",
+                  "label": "t-statistic",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "P.Value",
+                  "label": "P-Value",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "adj.P.Val",
+                  "label": "Adjusted P-Value",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "B",
+                  "label": "B",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "GSEArank_value",
+                  "label": "GSEA rank value",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "contrast",
+                  "label": "Contrast",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                }
+              ],
+              "formatting": {
+                "template": "{{gene_symbol}}",
+                "idColumn": "gene_symbol",
+                "titleColumn": "gene_symbol",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              }
+            },
+            {
+              "name": "AG Tractability",
+              "description": "This dataset is for the Ordino demo with GSK's Applied Genetics team. Contains tractability and GO data from uber_annotation_unrestricted_slice.txt.",
+              "color": "#675bbf",
+              "tableName": "uber_annotation",
+              "sortingColumnName": "gene_symbol",
+              "sortingColumnOrder": "ascending",
+              "columns": [
+                {
+                  "columnName": "id",
+                  "type": "string",
+                  "fixed": false,
+                  "label": "Id",
+                  "width": 150,
+                  "column": "id",
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "hgnc_id",
+                  "label": "HGNC ID",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "gene_symbol",
+                  "label": "Gene Symbol",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "https://aevidence-gsk.app.datavisyn.io/app?q=Gene~${value}",
+                  "idtype": "GeneSymbol",
+                  "searchable": true
+                },
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl Gene ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "entrez_gene_id",
+                  "label": "Entrez Gene ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "uniprot_ids",
+                  "label": "Uniprot IDs",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "uniprot_acc",
+                  "label": "Uniprot Accession",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "ucsc_id",
+                  "label": "UCSC ID",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "refseq_accession_ids",
+                  "label": "RefSeq Accession IDs",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "all_symbols",
+                  "label": "Gene Synonym",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "all_ensembl_gene_ids",
+                  "label": "All Ensembl Gene IDs",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "target_class_description",
+                  "label": "Target Class Description",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "target_class_specific",
+                  "label": "Target Class Specific",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "gene_description",
+                  "label": "Gene Description",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "gene_type",
+                  "label": "Gene Type",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "gene_summary",
+                  "label": "Gene Summary",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "protein_function",
+                  "label": "Protein Function",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "protein_families",
+                  "label": "Protein Families",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "protein_names",
+                  "label": "Protein Names",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "pharma_projects_summary_of_assets",
+                  "label": "Pharma Projects Summary of Assets",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "pharma_projects_furthest_phase_for_any_asset",
+                  "label": "Pharma Projects Furthest Phase For Any Asset",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "mrna_hpa_tissue",
+                  "label": "mRNA HPA Tissue",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "mrna_genelogic_tissue",
+                  "label": "mRNA GeneLogic Tissue",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "mrna_genelogic_clinical_disease_up",
+                  "label": "mRNA GeneLogic Clinical Disease Up",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "mrna_genelogic_clinical_disease_down",
+                  "label": "mRNA GeneLogic Clinical Disease Down",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "mrna_blueprint_cell",
+                  "label": "mRNA Blueprint Cell",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "mrna_gtex_tissue",
+                  "label": "mRNA GTEx Tissue",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "protein_atlas_high_expression",
+                  "label": "Protein Atlas High Expression",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "protein_atlas_medium_expression",
+                  "label": "Protein Atlas Medium Expression",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "protein_atlas_low_expression",
+                  "label": "Protein Atlas Low Expression",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "protein_atlas_not_detected_expression",
+                  "label": "Protein Atlas Not Detected Expression",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "mouse_phenotypes",
+                  "label": "Mouse Phenotypes",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "diseases_literature_termite",
+                  "label": "Diseases Literature Termite",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rare_diseases_omim",
+                  "label": "Rare Diseases OMIM",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rare_diseases_orphanet",
+                  "label": "Rare Diseases Orphanet",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rare_diseases_of_target",
+                  "label": "Rare Diseases of Target",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "biological_process",
+                  "label": "Biological Process",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "cellular_component",
+                  "label": "Cellular Component",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "molecular_function",
+                  "label": "Molecular Function",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "aso_tractability_liver",
+                  "label": "ASO Tractability Liver",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "protacability_category",
+                  "label": "PROTACability Category",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "modality_opportunity",
+                  "label": "Modality Opportunity",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "ab_classification",
+                  "label": "AB Classification",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "sm_classification",
+                  "label": "SM Classification",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "ab_bucket_list",
+                  "label": "AB Bucket List",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "sm_bucket_list",
+                  "label": "SM Bucket List",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "sm_top_pfam_id",
+                  "label": "SM Top PFAM ID",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "sm_top_pfam_description",
+                  "label": "SM Top PFAM Description",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "sm_num_internal_compounds",
+                  "label": "SM Num Internal Compounds",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "sm_num_chembl_compounds",
+                  "label": "SM Num ChEMBL Compounds",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "sm_num_tool_cmpds",
+                  "label": "SM Num Tool Compounds",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "number",
+                  "searchable": false
+                },
+                {
+                  "columnName": "ec_number",
+                  "label": "EC Number",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "enzyme_class",
+                  "label": "Enzyme Class",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "enzyme_subclass",
+                  "label": "Enzyme Subclass",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "in_complex",
+                  "label": "In Complex",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "is_ligand",
+                  "label": "Is Ligand",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "is_receptor",
+                  "label": "Is Receptor",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "proxy",
+                  "label": "Proxy",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "is_restricted",
+                  "label": "Is Restricted",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "boolean",
+                  "searchable": false
+                },
+                {
+                  "columnName": "tractable_proxy",
+                  "label": "Tractable Proxy",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "boolean",
+                  "searchable": false
+                },
+                {
+                  "columnName": "innateome",
+                  "label": "Innateome",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "adaptiverse",
+                  "label": "Adaptiverse",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "epigenetic",
+                  "label": "Epigenetic",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rdip_load_date",
+                  "label": "RDIP Load Date",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                },
+                {
+                  "columnName": "rdip_dataset_version",
+                  "label": "RDIP Dataset Version",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": false
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "hgnc_symbol"
+      },
+      "target": {
+        "id": "ordino_bundle_gsk.gsk.HPA",
+        "key": "gene"
+      },
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "hgnc_symbol"
+      },
+      "target": {
+        "id": "ordino_bundle_gsk.gsk.HBV",
+        "key": "GeneSymbol"
+      },
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "hgnc_symbol"
+      },
+      "target": {
+        "id": "ordino_bundle_gsk.gsk.uber_annotation",
+        "key": "gene_symbol"
+      },
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    }
+  ],
+  "entities": [],
+  "idtypes": [],
+  "namedIdSets": [],
+  "app": {
+    "ui": {
+      "defaultEntity": null
+    }
+  }
+}

@@ -1,0 +1,1858 @@
+{
+  "databases": [
+    {
+      "id": "ordino_rds",
+      "dbEngine": "postgresql",
+      "schemas": [
+        {
+          "name": "public",
+          "entities": [
+            {
+              "name": "Decision-making Scores",
+              "description": "XYZ",
+              "color": "#FF964D",
+              "tableName": "decision_making_scores",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl ID",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                },
+                {
+                  "columnName": "bone_biology",
+                  "label": "Bone biology",
+                  "width": 200,
+                  "initialRanking": true,
+                  "searchable": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "safety",
+                  "label": "Safety",
+                  "initialRanking": true,
+                  "searchable": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "genetic_association",
+                  "label": "Genetic association",
+                  "initialRanking": true,
+                  "searchable": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "platform_score",
+                  "label": "Platform score",
+                  "initialRanking": true,
+                  "searchable": false,
+                  "type": "number"
+                }
+              ]
+            },
+            {
+              "name": "Experiment Descriptions",
+              "description": "XYZ",
+              "color": "#FFC300",
+              "tableName": "experiment_descriptions",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "experiment_id",
+                  "label": "Experiment ID",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "name",
+                  "label": "Experiment name",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "date",
+                  "label": "Date",
+                  "initialRanking": false,
+                  "searchable": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "date_fix",
+                  "label": "Experiment date",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "cell_line",
+                  "label": "Cell Line (Cellosaurus ID)",
+                  "width": 100,
+                  "initialRanking": true,
+                  "searchable": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "tissue",
+                  "label": "Tissue (Uberon ID)",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "experimenter",
+                  "label": "Experimenter",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "categorical"
+                }
+              ]
+            },
+            {
+              "name": "Experiments",
+              "description": "XYZ",
+              "color": "#A5FF33",
+              "tableName": "experiments",
+              "itemName": "Sample",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "id",
+                  "label": "ID",
+                  "width": 100,
+                  "initialRanking": false,
+                  "primary": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl Gene ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                },
+                {
+                  "columnName": "experiment_id",
+                  "label": "Experiment ID",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "repeat_id",
+                  "label": "Repeat ID",
+                  "initialRanking": true,
+                  "searchable": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "direction",
+                  "label": "Direction",
+                  "initialRanking": true,
+                  "searchable": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "hit_rope_0_2",
+                  "label": "Hit (Rope 0.2)",
+                  "initialRanking": false,
+                  "searchable": false,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "hit_rope_0_5",
+                  "label": "Hit (Rope 0.5)",
+                  "initialRanking": false,
+                  "searchable": false,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "hit_rope_0_8",
+                  "label": "Hit (Rope 0.8)",
+                  "initialRanking": false,
+                  "searchable": false,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "number_of_nucleofections_rope_0_2",
+                  "label": "Nucleofections (Rope 0.2)",
+                  "initialRanking": false,
+                  "searchable": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "number_of_nucleofections_rope_0_5",
+                  "label": "Nucleofections (Rope 0.5)",
+                  "initialRanking": false,
+                  "searchable": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "number_of_nucleofections_rope_0_8",
+                  "label": "Nucleofections (Rope 0.8)",
+                  "initialRanking": false,
+                  "searchable": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "absolute_effect_size",
+                  "label": "Absolute Effect Size",
+                  "initialRanking": true,
+                  "searchable": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "effect_size",
+                  "label": "Effect Size",
+                  "initialRanking": false,
+                  "searchable": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "effect_size_low",
+                  "label": "Effect Size Low",
+                  "initialRanking": false,
+                  "searchable": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "effect_size_high",
+                  "label": "Effect Size High",
+                  "initialRanking": false,
+                  "searchable": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "arrayed_screen_score",
+                  "label": "Arrayed Screen Score",
+                  "initialRanking": true,
+                  "searchable": false,
+                  "type": "number"
+                }
+              ],
+              "workbench": {
+                "views": [
+                  {
+                    "type": "ranking",
+                    "open": true,
+                    "config": {
+                      "showRank": false,
+                      "dataProviderDump": {
+                        "rankings": [
+                          {
+                            "columns": [
+                              {
+                                "desc": {
+                                  "type": "aggregate",
+                                  "fixed": true,
+                                  "label": "Aggregate Groups",
+                                  "width": 44
+                                },
+                                "width": 44
+                              },
+                              {
+                                "desc": {
+                                  "type": "selection",
+                                  "label": "Selections",
+                                  "width": 50
+                                }
+                              },
+                              {
+                                "column": "experiment_id"
+                              },
+                              {
+                                "column": "repeat_id"
+                              },
+                              {
+                                "column": "direction"
+                              }
+                            ],
+                            "groupSortCriteria": [],
+                            "groupColumns": [
+                              "experiment_id",
+                              "repeat_id",
+                              "direction"
+                            ]
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "type": "visualization",
+                    "name": "Scatter plot",
+                    "description": "Show a scatter plot for experimental overview.",
+                    "open": true,
+                    "visConfig": {
+                      "type": "Scatter plot",
+                      "numColumnsSelected": [
+                        {
+                          "name": "absolute_effect_size"
+                        },
+                        {
+                          "name": "arrayed_screen_score"
+                        }
+                      ],
+                      "color": {
+                        "name": "direction"
+                      },
+                      "regressionLineOptions": {
+                        "type": "None",
+                        "showStats": false,
+                        "fitOptions": {
+                          "order": 2,
+                          "precision": 3
+                        },
+                        "lineStyle": {
+                          "color": "#7b7b7b",
+                          "width": 2,
+                          "dash": "solid"
+                        }
+                      },
+                      "showLabels": "Selected",
+                      "showLabelLimit": 30
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "name": "Model Scores",
+              "description": "XYZ",
+              "color": "#33C3FF",
+              "tableName": "model_score",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "score_id",
+                  "label": "Score ID",
+                  "width": 100,
+                  "initialRanking": false,
+                  "primary": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl Gene ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                },
+                {
+                  "columnName": "model_id",
+                  "label": "Model ID",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "score",
+                  "label": "Score",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                }
+              ]
+            },
+            {
+              "name": "Model Descriptions",
+              "description": "XYZ",
+              "color": "#FF33FF",
+              "tableName": "model_descriptions",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "model_id_str",
+                  "label": "Model ID",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "name",
+                  "label": "Name",
+                  "width": 200,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "release",
+                  "label": "Release",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "architecture",
+                  "label": "Architecture",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "OT Transcript IDs",
+              "description": "XYZ",
+              "color": "#FF5733",
+              "tableName": "ot_transcriptIds",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                },
+                {
+                  "columnName": "transcriptIds",
+                  "label": "Transcript IDs",
+                  "width": 200,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "OT Canonical Exons",
+              "description": "XYZ",
+              "color": "#33FF57",
+              "tableName": "ot_canonicalExons",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                },
+                {
+                  "columnName": "canonicalExons",
+                  "label": "Canonical Exons",
+                  "width": 200,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "OT Function Descriptions",
+              "description": "XYZ",
+              "color": "#3357FF",
+              "tableName": "ot_functionDescriptions",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                },
+                {
+                  "columnName": "functionDescriptions",
+                  "label": "Function Descriptions",
+                  "width": 200,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "OT TEP",
+              "description": "XYZ",
+              "color": "#FF33A1",
+              "tableName": "ot_tep",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "targetFromSourceId",
+                  "label": "Target From Source ID",
+                  "width": 180,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "description",
+                  "label": "Description",
+                  "width": 250,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "therapeuticArea",
+                  "label": "Therapeutic Area",
+                  "width": 180,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "url",
+                  "label": "URL",
+                  "width": 200,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                }
+              ]
+            },
+            {
+              "name": "OT Canonical Transcript",
+              "description": "XYZ",
+              "color": "#A1FF33",
+              "tableName": "ot_canonicalTranscript",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "id",
+                  "label": "ID",
+                  "width": 100,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "width": 120,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "start",
+                  "label": "Start",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "end",
+                  "label": "End",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "strand",
+                  "label": "Strand",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                }
+              ]
+            },
+            {
+              "name": "OT Symbol Synonyms",
+              "description": "XYZ",
+              "color": "#33FFA1",
+              "tableName": "ot_symbolSynonyms",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "label",
+                  "label": "Label",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "source",
+                  "label": "Source",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                }
+              ]
+            },
+            {
+              "name": "OT Subcellular Locations",
+              "description": "XYZ",
+              "color": "#A133FF",
+              "tableName": "ot_subcellularLocations",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "location",
+                  "label": "Location",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "source",
+                  "label": "Source",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "termSL",
+                  "label": "Term SL",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "labelSL",
+                  "label": "Label SL",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                }
+              ]
+            },
+            {
+              "name": "OT Target Class",
+              "description": "XYZ",
+              "color": "#FF3333",
+              "tableName": "ot_targetClass",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "id",
+                  "label": "ID",
+                  "width": 100,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "label",
+                  "label": "Label",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "level",
+                  "label": "Level",
+                  "width": 100,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                }
+              ]
+            },
+            {
+              "name": "OT Constraint",
+              "description": "XYZ",
+              "color": "#33FFC1",
+              "tableName": "ot_constraint",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "constraintType",
+                  "label": "Constraint Type",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "score",
+                  "label": "Score",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "exp",
+                  "label": "Exp",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "obs",
+                  "label": "Obs",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "oe",
+                  "label": "OE",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "oeLower",
+                  "label": "OE Lower",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "oeUpper",
+                  "label": "OE Upper",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "upperRank",
+                  "label": "Upper Rank",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "upperBin",
+                  "label": "Upper Bin",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "upperBin6",
+                  "label": "Upper Bin 6",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                }
+              ]
+            },
+            {
+              "name": "OT Homologues",
+              "description": "XYZ",
+              "color": "#FFC133",
+              "tableName": "ot_homologues",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "speciesId",
+                  "label": "Species ID",
+                  "width": 120,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "speciesName",
+                  "label": "Species Name",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "homologyType",
+                  "label": "Homology Type",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "targetGeneId",
+                  "label": "Target Gene ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "isHighConfidence",
+                  "label": "Is High Confidence",
+                  "width": 180,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "targetGeneSymbol",
+                  "label": "Target Gene Symbol",
+                  "width": 180,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "queryPercentageIdentity",
+                  "label": "Query Percentage Identity",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "targetPercentageIdentity",
+                  "label": "Target Percentage Identity",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "priority",
+                  "label": "Priority",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                }
+              ]
+            },
+            {
+              "name": "OT Tractability",
+              "description": "XYZ",
+              "color": "#C133FF",
+              "tableName": "ot_tractability",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "modality",
+                  "label": "Modality",
+                  "width": 120,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "id",
+                  "label": "ID",
+                  "width": 100,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "value",
+                  "label": "Value",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                }
+              ]
+            },
+            {
+              "name": "OT Pathways",
+              "description": "XYZ",
+              "color": "#FF8F33",
+              "tableName": "ot_pathways",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "pathwayId",
+                  "label": "Pathways ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "pathway",
+                  "label": "Pathways",
+                  "width": 200,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "topLevelTerm",
+                  "label": "Top Level Term",
+                  "width": 180,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                }
+              ]
+            },
+            {
+              "name": "OT Hallmarks",
+              "description": "XYZ",
+              "color": "#33FF8F",
+              "tableName": "ot_hallmarks",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "primary_key",
+                  "label": "Primary Key",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "targetId",
+                  "label": "Target ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "Ensembl"
+                }
+              ]
+            },
+            {
+              "name": "OT Targets",
+              "description": "XYZ",
+              "color": "#8F33FF",
+              "tableName": "ot_targets",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "id",
+                  "label": "ID",
+                  "width": 100,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "approvedSymbol",
+                  "label": "Approved Symbol",
+                  "width": 150,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "biotype",
+                  "label": "Biotype",
+                  "width": 120,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "approvedName",
+                  "label": "Approved Name",
+                  "width": 200,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.experiments",
+        "key": "experiment_id"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiment_descriptions",
+        "key": "experiment_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "target": {
+        "id": "ordino_rds.public.decision_making_scores",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "target": {
+        "id": "ordino_rds.public.model_score",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.decision_making_scores",
+        "key": "ensembl_gene_id"
+      },
+      "target": {
+        "id": "ordino_rds.public.model_score",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.model_descriptions",
+        "key": "model_id_str"
+      },
+      "target": {
+        "id": "ordino_rds.public.model_score",
+        "key": "model_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_transcriptIds",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_subcellularLocations",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_targetClass",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_constraint",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_tractability",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_pathways",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_canonicalExons",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_functionDescriptions",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_tep",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_canonicalTranscript",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_symbolSynonyms",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_subcellularLocations",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_targetClass",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_constraint",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_homologues",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_tractability",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_pathways",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_hallmarks",
+        "key": "targetId"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_rds.public.ot_targets",
+        "key": "id"
+      },
+      "target": {
+        "id": "ordino_rds.public.experiments",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_transcriptIds",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_canonicalExons",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_functionDescriptions",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_tep",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_canonicalTranscript",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_symbolSynonyms",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_subcellularLocations",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_targetClass",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_constraint",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_homologues",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_tractability",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_pathways",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_hallmarks",
+        "key": "targetId"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "ordino_rds.public.ot_targets",
+        "key": "id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    }
+  ],
+  "entities": [],
+  "idtypes": [],
+  "dashboards": [],
+  "namedIdSets": [],
+  "app": {
+    "ui": {
+      "landscapeDescription": "An interactive gateway to explore interconnected biological data. Major biological entities (Genes, Proteins, Tissues, Cell Lines, Compounds, and Drugs) act as interactive nodes, each represented as distinct entry points into their respective data spaces. \n \n For example, users can:\n 1. Enter the Genes workbench and select specific genes of interest\n 2. Visualize these genes' expression level in various tissues types via GTEx Tissues workbench\n 3. Explore or visualise gene co-expression levels",
+      "defaultEntity": "ordino_rds.public.experiment_descriptions"
+    }
+  }
+}

@@ -1,0 +1,743 @@
+{
+    "databases": [
+        {
+            "id": "bq_gwas",
+            "dbEngine": "bigquery",
+            "schemas": [
+                {
+                    "name": "23andMe_fake",
+                    "entities": [
+                        {
+                            "name": "23andMe v2gpm",
+                            "itemName": "Genes",
+                            "tableName": "v2gpm_results_view",
+                            "color": "#7a1c37",
+                            "columns": [
+                                {
+                                    "columnName": "analysis",
+                                    "label": "Analysis",
+                                    "initialRanking": true,
+                                    "width": 100,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "label",
+                                    "initialRanking": false,
+                                    "label": "Label",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "signal",
+                                    "initialRanking": false,
+                                    "label": "Signal",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "signal_ppnull",
+                                    "label": "signal_ppnull",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "signal_min_pval",
+                                    "initialRanking": false,
+                                    "label": "Signal min pval",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "locus_pos_start",
+                                    "initialRanking": false,
+                                    "label": "Locus pos start",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "locus_pos_end",
+                                    "initialRanking": false,
+                                    "label": "Locus pos end",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "ensembl_gene_id",
+                                    "label": "Ensembl ID",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "width": 150,
+                                    "idtype": "Ensembl"
+                                },
+                                {
+                                    "columnName": "gene_symbol",
+                                    "label": "Gene symbol",
+                                    "initialRanking": true,
+                                    "type": "link",
+                                    "pattern": "${AEVIDENCE_URL}/app/explore?q=Gene~${value}",
+                                    "width": 100,
+                                    "idtype": "GeneSymbol"
+                                },
+                                {
+                                    "columnName": "sumppc_ge_MODERATE",
+                                    "initialRanking": false,
+                                    "label": "Sumppc ge moderate",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "sumppc_ge_MODIFIER",
+                                    "initialRanking": false,
+                                    "label": "Sumppc ge modifier",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "genetype",
+                                    "label": "Gene type",
+                                    "initialRanking": true,
+                                    "type": "categorical",
+                                    "width": 150
+                                },
+                                {
+                                    "columnName": "pops_score",
+                                    "initialRanking": false,
+                                    "label": "Pops score",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "v2g_component",
+                                    "label": "v2g_component",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "v2g_component_MODIFIER",
+                                    "initialRanking": false,
+                                    "label": "V2g component modifier",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "v2g_component_MODERATE",
+                                    "initialRanking": false,
+                                    "label": "V2g component moderate",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "v2g_component_distance",
+                                    "label": "v2g_component_distance",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "g2p_component",
+                                    "label": "g2p_component",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "g2p_component_pops",
+                                    "label": "g2p_component_pops",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "g2p_component_noncoding",
+                                    "initialRanking": false,
+                                    "label": "G2p component noncoding",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "v2g2p_score",
+                                    "label": "v2g2p_score",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "v2g2p_prob",
+                                    "label": "v2g2p_prob",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "v2g2p_model_version",
+                                    "initialRanking": false,
+                                    "label": "V2g2p model version",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "unique_id",
+                                    "initialRanking": false,
+                                    "label": "Unique ID",
+                                    "primary": true,
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "23andMe saga",
+                            "itemName": "Genes",
+                            "tableName": "saga_target_indication_genetic_evidence_all_view",
+                            "color": "#384de5",
+                            "columns": [
+                                {
+                                    "columnName": "gene_symbol",
+                                    "initialRanking": true,
+                                    "label": "Gene symbol",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "gene_ensemblid",
+                                    "initialRanking": true,
+                                    "label": "Gene ensemblid",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "gene_type",
+                                    "initialRanking": true,
+                                    "label": "Gene type",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "mesh_name",
+                                    "initialRanking": true,
+                                    "label": "Mesh name",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "mesh_id",
+                                    "initialRanking": true,
+                                    "label": "Mesh id",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "disease_category",
+                                    "initialRanking": true,
+                                    "label": "Disease category",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "confidence_level",
+                                    "initialRanking": true,
+                                    "label": "Confidence level",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "max_v2g2p_score",
+                                    "initialRanking": false,
+                                    "label": "Max v2g2p score",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "max_v2g2p_analysis",
+                                    "initialRanking": false,
+                                    "label": "Max v2g2p analysis",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "max_v2g2p_analysis_label",
+                                    "initialRanking": false,
+                                    "label": "Max v2g2p analysis label",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "min_ppnull",
+                                    "initialRanking": false,
+                                    "label": "Min ppnull",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "min_pval",
+                                    "initialRanking": false,
+                                    "label": "Min pval",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "min_pval_genetest",
+                                    "initialRanking": false,
+                                    "label": "Min pval genetest",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "min_pval_genetest_analysis",
+                                    "initialRanking": false,
+                                    "label": "Min pval genetest analysis",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "min_pval_genetest_analysis_label",
+                                    "initialRanking": false,
+                                    "label": "Min pval genetest analysis label",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "all_supporting_analyses",
+                                    "initialRanking": false,
+                                    "label": "All supporting analyses",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "genep_genetest",
+                                    "initialRanking": false,
+                                    "label": "Genep genetest",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "all_supporting_analyses_label",
+                                    "initialRanking": false,
+                                    "label": "All supporting analyses label",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "all_supporting_analyses_mesh_name",
+                                    "initialRanking": false,
+                                    "label": "All supporting analyses mesh name",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "all_supporting_analyses_mesh_id",
+                                    "initialRanking": false,
+                                    "label": "All supporting analyses mesh id",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "all_evidence_type",
+                                    "initialRanking": false,
+                                    "label": "All evidence type",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "all_evidence_score",
+                                    "initialRanking": false,
+                                    "label": "All evidence score",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "all_evidence_ppnull",
+                                    "initialRanking": false,
+                                    "label": "All evidence ppnull",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "all_evidence_minpval",
+                                    "initialRanking": false,
+                                    "label": "All evidence minpval",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "all_evidence_signal_id",
+                                    "initialRanking": false,
+                                    "label": "All evidence signal id",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "all_evidence_genep",
+                                    "initialRanking": false,
+                                    "label": "All evidence genep",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "load_datetime",
+                                    "initialRanking": false,
+                                    "label": "Load datetime",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "dataset_version",
+                                    "initialRanking": false,
+                                    "label": "Dataset version",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "unique_id",
+                                    "label": "Unique ID",
+                                    "initialRanking": false,
+                                    "primary": true,
+                                    "type": "string"
+                                }
+                            ]
+                        },
+                        {
+                            "name": "23andMe Gedi",
+                            "itemName": "Genes",
+                            "tableName": "gedi_genetest_results_view",
+                            "color": "#87cb51",
+                            "columns": [
+                                {
+                                    "columnName": "analysis",
+                                    "label": "Analysis",
+                                    "initialRanking": true,
+                                    "width": 100,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "entity",
+                                    "initialRanking": false,
+                                    "label": "Entity",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "unique_region_id",
+                                    "initialRanking": false,
+                                    "label": "Unique region id",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "ensembl_gene_id",
+                                    "label": "Ensembl ID",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "width": 150,
+                                    "idtype": "Ensembl"
+                                },
+                                {
+                                    "columnName": "gene_symbol",
+                                    "label": "Gene symbol",
+                                    "initialRanking": true,
+                                    "type": "link",
+                                    "pattern": "${AEVIDENCE_URL}/app/explore?q=Gene~${value}",
+                                    "width": 100,
+                                    "idtype": "GeneSymbol"
+                                },
+                                {
+                                    "columnName": "region_type",
+                                    "initialRanking": false,
+                                    "label": "Region type",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "maf_cutoff",
+                                    "initialRanking": false,
+                                    "label": "Maf cutoff",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "model",
+                                    "initialRanking": false,
+                                    "label": "Model",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "chrom",
+                                    "initialRanking": false,
+                                    "label": "Chrom",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "pos_start",
+                                    "initialRanking": false,
+                                    "label": "Pos start",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "pos_end",
+                                    "initialRanking": false,
+                                    "label": "Pos end",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "pval",
+                                    "label": "p Value",
+                                    "width": 150,
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "log10p",
+                                    "label": "log10p",
+                                    "initialRanking": true,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "beta",
+                                    "initialRanking": false,
+                                    "label": "Beta",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "se",
+                                    "initialRanking": false,
+                                    "label": "Se",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "meta_direction",
+                                    "initialRanking": false,
+                                    "label": "Meta direction",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "variant_list",
+                                    "label": "Variant list",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "variant_count",
+                                    "initialRanking": false,
+                                    "label": "Variant count",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "cond_variant_list",
+                                    "initialRanking": false,
+                                    "label": "Cond variant list",
+                                    "type": "stringArray"
+                                },
+                                {
+                                    "columnName": "conditioned",
+                                    "initialRanking": false,
+                                    "label": "Conditioned",
+                                    "type": "boolean"
+                                },
+                                {
+                                    "columnName": "cmaf_total",
+                                    "label": "CMAF total",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "cmaf_case",
+                                    "label": "CMAF case",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "cmaf_control",
+                                    "label": "CMAF control",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "n_case",
+                                    "initialRanking": false,
+                                    "label": "N case",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "n_total",
+                                    "initialRanking": false,
+                                    "label": "N total",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "n_control",
+                                    "initialRanking": false,
+                                    "label": "N control",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "meta_method",
+                                    "initialRanking": false,
+                                    "label": "Meta method",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "unique_id",
+                                    "initialRanking": false,
+                                    "label": "Unique ID",
+                                    "primary": true,
+                                    "type": "string"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "relations": [
+        {
+            "type": "1-n",
+            "source": {
+                "id": "visyn_kb.ordino.disease",
+                "key": "genes"
+            },
+            "target": {
+                "id": "visyn_kb.ordino.genes",
+                "key": "hgnc_symbol"
+            },
+            "workbench": {
+                "minSelection": 0,
+                "maxSelection": 2000
+            },
+            "bidirectional": true
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "visyn_kb.ordino.disease_terms",
+                "key": "mesh_id"
+            },
+            "target": {
+                "id": "visyn_kb.ordino.disease",
+                "key": "mesh_id"
+            },
+            "workbench": {
+                "minSelection": 0,
+                "maxSelection": 2000
+            },
+            "bidirectional": true
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "visyn_kb.ordino.disease_terms",
+                "key": "mesh_id"
+            },
+            "target": {
+                "id": "bq_gwas.23andMe_fake.saga_target_indication_genetic_evidence_all_view",
+                "key": "mesh_id"
+            },
+            "workbench": {
+                "minSelection": 0,
+                "maxSelection": 2000
+            },
+            "bidirectional": true
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "visyn_kb.ordino.genes",
+                "key": "ensemblid"
+            },
+            "target": {
+                "id": "bq_gwas.23andMe_fake.v2gpm_results_view",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 0,
+                "maxSelection": 2000
+            },
+            "bidirectional": false
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "visyn_kb.ordino.genes",
+                "key": "ensemblid"
+            },
+            "target": {
+                "id": "bq_gwas.23andMe_fake.gedi_genetest_results_view",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 0,
+                "maxSelection": 2000
+            },
+            "bidirectional": false
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "visyn_kb.ordino.genes",
+                "key": "ensemblid"
+            },
+            "target": {
+                "id": "bq_gwas.23andMe_fake.saga_target_indication_genetic_evidence_all_view",
+                "key": "gene_ensemblid"
+            },
+            "workbench": {
+                "minSelection": 0,
+                "maxSelection": 2000
+            },
+            "bidirectional": false
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "bq_gwas.23andMe_fake.saga_target_indication_genetic_evidence_all_view",
+                "key": "gene_ensemblid"
+            },
+            "target": {
+                "id": "bq_gwas.23andMe_fake.v2gpm_results_view",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 0,
+                "maxSelection": 2000
+            },
+            "bidirectional": true
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "bq_gwas.23andMe_fake.saga_target_indication_genetic_evidence_all_view",
+                "key": "gene_ensemblid"
+            },
+            "target": {
+                "id": "bq_gwas.23andMe_fake.gedi_genetest_results_view",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 0,
+                "maxSelection": 2000
+            },
+            "bidirectional": true
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "bq_gwas.23andMe_fake.gedi_genetest_results_view",
+                "key": "ensembl_gene_id"
+            },
+            "target": {
+                "id": "bq_gwas.23andMe_fake.v2gpm_results_view",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 0,
+                "maxSelection": 2000
+            },
+            "bidirectional": true
+        }
+    ],
+    "entities": [],
+    "idtypes": [],
+    "dashboards": [],
+    "namedIdSets": [],
+    "app": {
+        "ui": {
+            "landscapeDescription": "An interactive gateway to explore interconnected biological data. Major biological entities (Genes, Proteins, Tissues, Cell Lines, Compounds, and Drugs) act as interactive nodes, each represented as distinct entry points into their respective data spaces. \n \n For example, users can:\n 1. Enter the Genes workbench and select specific genes of interest\n 2. Visualize these genes' expression level in various tissues types via GTEx Tissues workbench\n 3. Explore or visualise gene co-expression levels",
+            "defaultEntity": null
+        },
+        "banner": {
+            "backgroundColor": "#ffd645",
+            "message": "Welcome to Ordino's Early Access! This pre-production version is being refined with GSK power users. Your feedback is crucial to making it even better!"
+        },
+        "customization": {
+            "contact": {
+                "name": "Onyx internal mailing list",
+                "email": "OnyxDatavisynEngineering@gsk.com"
+            }
+        },
+        "uploadFileConfig": {
+            "infoMessage": "This is a development environment, and we're actively fixing issues. Dataset uploads may be unstable as we're still learning about the diverse data formats common to your group. Thanks for helping us test and improve!"
+        }
+    }
+}

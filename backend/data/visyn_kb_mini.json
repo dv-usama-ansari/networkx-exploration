@@ -1,0 +1,464 @@
+{
+  "databases": [
+    {
+      "id": "db",
+      "dbEngine": "postgresql",
+      "schemas": [
+        {
+          "name": "public",
+          "entities": [
+            {
+              "name": "PBMC Pheno",
+              "itemName": "PBMC Pheno",
+              "tableName": "mc_PBMCs.pheno",
+              "color": "#93b9e8",
+              "columns": [
+                {
+                  "columnName": "Sample_ID",
+                  "label": "Sample ID",
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "string",
+                  "width": 150
+                },
+                {
+                  "columnName": "Treatment",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "Dynabeads",
+                  "label": "Dynabeads used?",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "Timepoint",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "Origin",
+                  "label": "Tissue of origin",
+                  "initialRanking": true,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "PBMC TPM",
+              "itemName": "PBMC TPM",
+              "tableName": "mc_PBMCs.TPM.transformed",
+              "color": "#93b9e8",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "columns": [
+                {
+                  "columnName": "gene_symbol",
+                  "label": "Gene symbol",
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "string",
+                  "width": 150
+                },
+                {
+                  "columnName": "Sample_ID",
+                  "label": "Sample ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "width": 150
+                },
+                {
+                  "columnName": "TPM",
+                  "label": "TPM",
+                  "initialRanking": false,
+                  "mapping": true,
+                  "type": "number"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "visyn_kb",
+      "dbEngine": "postgresql",
+      "boxplotAggregationSchemaName": "ordino",
+      "schemas": [
+        {
+          "name": "ordino",
+          "entities": [
+            {
+              "name": "Gene",
+              "description": "Core genetic elements with canonical information from Ensembl and HGNC, including gene symbols, descriptions, genomic coordinates, and biotype classifications.",
+              "color": "#4BB268",
+              "tableName": "genes",
+              "columns": [
+                {
+                  "columnName": "hgnc_symbol",
+                  "label": "Gene symbol",
+                  "width": 150,
+                  "initialRanking": true,
+                  "idtype": "GeneSymbol",
+                  "primary": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "ensemblid",
+                  "label": "Ensembl ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "idtype": "EnsemblGene"
+                },
+                {
+                  "columnName": "entrez_id",
+                  "label": "Entrez ID",
+                  "description": "NCBI Gene (Entrez)",
+                  "initialRanking": false,
+                  "type": "string",
+                  "idtype": "EntrezGene"
+                },
+                {
+                  "columnName": "hgnc_id",
+                  "label": "HGNC ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "idtype": "HGNCID"
+                },
+                {
+                  "columnName": "name",
+                  "label": "Gene name",
+                  "description": "HGNC gene symbol",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "hgnc_group",
+                  "label": "HGNC group",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "hgnc_type",
+                  "label": "HGNC type",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "gene_group",
+                  "label": "Gene group",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "chr_start",
+                  "label": "Seq region start",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "number",
+                  "min": 0
+                },
+                {
+                  "columnName": "chr_end",
+                  "label": "Seq region end",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "number",
+                  "min": 0
+                },
+                {
+                  "columnName": "chr_strand",
+                  "label": "Chromosome strand",
+                  "initialRanking": false,
+                  "type": "categorical"
+                }
+              ],
+              "sortingColumnName": "hgnc_symbol",
+              "sortingColumnOrder": "ascending",
+              "icon": "dv-gene",
+              "formatting": {
+                "titleColumn": "hgnc_symbol",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              }
+            },
+            {
+              "name": "GTEx Tissue",
+              "itemName": "Tissue",
+              "description": "The Genotype-Tissue Expression (GTEx) project is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation.",
+              "tableName": "gtex_tissues",
+              "color": "#E57C73",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "sampid",
+                  "label": "Sample ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-tissue",
+                  "searchable": true
+                },
+                {
+                  "columnName": "smts",
+                  "label": "Tissue type",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "uberon_id",
+                  "label": "Uberon ID",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "uberon_name",
+                  "label": "Tissue",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "gender",
+                  "label": "Gender",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "age",
+                  "label": "Age",
+                  "initialRanking": true,
+                  "type": "categorical"
+                }
+              ],
+              "icon": "dv-tissue",
+              "formatting": {
+                "titleColumn": "sampid",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "GTEx Expression",
+              "description": "GTEx Expression",
+              "tableName": "gtex_expression",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "columns": [
+                {
+                  "columnName": "ensembl_id",
+                  "label": "Ensembl ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "gtex_sample_id",
+                  "label": "Gtex sample ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "icon": "dv-tissue"
+                },
+                {
+                  "columnName": "tpm",
+                  "label": "Expression (TPM)",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "titleColumn": "gtex_sample_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.gtex_tissues",
+        "key": "sample_index"
+      },
+      "order": 3,
+      "mapping": [
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.gtex_expression",
+          "sourceKey": "ensembl_id",
+          "targetKey": "gtex_sample_id"
+        }
+      ]
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "db.public.mc_PBMCs.pheno",
+        "key": "Sample_ID"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "hgnc_symbol"
+      },
+      "order": 3,
+      "mapping": [
+        {
+          "name": "PBMC TPM",
+          "connectorType": "GenericDBScore",
+          "entity": "db.public.mc_PBMCs.TPM.transformed",
+          "sourceKey": "Sample_ID",
+          "targetKey": "gene_symbol"
+        }
+      ]
+    }
+  ],
+  "idtypes": [
+    {
+      "id": "EntrezGene",
+      "label": "NCBI gene (Entrez)",
+      "icon": "dv-gene"
+    },
+    {
+      "id": "HGNCID",
+      "label": "HGNC ID"
+    },
+    {
+      "id": "Ensembl",
+      "label": "Ensembl",
+      "icon": "dv-gene",
+      "campaignType": {
+        "name": "Gene",
+        "type": "Gene",
+        "description": "Target campaigns are used to prioritize and answer questions of targets",
+        "color": "#4BB268",
+        "predefinedQuestions": [
+          {
+            "text": "Is there literature supporting the rationale of gene-disease association?",
+            "type": "freetext"
+          },
+          {
+            "text": "What is the druggability of the target?",
+            "type": "freetext"
+          },
+          {
+            "text": "What is the competition status of the target? Are there advanced clinical programs?",
+            "type": "freetext"
+          },
+          {
+            "text": "For the target, what is the gene/protein expression level in the relevant tissue?",
+            "type": "freetext"
+          }
+        ]
+      }
+    },
+    {
+      "id": "GeneSymbol",
+      "label": "Gene symbol",
+      "icon": "dv-gene",
+      "viewGroups": [
+        {
+          "name": "External resources",
+          "filter": {
+            "col": "species",
+            "op": "IN",
+            "val": "human"
+          },
+          "views": [
+            {
+              "name": "COSMIC gene",
+              "site": "https://cancer.sanger.ac.uk/cosmic/gene/analysis?ln=${genesymbol}&genome=38",
+              "fallbackSite": "https://cancer.sanger.ac.uk/cosmic/search?q=${genesymbol}",
+              "argument": "genesymbol",
+              "selection": "chooser",
+              "topics": ["gene", "external"],
+              "icon": "fas fa-external-link-alt"
+            },
+            {
+              "name": "HGNC",
+              "site": "https://www.genenames.org/tools/search/#!/?query=gene_symbol:${genesymbol}",
+              "argument": "genesymbol",
+              "selection": "chooser",
+              "topics": ["cellline", "external"],
+              "icon": "fas fa-external-link-alt"
+            },
+            {
+              "name": "ClinVar",
+              "site": "https://www.ncbi.nlm.nih.gov/clinvar/?term=${genesymbol}",
+              "argument": "genesymbol",
+              "selection": "chooser",
+              "topics": ["cellline", "external"],
+              "icon": "fas fa-external-link-alt"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DepMap",
+      "label": "DepMap"
+    },
+    {
+      "id": "CellLineName",
+      "label": "Cell line name",
+      "icon": "dv-cell-line"
+    },
+    {
+      "id": "Cosmic",
+      "label": "COSMIC"
+    },
+    {
+      "id": "CelloSaurus",
+      "label": "CelloSaurus"
+    },
+    {
+      "id": "SangerModel",
+      "label": "Sanger model"
+    }
+  ],
+  "namedIdSets": [],
+  "app": {
+    "ui": {
+      "landscapeDescription": "An interactive gateway to explore interconnected biological data. Major biological entities (Genes, Proteins, Tissues, Cell Lines, Compounds, and Drugs) act as interactive nodes, each represented as distinct entry points into their respective data spaces. \n \n For example, users can:\n 1. Enter the Genes workbench and select specific genes of interest\n 2. Visualize these genes' expression level in various tissues types via GTEx Tissues workbench\n 3. Explore or visualise gene co-expression levels",
+      "banner": {
+        "backgroundColor": "#206198",
+        "message": "The January release brings significant improvements to search functionality and scatter plot visualization in Ordino. [Check out the release notes](/pages/news/release-january-2025) for more information."
+      }
+    }
+  }
+}

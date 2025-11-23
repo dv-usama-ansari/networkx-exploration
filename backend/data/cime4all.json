@@ -1,0 +1,123 @@
+{
+  "databases": [],
+  "relations": [],
+
+  "dashboards": [
+    {
+      "id": "data-table-only",
+      "name": "Data table only",
+      "description": "Open the data table only. More views can be added on demand.",
+      "workbench": {
+        "primaryView": {
+          "type": "visyn-table",
+          "name": "Data table",
+          "open": true
+        },
+        "views": [
+          {
+            "type": "cime-scatter-plot",
+            "name": "Projection plot",
+            "open": false
+          },
+          {
+            "type": "cime-flame-tree",
+            "name": "Hierarchical facet plot",
+            "open": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "cime4all",
+      "name": "All views open",
+      "description": "Open the data table, scatter plot, and hierarchical facet plot by default.",
+      "workbench": {
+        "primaryView": {
+          "type": "visyn-table",
+          "name": "Data table",
+          "open": true
+        },
+        "views": [
+          {
+            "type": "cime-scatter-plot",
+            "name": "Projection plot",
+            "open": true
+          },
+          {
+            "type": "cime-flame-tree",
+            "name": "Hierarchical facet plot",
+            "open": true
+          }
+        ]
+      }
+    }
+  ],
+
+  "idtypes": [
+    {
+      "id": "smiles",
+      "label": "SMILES",
+      "icon": "dv-cell-line",
+      "scores": [],
+      "campaignType": {
+        "type": "Compound",
+        "name": "Compound",
+        "description": "Compound campaigns are used to prioritize and answer questions of compounds",
+        "color": "#B42865",
+        "predefinedQuestions": [
+          {
+            "text": "Rate this compound",
+            "type": "rating",
+            "order": 1
+          }
+        ]
+      }
+    }
+  ],
+  "namedIdSets": [
+    {
+      "providerType": "dataTableProvider",
+      "databaseId": "solvent_picker",
+      "schemaName": "solvent_picker",
+      "entityId": "smiles",
+      "metadata": {
+        "databaseId": "solvent_picker",
+        "schemaName": "solvent_picker",
+        "tableName": "smiles_panel",
+        "nameColumn": "panel",
+        "descriptionColumn": "paneldescription",
+        "globalQueryColumn": "global_query"
+      },
+      "data": {
+        "databaseId": "solvent_picker",
+        "schemaName": "solvent_picker",
+        "tableName": "smiles_panelassignment",
+        "idColumn": "cas",
+        "keyColumn": "panel"
+      }
+    }
+  ],
+  "app": {
+    "ui": {
+      "featureEnableChemistryToolbox": true,
+      "featureEnableRecommenderToolbox": true,
+      "featureEnableJSONColumnType": true,
+      "featureEnableDataLandscape": false,
+      "viewChooser": {
+        "sidebarMode": "expanded",
+        "viewGroups": [
+          {
+            "name": "Analysis",
+            "expanded": true
+          }
+        ]
+      }
+    },
+    "uploadFileConfig": {
+      "maxFileSize": 2147483648,
+      "defaultDashboardId": "cime4all",
+      "infoMessage": "Please do not upload CS Controlled Data to this application. For more information visit [go/controlleddata](https://go.cnb/controlleddata).",
+      "enableDrilldown": true
+    }
+  }
+}

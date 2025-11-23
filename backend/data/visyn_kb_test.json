@@ -1,0 +1,71 @@
+{
+  "databases": [
+    {
+      "id": "visyn_kb",
+      "dbEngine": "postgresql",
+      "boxplotAggregationSchemaName": "ordino",
+      "schemas": [
+        {
+          "name": "ordino",
+          "entities": [
+            {
+              "name": "Disease terms",
+              "itemName": "Mesh term",
+              "tableName": "mesh_tree",
+              "enableQueryAll": true,
+              "columns": [
+                {
+                  "columnName": "tree_number",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "mesh_id",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "mesh_name",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "definition",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                }
+              ],
+              "color": "#337ab7",
+              "workbench": {
+                "primaryView": {
+                  "type": "ranking"
+                },
+                "views": [
+                  {
+                    "type": "tree",
+                    "name": "Mesh tree",
+                    "nodeIdColumn": "mesh_id",
+
+                    "treePathColumn": "tree_number",
+                    "nodeLabelColumn": "mesh_name"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [],
+  "entities": [],
+  "idtypes": [],
+  "dashboards": [],
+  "namedIdSets": []
+}

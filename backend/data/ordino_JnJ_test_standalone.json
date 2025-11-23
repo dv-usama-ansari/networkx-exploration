@@ -1,0 +1,98 @@
+{
+  "databases": [
+    {
+        "id": "ordino_bundle_dev",
+        "dbEngine": "postgresql",
+        "schemas": [
+          {
+            "name": "jnj_test",
+            "entities": [
+              {
+                "name": "PBMC NECA",
+                "itemName": "PBMC NECA",
+                "tableName": "PBMC_NECA_long",
+                "color": "#7a1c37",
+                "columns": [
+                  {
+                    "columnName": "gene",
+                    "label": "Gene symbol",
+                    "initialRanking": true,
+                    "primary": true,
+                    "type": "link",
+                    "pattern": "https://dev.aevidence.apps.jnj.com/app/explore?q=Gene~${value}",
+                    "width": 100,
+                    "idtype": "GeneSymbol"
+                  },
+                  {
+                    "columnName": "comparison",
+                    "label": "Conditions",
+                    "initialRanking": true,
+                    "primary": true,
+                    "width": 200,
+                    "type": "categorical"
+                  },
+                  {
+                    "columnName": "logFC",
+                    "label": "Log(FC)",
+                    "initialRanking": true,
+                    "type": "number"
+                  },
+                  {
+                    "columnName": "pval",
+                    "label": "p-value",
+                    "width": 150,
+                    "initialRanking": true,
+                    "type": "number",
+                    "numberFormat": "e", 
+                    "filterAccuracy": 1
+                  },
+                  {
+                    "columnName": "adj_pval",
+                    "label": "Adj p-value",
+                    "width": 150,
+                    "initialRanking": true,
+                    "type": "number",
+                    "numberFormat": "e", 
+                    "filterAccuracy": 1
+                  },
+                  {
+                    "columnName": "neg_log10_pval",
+                    "label": "-log10(pval)",
+                    "initialRanking": true,
+                    "type": "number"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+  ],
+  "relations": [
+    {
+        "type": "1-n",
+        "source": {
+          "id": "visyn_kb.ordino.genes",
+          "key": "hgnc_symbol"
+        },
+        "target": {
+          "id": "ordino_bundle_dev.jnj_test.PBMC_NECA_long",
+          "key": "gene"
+        },
+        "workbench": {
+          "minSelection": 0,
+          "maxSelection": 2000
+        },
+        "bidirectional": true
+      }
+  ],
+  "entities": [],
+  "idtypes": [
+  ],
+  "dashboards": [],
+  "namedIdSets": [],
+  "app": {
+    "ui": {
+        }
+  }
+  }

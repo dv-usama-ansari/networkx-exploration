@@ -1,0 +1,424 @@
+{
+  "databases": [
+    {
+      "id": "onyx",
+      "dbEngine": "bigquery",
+      "schemas": [
+        {
+          "name": "GWAS",
+          "entities": [
+            {
+              "name": "GWAS v2gpm",
+              "itemName": "GWAS v2gpm",
+              "tableName": "v2gpm_results_view",
+              "color": "#7a1c37",
+              "columns": [
+                {
+                  "columnName": "unique_id",
+                  "label": "Unique ID",
+                  "initialRanking": false,
+                  "primary": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "gene_symbol",
+                  "label": "Gene symbol",
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "https://aevidence-dev.onyx.gsk.com/app/explore?q=Gene~${value}",
+                  "width": 100,
+                  "idtype": "GeneSymbol"
+                },
+                {
+                  "columnName": "genetype",
+                  "label": "Gene type",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "width": 150
+                },
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "width": 150,
+                  "idtype": "EnsemblGene"
+                },
+                {
+                  "columnName": "analysis",
+                  "label": "Analysis",
+                  "initialRanking": true,
+                  "width": 100,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "signal_ppnull",
+                  "label": "signal_ppnull",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "v2g_component",
+                  "label": "v2g_component",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "v2g_component_distance",
+                  "label": "v2g_component_distance",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "g2p_component",
+                  "label": "g2p_component",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "g2p_component_pops",
+                  "label": "g2p_component_pops",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "v2g2p_score",
+                  "label": "v2g2p_score",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "v2g2p_prob",
+                  "label": "v2g2p_prob",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                }
+              ]
+            },
+            {
+              "name": "GWAS Gedi",
+              "itemName": "GWAS Gedi",
+              "tableName": "gedi_genetest_results_view",
+              "color": "#87cb51",
+              "columns": [
+                {
+                  "columnName": "unique_id",
+                  "label": "Unique ID",
+                  "initialRanking": false,
+                  "primary": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "gene_symbol",
+                  "label": "Gene symbol",
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "https://aevidence-dev.onyx.gsk.com/app/explore?q=Gene~${value}",
+                  "width": 100,
+                  "idtype": "GeneSymbol"
+                },
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "width": 150,
+                  "idtype": "EnsemblGene"
+                },
+                {
+                  "columnName": "analysis",
+                  "label": "Analysis",
+                  "initialRanking": true,
+                  "width": 100,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "variant_list",
+                  "label": "Variant list",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "log10p",
+                  "label": "log10p",
+                  "initialRanking": true,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "cmaf_case",
+                  "label": "CMAF case",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "cmaf_control",
+                  "label": "CMAF control",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "cmaf_total",
+                  "label": "CMAF total",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "pval",
+                  "label": "p Value",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "beta",
+                  "label": "Beta",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                },
+                {
+                  "columnName": "mat_cutoff",
+                  "label": "Mat cutoff",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "numberFormat": "e",
+                  "filterAccuracy": 1
+                }
+              ]
+            },
+            {
+              "name": "GWAS Saga",
+              "itemName": "GWAS Saga",
+              "tableName": "saga_target_indication_genetic_evidence_all_view",
+              "color": "#384de5",
+              "columns": [
+                {
+                  "columnName": "unique_id",
+                  "label": "Unique ID",
+                  "initialRanking": false,
+                  "primary": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "gene_symbol",
+                  "label": "Gene symbol",
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "https://aevidence-dev.onyx.gsk.com/app/explore?q=Gene~${value}",
+                  "width": 100,
+                  "idtype": "GeneSymbol"
+                },
+                {
+                  "columnName": "gene_ensemblid",
+                  "label": "Ensembl ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "width": 150,
+                  "idtype": "EnsemblGene"
+                },
+                {
+                  "columnName": "mesh_id",
+                  "label": "MeSH ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "width": 150
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.disease",
+        "key": "genes"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "hgnc_symbol"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.disease_terms",
+        "key": "mesh_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.disease",
+        "key": "mesh_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.disease_terms",
+        "key": "mesh_id"
+      },
+      "target": {
+        "id": "db.gsk_test.saga_dummy_GWAS",
+        "key": "mesh_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "db.gsk_test.v2gpm_results_GWAS",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": false
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "db.gsk_test.gedi_dummy_GWAS",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": false
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "db.gsk_test.saga_dummy_GWAS",
+        "key": "gene_ensemblid"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": false
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "db.gsk_test.saga_dummy_GWAS",
+        "key": "gene_ensemblid"
+      },
+      "target": {
+        "id": "db.gsk_test.v2gpm_results_GWAS",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "db.gsk_test.saga_dummy_GWAS",
+        "key": "gene_ensemblid"
+      },
+      "target": {
+        "id": "db.gsk_test.gedi_dummy_GWAS",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "db.gsk_test.gedi_dummy_GWAS",
+        "key": "ensembl_gene_id"
+      },
+      "target": {
+        "id": "db.gsk_test.v2gpm_results_GWAS",
+        "key": "ensembl_gene_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    }
+  ],
+  "entities": [],
+  "idtypes": [],
+  "dashboards": [],
+  "namedIdSets": [],
+  "app": {
+    "ui": {}
+  }
+}

@@ -1,0 +1,283 @@
+{
+    "databases": [
+        {
+            "id": "bq_gwas",
+            "dbEngine": "bigquery",
+            "schemas": [
+                {
+                    "name": "23andMe_fake",
+                    "entities": [
+                        {
+                            "name": "23andMe v2gpm Test Sort & Filter",
+                            "itemName": "Genes",
+                            "tableName": "v2gpm_results_view",
+                            "color": "#f4fc03",
+                            "columns": [
+                                {
+                                    "columnName": "analysis",
+                                    "label": "Analysis",
+                                    "initialRanking": true,
+                                    "width": 100,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "label",
+                                    "initialRanking": false,
+                                    "label": "Label",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "signal",
+                                    "initialRanking": false,
+                                    "label": "Signal",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "signal_ppnull",
+                                    "label": "signal_ppnull",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "signal_min_pval",
+                                    "initialRanking": false,
+                                    "label": "Signal min pval",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "locus_pos_start",
+                                    "initialRanking": false,
+                                    "label": "Locus pos start",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "locus_pos_end",
+                                    "initialRanking": false,
+                                    "label": "Locus pos end",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "ensembl_gene_id",
+                                    "label": "Ensembl ID",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "width": 150,
+                                    "idtype": "Ensembl"
+                                },
+                                {
+                                    "columnName": "gene_symbol",
+                                    "label": "Gene symbol",
+                                    "initialRanking": true,
+                                    "type": "link",
+                                    "pattern": "${AEVIDENCE_URL}/app/explore?q=Gene~${value}",
+                                    "width": 100,
+                                    "idtype": "GeneSymbol"
+                                },
+                                {
+                                    "columnName": "sumppc_ge_MODERATE",
+                                    "initialRanking": false,
+                                    "label": "Sumppc ge moderate",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "sumppc_ge_MODIFIER",
+                                    "initialRanking": false,
+                                    "label": "Sumppc ge modifier",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "genetype",
+                                    "label": "Gene type",
+                                    "initialRanking": true,
+                                    "type": "categorical",
+                                    "width": 150
+                                },
+                                {
+                                    "columnName": "pops_score",
+                                    "initialRanking": false,
+                                    "label": "Pops score",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "v2g_component",
+                                    "label": "v2g_component",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "v2g_component_MODIFIER",
+                                    "initialRanking": false,
+                                    "label": "V2g component modifier",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "v2g_component_MODERATE",
+                                    "initialRanking": false,
+                                    "label": "V2g component moderate",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "v2g_component_distance",
+                                    "label": "v2g_component_distance",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "g2p_component",
+                                    "label": "g2p_component",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "g2p_component_pops",
+                                    "label": "g2p_component_pops",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "g2p_component_noncoding",
+                                    "initialRanking": false,
+                                    "label": "G2p component noncoding",
+                                    "type": "number"
+                                },
+                                {
+                                    "columnName": "v2g2p_score",
+                                    "label": "v2g2p_score",
+                                    "width": 150,
+                                    "initialRanking": true,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "v2g2p_prob",
+                                    "label": "v2g2p_prob",
+                                    "width": 150,
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": "e",
+                                    "filterAccuracy": 1
+                                },
+                                {
+                                    "columnName": "v2g2p_model_version",
+                                    "initialRanking": false,
+                                    "label": "V2g2p model version",
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "unique_id",
+                                    "initialRanking": false,
+                                    "label": "Unique ID",
+                                    "primary": true,
+                                    "type": "string"
+                                }
+                            ],
+                            "sortingColumnName": "v2g2p_score",
+                            "sortingColumnOrder": "descending",
+                            "workbench": {
+                                "views": [
+                                    {
+                                        "type": "ranking",
+                                        "config": {
+                                            "showRank": true,
+                                            "showAggregate": true,
+                                            "dataProviderDump": {
+                                                "rankings": [
+                                                    {
+                                                        "columns": [
+                                                            {
+                                                                "desc": {
+                                                                    "type": "aggregate",
+                                                                    "fixed": true,
+                                                                    "label": "Aggregate Groups",
+                                                                    "width": 44
+                                                                },
+                                                                "width": 44
+                                                            },
+                                                            {
+                                                                "desc": {
+                                                                    "type": "rank",
+                                                                    "label": "Ranking",
+                                                                    "width": 50
+                                                                }
+                                                            },
+                                                            {
+                                                                "desc": {
+                                                                    "type": "selection",
+                                                                    "label": "Selections",
+                                                                    "width": 50
+                                                                }
+                                                            },
+                                                            {
+                                                                "column": "analysis"
+                                                            },
+                                                            {
+                                                                "column": "ensembl_gene_id"
+                                                            },
+                                                            {
+                                                                "column": "gene_symbol"
+                                                            },
+                                                            {
+                                                                "column": "genetype"
+                                                            },
+                                                            {
+                                                                "column": "v2g2p_score",
+                                                                "filter": {
+                                                                    "min": 0.6,
+                                                                    "filterMissing": false
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "relations": [],
+    "entities": [],
+    "idtypes": [],
+    "dashboards": [],
+    "namedIdSets": [],
+    "app": {
+        "ui": {
+            "landscapeDescription": "An interactive gateway to explore interconnected biological data. Major biological entities (Genes, Proteins, Tissues, Cell Lines, Compounds, and Drugs) act as interactive nodes, each represented as distinct entry points into their respective data spaces. \n \n For example, users can:\n 1. Enter the Genes workbench and select specific genes of interest\n 2. Visualize these genes' expression level in various tissues types via GTEx Tissues workbench\n 3. Explore or visualise gene co-expression levels",
+            "defaultEntity": null
+        },
+        "banner": {
+            "backgroundColor": "#ffd645",
+            "message": "Welcome to Ordino's Early Access! This pre-production version is being refined with GSK power users. Your feedback is crucial to making it even better!"
+        },
+        "customization": {
+            "contact": {
+                "name": "Onyx internal mailing list",
+                "email": "OnyxDatavisynEngineering@gsk.com"
+            }
+        },
+        "uploadFileConfig": {
+            "infoMessage": "This is a development environment, and we're actively fixing issues. Dataset uploads may be unstable as we're still learning about the diverse data formats common to your group. Thanks for helping us test and improve!"
+        }
+    }
+}

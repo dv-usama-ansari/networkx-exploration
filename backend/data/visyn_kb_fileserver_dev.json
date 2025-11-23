@@ -1,0 +1,2973 @@
+{
+  "databases": [
+    {
+      "id": "visyn_kb",
+      "dbEngine": "postgresql",
+      "boxplotAggregationSchemaName": "ordino",
+      "schemas": [
+        {
+          "name": "public",
+          "entities": [
+            {
+              "name": "Indication",
+              "description": "Indication (aka. Disease) based on chembl",
+              "color": "#FF964D",
+              "tableName": "indication",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "indication_id",
+                  "label": "Indication ID",
+                  "width": 50,
+                  "initialRanking": false,
+                  "primary": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "title",
+                  "label": "Indication",
+                  "width": 200,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "mesh_id",
+                  "label": "Mesh ID",
+                  "width": 50,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "efo_id",
+                  "label": "Efo ID",
+                  "width": 50,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "meddra_id",
+                  "label": "Meddra ID",
+                  "width": 50,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "snomed_id",
+                  "label": "Snomed ID",
+                  "width": 50,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                }
+              ],
+              "formatting": {
+                "titleColumn": "title",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            }
+          ]
+        },
+        {
+          "name": "ordino",
+          "entities": [
+            {
+              "name": "Disease Terms",
+              "description": "This dataset is a comprehensive glossary of Disease Terms, primarily sourced from MeSH. It details specific diseases, injuries, or conditions, offering various ways to identify and understand them. This resource is crucial for standardizing disease terminology and exploring medical conditions. ",
+              "color": "#CD7F32",
+              "tableName": "disease_terms",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "mesh_id",
+                  "label": "MeSH ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "mesh_name",
+                  "label": "MeSH name",
+                  "width": 250,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "definition",
+                  "label": "Definitions",
+                  "width": 300,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "concept_list",
+                  "label": "Concept list",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "entry_term_list",
+                  "label": "Related terms",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "tree_number_list",
+                  "label": "Tree number",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "Disease",
+              "description": "This dataset, primarily derived from MONDO, provides a structured collection of human diseases. It focuses on offering key identifiers and links to genetic information for each disease, proving valuable for researchers connecting diseases with their genetic roots and understanding core definitions.",
+              "color": "#FFAC1C",
+              "tableName": "disease",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "id",
+                  "label": "MONDO ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "source",
+                  "label": "Source",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "label",
+                  "label": "Disease",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "definition",
+                  "label": "Definition",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "genes",
+                  "label": "Genes involved",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "stringArray"
+                },
+                {
+                  "columnName": "mesh_ids",
+                  "label": "MeSH IDs",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "Activity",
+              "description": "Activity captures experimental measurements of compound-target interactions, including assay results, binding data, and functional responses. It serves as a linking table between compounds, biological targets, cell lines, and tissues, storing both quantitative measurements and experimental context.",
+              "color": "#797979",
+              "tableName": "activity",
+              "enableQueryAll": false,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "activity_id",
+                  "label": "Activity ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "src_description",
+                  "label": "Source",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "compound_chembl_id",
+                  "label": "Compound ID (ChEMBL)",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "target_chembl_id",
+                  "label": "Target ID (ChEMBL)",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "target_type",
+                  "label": "Target type",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "organism",
+                  "label": "Organism",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "activity_type",
+                  "label": "Activity type",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "activity_value",
+                  "label": "Activity",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "units",
+                  "label": "Activity units",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "assay_desc",
+                  "label": "Assay type",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "assay_description",
+                  "label": "Assay description",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "cell_id",
+                  "label": "Cell line ID",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "tissue_id",
+                  "label": "Tissue ID",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "variant_id",
+                  "label": "Variant ID",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "target_protein",
+                  "label": "Target protein",
+                  "initialRanking": false,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "Drug",
+              "description": "Therapeutic agents with standardized SMILES notation, chemical properties, and pharmacological annotations from ChEMBL and DrugCentral. Features include mechanism of action, target interactions, clinical indications, development phase, and therapeutic classifications. Cross-referenced with compound structures and bioactivity data.",
+              "color": "#B42865",
+              "tableName": "drug",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "drug_name",
+                  "label": "Drug ID",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-drug"
+                },
+                {
+                  "columnName": "mechanism_of_action",
+                  "label": "Mechanism of action",
+                  "description": "The drug's mechanism of action",
+                  "width": 250,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "action_type",
+                  "label": "Interaction type",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "searchable": true
+                },
+                {
+                  "columnName": "target_name",
+                  "label": "Drug target",
+                  "width": 250,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "uniprot_id",
+                  "label": "Uniprot ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                }
+              ],
+              "icon": "dv-drug",
+              "formatting": {
+                "titleColumn": "drug_name",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              }
+            },
+            {
+              "name": "Transcript",
+              "description": "The Transcript entity represents individual RNA transcripts associated with genes, capturing their expression levels (TPM) across GTEx samples. It links to the Genes entity and provides detailed transcript-level data and sample-specific expression. This entity enables analysis of transcript diversity and tissue-specific expression patterns.",
+              "color": "#008080",
+              "tableName": "transcript",
+              "enableQueryAll": false,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "gene_symbol",
+                  "label": "Gene symbol",
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "${AEVIDENCE_URL}/app/explore?q=Gene~${value}",
+                  "searchable": false,
+                  "idtype": "GeneSymbol",
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "ensemblid",
+                  "label": "Ensembl ID",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "${AEVIDENCE_URL}/app/explore?q=Gene~${value}",
+                  "primary": true
+                },
+                {
+                  "columnName": "transcript_id",
+                  "label": "Transcript ID",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "idtype": "EnsemblTranscript"
+                },
+                {
+                  "columnName": "gtex_sample_id",
+                  "label": "GTEx sample ID",
+                  "width": 100,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "tpm",
+                  "label": "mRNA expression log2(TPM + 1)",
+                  "width": 100,
+                  "initialRanking": true,
+                  "type": "number",
+                  "searchable": false
+                }
+              ]
+            },
+            {
+              "name": "ClinVar Variants",
+              "description": "Variants represent genomic alterations characterized in ClinVar, including single nucleotide changes, insertions, deletions, and structural variations. This entity captures clinical significance, phenotypic associations, and functional impacts of genetic variants, providing crucial connections between genes and their disease-associated mutations.",
+              "color": "#40E0D0",
+              "tableName": "gene_variants",
+              "enableQueryAll": false,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "gene_symbol",
+                  "label": "Gene symbol",
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "${AEVIDENCE_URL}/app/explore?q=Gene~${value}",
+                  "searchable": true,
+                  "primary": true,
+                  "idtype": "GeneSymbol",
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "assembly",
+                  "label": "Genome assembly",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "hgnc_id",
+                  "label": "HGNC ID",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "idtype": "HGNCID"
+                },
+                {
+                  "columnName": "allele_id",
+                  "label": "Allele ID",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "variant_name",
+                  "label": "Variant identifier",
+                  "width": 300,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "variant_type",
+                  "label": "Variant type",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "clinical_significance",
+                  "label": "Clinical significance",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "origin",
+                  "label": "Origin",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "rs_dbsnp",
+                  "label": "Reference SNP cluster ID",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "Compound",
+              "description": "Chemical entities from ChEMBL, DrugCentral, and DrugBank, encompassing structure, properties, mechanisms of action, and clinical applications. Includes both approved drugs and experimental compounds.",
+              "color": "#797979",
+              "tableName": "compound",
+              "enableQueryAll": false,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "compound_name",
+                  "label": "Compound name",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": "true"
+                },
+                {
+                  "columnName": "compound_chembl_id",
+                  "label": "Compound ID (CHEMBL)",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "searchable": "true"
+                },
+                {
+                  "columnName": "molecule_type",
+                  "label": "Molecule type",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "molecular_species",
+                  "label": "Molecular species",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "molecular_formula",
+                  "label": "Molecular formula",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": "true"
+                },
+                {
+                  "columnName": "full_mwt",
+                  "label": "Molecular weight (g/mol)",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "hydrogen_bond_acceptors",
+                  "label": "Hydrogen bond acceptor count",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "hydrogen_bond_donors",
+                  "label": "Hydrogen bond donor count",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "standard_inchi",
+                  "label": "InChI",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "standard_inchi_key",
+                  "label": "InChI key",
+                  "initialRanking": false,
+                  "type": "string"
+                }
+              ],
+              "formatting": {
+                "titleColumn": "compound_name",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              }
+            },
+            {
+              "name": "Dictionary",
+              "description": "",
+              "color": "#797979",
+              "tableName": "assay_cell_dictionary",
+              "enableQueryAll": false,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "cell_id",
+                  "label": "Cell line ID",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "cell_name",
+                  "label": "Cell line",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "cell_source_tissue",
+                  "label": "Tissue source",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "cell_source_organism",
+                  "label": "Organism source",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "cellosaurus_id",
+                  "label": "CelloSaurus ID",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "chembl_id",
+                  "label": "ChEMBL ID",
+                  "initialRanking": false,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "Gene",
+              "description": "Core genetic elements with canonical information from Ensembl and HGNC, including gene symbols, descriptions, genomic coordinates, and biotype classifications.",
+              "color": "#4BB268",
+              "tableName": "genes",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "hgnc_symbol",
+                  "label": "Gene symbol",
+                  "width": 150,
+                  "initialRanking": true,
+                  "idtype": "GeneSymbol",
+                  "type": "link",
+                  "pattern": "${AEVIDENCE_URL}/app/explore?q=Gene~${value}",
+                  "searchable": true,
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "ensemblid",
+                  "label": "Ensembl ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "searchable": true,
+                  "idtype": "EnsemblGene"
+                },
+                {
+                  "columnName": "entrez_id",
+                  "label": "Entrez ID",
+                  "description": "NCBI Gene (Entrez)",
+                  "initialRanking": false,
+                  "type": "string",
+                  "idtype": "EntrezGene"
+                },
+                {
+                  "columnName": "hgnc_id",
+                  "label": "HGNC ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "idtype": "HGNCID"
+                },
+                {
+                  "columnName": "name",
+                  "label": "Gene name",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "hgnc_group",
+                  "label": "HGNC group",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "hgnc_type",
+                  "label": "HGNC type",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "gene_group",
+                  "label": "Gene group",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "chr_start",
+                  "label": "Seq region start",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "number",
+                  "min": 0
+                },
+                {
+                  "columnName": "chr_end",
+                  "label": "Seq region end",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "number",
+                  "min": 0
+                },
+                {
+                  "columnName": "chr_strand",
+                  "label": "Chromosome strand",
+                  "initialRanking": false,
+                  "type": "categorical"
+                }
+              ],
+              "sortingColumnName": "hgnc_symbol",
+              "sortingColumnOrder": "ascending",
+              "icon": "dv-gene",
+              "formatting": {
+                "titleColumn": "hgnc_symbol",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              }
+            },
+            {
+              "name": "Protein",
+              "itemName": "Protein",
+              "description": "Protein products with structural and functional annotations, including domains, modifications, and interactions. Incorporates UniProt features and cross-references to protein families.",
+              "color": "#20A2FE",
+              "tableName": "proteins",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "uniprot_accession",
+                  "label": "Uniprot accession",
+                  "initialRanking": true,
+                  "type": "link",
+                  "primary": true,
+                  "pattern": "${AEVIDENCE_URL}/app/explore?q=Gene~${value}",
+                  "searchable": true
+                },
+                {
+                  "columnName": "hgnc_symbol",
+                  "label": "HGNC symbol",
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "${AEVIDENCE_URL}/app/explore?q=Gene~${value}",
+                  "idtype": "GeneSymbol",
+                  "searchable": true,
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "name",
+                  "label": "Protein name",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "entry_name",
+                  "label": "Description",
+                  "width": 300,
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "entrez_id",
+                  "label": "Entrez ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "idtype": "EntrezGene"
+                },
+                {
+                  "columnName": "protein_class",
+                  "label": "Protein class",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "stringArray",
+                  "searchable": true
+                },
+                {
+                  "columnName": "molecular_function",
+                  "label": "Molecular function",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "biological_process",
+                  "label": "Biological process",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "disease_involvement",
+                  "label": "Disease involvement",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "available_in_source",
+                  "label": "Sources",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "set"
+                }
+              ],
+              "formatting": {
+                "titleColumn": "uniprot_accession",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              }
+            },
+            {
+              "name": "Pathway",
+              "itemName": "Pathway",
+              "description": "Biological pathways showing molecular interactions and regulatory networks. Integrates data from major pathway databases to provide functional context for genes and proteins (e.g. Reactome and MSigDB; curated set of BIOCARTA, CGP, CP, KEGG_LEGACY, KEGG_MEDICUS, PID, REACTOME, WIKIPATHWAYS).",
+              "color": "#CA64BC",
+              "tableName": "pathway",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "columns": [
+                {
+                  "columnName": "pathway",
+                  "label": "Pathway",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "idtype": "Pathway"
+                },
+                {
+                  "columnName": "source_type",
+                  "label": "Source",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "url",
+                  "label": "URL",
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "${value}"
+                },
+                {
+                  "columnName": "genes",
+                  "label": "Genes",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "set_size",
+                  "label": "Set size",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "number"
+                }
+              ],
+              "formatting": {
+                "titleColumn": "pathway",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              }
+            },
+            {
+              "name": "Pathway",
+              "itemName": "Pathway gene tuple",
+              "description": "Mapping between genes and pathways based on Reactome and MSigDB (curated set of BIOCARTA, CGP, CP, KEGG_LEGACY, KEGG_MEDICUS, PID, REACTOME, WIKIPATHWAYS).",
+              "color": "#CA64BC",
+              "tableName": "pathway_gene",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "pathway",
+                  "label": "Pathway",
+                  "initialRanking": true,
+                  "width": 300,
+                  "type": "string",
+                  "primary": true,
+                  "idtype": "Pathway"
+                },
+                {
+                  "columnName": "gene_symbol",
+                  "label": "Gene symbol",
+                  "initialRanking": true,
+                  "primary": true,
+                  "searchable": true,
+                  "type": "link",
+                  "pattern": "${AEVIDENCE_URL}/app/explore?q=Gene~${value}",
+                  "idtype": "GeneSymbol",
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "source_type",
+                  "label": "Source",
+                  "initialRanking": true,
+                  "width": 150,
+                  "searchable": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "url",
+                  "label": "URL",
+                  "initialRanking": true,
+                  "type": "link",
+                  "pattern": "${value}"
+                }
+              ],
+              "formatting": {
+                "titleColumn": "pathway",
+                "tokenSeparatorsRegex": "[\r\n;,]"
+              }
+            },
+            {
+              "name": "Cell Line",
+              "itemName": "Cell line",
+              "description": "DepMap-cataloged cell lines with extensive characterization data, including genetic dependencies, drug responses, and molecular profiles.",
+              "color": "#39A2A1",
+              "tableName": "cellline",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "depmap_id",
+                  "label": "DepMap ID",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true,
+                  "idtype": "DepMap"
+                },
+                {
+                  "columnName": "ccle_name",
+                  "label": "CCLE name",
+                  "width": 250,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "cell_line_name",
+                  "label": "Cell line name",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "idtype": "CellLineName"
+                },
+                {
+                  "columnName": "cosmicid",
+                  "label": "COSMIC ID",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "idtype": "Cosmic"
+                },
+                {
+                  "columnName": "cellosaurus_id",
+                  "label": "CelloSaurus ID",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string",
+                  "idtype": "CelloSaurus"
+                },
+                {
+                  "columnName": "sanger_model_id",
+                  "label": "Sanger model ID",
+                  "width": 100,
+                  "initialRanking": false,
+                  "type": "string",
+                  "idtype": "SangerModel"
+                },
+                {
+                  "columnName": "lineage_subtype",
+                  "label": "Tumor type (lineage subtype)",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "lineage",
+                  "label": "Organ (lineage)",
+                  "width": 200,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "sex",
+                  "label": "Gender",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "culture_type",
+                  "label": "Culture type",
+                  "width": 250,
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "culture_medium",
+                  "label": "Culture medium",
+                  "width": 200,
+                  "initialRanking": false,
+                  "type": "string"
+                }
+              ],
+              "icon": "dv-cell-line",
+              "formatting": {
+                "titleColumn": "cell_line_name",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Depmap Cell Line Expression",
+              "description": "Cell line expression from DepMap",
+              "tableName": "depmap_expression",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "entrez_id",
+                  "label": "NCBI gene (Entrez)",
+                  "type": "string",
+                  "primary": true,
+                  "idtype": "EntrezGene"
+                },
+                {
+                  "columnName": "depmap_id",
+                  "label": "Cell line",
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "expression_count",
+                  "label": "Expression count",
+                  "type": "number",
+                  "mapping": true,
+                  "min": 0
+                },
+                {
+                  "columnName": "mrna_expression",
+                  "label": "mRNA expression (log2-transformed)",
+                  "type": "number",
+                  "mapping": true,
+                  "min": 0
+                }
+              ]
+            },
+            {
+              "name": "Depmap Mutations",
+              "tableName": "depmap_mutations",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "entrez_id",
+                  "label": "NCBI gene (Entrez)",
+                  "type": "string",
+                  "primary": true,
+                  "idtype": "EntrezGene"
+                },
+                {
+                  "columnName": "depmap_id",
+                  "label": "DepMap ID",
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "variant_classification",
+                  "label": "Variant classification",
+                  "type": "categorical",
+                  "mapping": true
+                },
+                {
+                  "columnName": "variant_type",
+                  "label": "Variant type",
+                  "type": "string",
+                  "mapping": true
+                }
+              ]
+            },
+            {
+              "name": "Depmap copy number",
+              "tableName": "depmap_copy_number",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "entrez_id",
+                  "label": "NCBI gene (Entrez)",
+                  "type": "string",
+                  "primary": true,
+                  "idtype": "EntrezGene"
+                },
+                {
+                  "columnName": "depmap_id",
+                  "label": "DepMap ID",
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "copy_number",
+                  "label": "Copy number",
+                  "type": "number",
+                  "mapping": true,
+                  "min": 0
+                },
+                {
+                  "columnName": "class",
+                  "label": "Copy number class",
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": 2,
+                      "label": "High Amplification",
+                      "color": "#e996a2"
+                    },
+                    {
+                      "name": 1,
+                      "label": "Amplification",
+                      "color": "#efb3bc"
+                    },
+                    {
+                      "name": -2,
+                      "label": "Deep deletion",
+                      "color": "#62abd0"
+                    },
+                    {
+                      "name": -1,
+                      "label": "Deletion",
+                      "color": "#92c5de"
+                    },
+                    {
+                      "name": 0,
+                      "label": "NORMAL",
+                      "color": "#dcdcdc"
+                    }
+                  ],
+                  "mapping": true
+                }
+              ]
+            },
+            {
+              "name": "Depmap dependency",
+              "tableName": "depmap_dependency",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "entrez_id",
+                  "label": "NCBI gene (Entrez)",
+                  "type": "string",
+                  "primary": true,
+                  "idtype": "EntrezGene"
+                },
+                {
+                  "columnName": "depmap_id",
+                  "label": "DepMap ID",
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "crispr_gene_dependency",
+                  "label": "CRISPR gene dependency",
+                  "type": "number",
+                  "mapping": true,
+                  "min": 0
+                },
+                {
+                  "columnName": "crispr_gene_effect",
+                  "label": "CRISPR gene effect",
+                  "type": "number",
+                  "mapping": true
+                }
+              ]
+            },
+            {
+              "name": "TCGA Tissue",
+              "itemName": "Tissue",
+              "description": "The Cancer Genome Atlas (TCGA), a landmark cancer genomics program, molecularly characterized over 20,000 primary cancer and matched normal samples spanning 33 cancer types.",
+              "color": "#E57C73",
+              "tableName": "tcga_tissues",
+              "columns": [
+                {
+                  "columnName": "sample_id",
+                  "label": "Sample ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "width": 150,
+                  "icon": "dv-tissue"
+                },
+                {
+                  "columnName": "oncotree_code",
+                  "label": "Oncotree code",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "cancer_type",
+                  "label": "Cancer type",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "cancer_type_detailed",
+                  "label": "Cancer type detailed",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "tumor_type",
+                  "label": "Tumor type",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "grade",
+                  "label": "Tumor grade",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "tissue_prospective_collection_indicator",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "tissue_retrospective_collection_indicator",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "tissue_source_site_code",
+                  "label": "Tissue source site code",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "tumor_tissue_site",
+                  "label": "Tumor tissue site",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "aneuploidy_score",
+                  "label": "Aneuploidy score",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "sample_type",
+                  "label": "Sample type",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "msi_score_mantis",
+                  "label": "MSI score mantis",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "msi_sensor_score",
+                  "label": "MSI sensor score",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "somatic_status",
+                  "label": "Somatic status",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "tmb_nonsynonymous",
+                  "label": "TMB nonsynonymous",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "tissue_source_site",
+                  "label": "Tissue source site",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "cancer_type_short_code",
+                  "label": "Cancer type short code",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "patient_id",
+                  "label": "Patient ID",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "subtype",
+                  "label": "Subtype",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "cancer_type_acronym",
+                  "label": "Cancer type acronym",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "other_patient_id",
+                  "label": "Patient ID (other)",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "age",
+                  "label": "Age",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "sex",
+                  "label": "Gender",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "ajcc_pathologic_tumor_stage",
+                  "label": "AJCC pathologic tumor stage",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "ajcc_staging_edition",
+                  "label": "AJCC staging edition",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "days_last_followup",
+                  "label": "Days last followup",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "days_to_birth",
+                  "label": "Days to birth",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "days_to_initial_pathologic_diagnosis",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "ethnicity",
+                  "label": "Ethnicity",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "form_completion_date",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "history_neoadjuvant_trtyn",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "icd_10",
+                  "label": "ICD 10",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "icd_o_3_histology",
+                  "label": "Icd O-3--Histology",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "icd_o_3_site",
+                  "label": "ICD O-3-Site",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "informed_consent_verified",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "new_tumor_event_after_initial_treatment",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "path_m_stage",
+                  "label": "Path M-stage",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "path_n_stage",
+                  "label": "Path N-stage",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "path_t_stage",
+                  "label": "Path T-stage",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "person_neoplasm_cancer_status",
+                  "label": "Person neoplasm cancer status",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "primary_lymph_node_presentation_assessment",
+                  "label": "Primary lymph node presentation assessment",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "prior_dx",
+                  "label": "Prior diagnosis",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "race",
+                  "label": "Race",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "radiation_therapy",
+                  "label": "Radiation therapy",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "weight",
+                  "label": "Weight",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "in_pancanpathways_freeze",
+                  "label": "In pancanpathways freeze",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "os_status",
+                  "label": "Overall survival status",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "os_months",
+                  "label": "Overall survival (months)",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "dss_status",
+                  "label": "Disease specific survival status",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "dss_months",
+                  "label": "Disease specific survival (months)",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "dfs_status",
+                  "label": "Disease-free survival status",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "dfs_months",
+                  "label": "Disease-free survival (months)",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "pfs_status",
+                  "label": "Progression-free survival Status",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "pfs_months",
+                  "label": "Progression-free survival (months)",
+                  "initialRanking": false,
+                  "type": "number"
+                }
+              ],
+              "icon": "dv-tissue",
+              "formatting": {
+                "titleColumn": "sample_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              },
+              "sortingColumnName": "sample_id",
+              "sortingColumnOrder": "ascending"
+            },
+            {
+              "name": "TCGA Mutation",
+              "itemName": "Mutation",
+              "description": "The Cancer Genome Atlas (TCGA), a landmark cancer genomics program, molecularly characterized over 20,000 primary cancer and matched normal samples spanning 33 cancer types.",
+              "tableName": "tcga_mutations",
+              "enableQueryAll": false,
+              "color": "#4BB268",
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "hugo_symbol",
+                  "label": "Gene symbol",
+                  "initialRanking": true,
+                  "type": "string",
+                  "idtype": "GeneSymbol",
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "entrez_id",
+                  "label": "Entrez gene ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "idtype": "EntrezGene"
+                },
+                {
+                  "columnName": "refseq",
+                  "label": "Refseq ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "protein_position",
+                  "label": "Protein position",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "sample_id",
+                  "label": "Sample ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "hgvsp_short",
+                  "label": "HGVS protein (short)",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "biotype",
+                  "label": "Biotype",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true
+                },
+                {
+                  "columnName": "consequence",
+                  "label": "Consequence",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "variant_class",
+                  "label": "Variant class",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true
+                },
+                {
+                  "columnName": "variant_classification",
+                  "label": "Variant classification",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "variant_type",
+                  "label": "Variant type",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "mapping": true
+                },
+                {
+                  "columnName": "start_position",
+                  "label": "Start position",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "end_position",
+                  "label": "End position",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "mapping": true,
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "strand",
+                  "label": "Strand",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "swissprot",
+                  "label": "Swissprot",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "ncbi_build",
+                  "label": "NCBI build",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "codons",
+                  "label": "Codons",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                }
+              ]
+            },
+            {
+              "name": "TCGA Copy Number",
+              "description": "TCGA copy number",
+              "tableName": "tcga_copy_number",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "external_sample_id",
+                  "label": "Sample ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-tissue"
+                },
+                {
+                  "columnName": "copynumber_value",
+                  "label": "Copy number class",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": 2,
+                      "label": "Amplification",
+                      "color": "#dc3220"
+                    },
+                    {
+                      "name": 1,
+                      "label": "Gain",
+                      "color": "#e66100"
+                    },
+                    {
+                      "name": -1,
+                      "label": "Hemizygous Deletion",
+                      "color": "#40b0a6"
+                    },
+                    {
+                      "name": -2,
+                      "label": "Deep deletion",
+                      "color": "#005ab5"
+                    },
+                    {
+                      "name": 0,
+                      "label": "Normal",
+                      "color": "#dcdcdc"
+                    }
+                  ],
+                  "mapping": true
+                },
+                {
+                  "columnName": "log2_copynumber",
+                  "label": "Relative copy number",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                }
+              ]
+            },
+            {
+              "name": "Gene Fusion",
+              "itemName": "Fusion",
+              "description": "TCGA Fusions catalogues 20731 gene fusions detected in 9966 well characterized cancer samples and 648 normal specimens from The Cancer Genome Atlas (TCGA), spanning 33 cancer types. Fusion transcripts were identified via a uniform pipeline, including filtering against a list of 3838 transcript fusions detected in a panel of 648 non-neoplastic samples.",
+              "tableName": "tcga_structural_variants",
+              "color": "#4BB268",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": false,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "entrez_id",
+                  "label": "Entrez gene ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "primary": true,
+                  "idtype": "EntrezGene"
+                },
+                {
+                  "columnName": "sample_id",
+                  "label": "Sample ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-tissue"
+                },
+                {
+                  "columnName": "fusion_gene",
+                  "label": "Fusion gene",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true,
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "site1_gene",
+                  "label": "Site 1 gene",
+                  "initialRanking": true,
+                  "type": "string",
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "site1_chromosome",
+                  "label": "Site 1 chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "site1_position",
+                  "label": "Site 1 position",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "site2_gene",
+                  "label": "Site 2 gene",
+                  "initialRanking": true,
+                  "type": "string",
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "site2_chromosome",
+                  "label": "Site 2 chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "site2_position",
+                  "label": "Site 2 position",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "site2_effect_on_frame",
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "variant_status",
+                  "label": "Variant status",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "variant_type",
+                  "label": "Variant status",
+                  "initialRanking": false,
+                  "type": "string"
+                }
+              ]
+            },
+            {
+              "name": "TCGA Expression",
+              "description": "TCGA Expression",
+              "tableName": "tcga_expression",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "entrez_id",
+                  "label": "Entrez ID",
+                  "initialRanking": false,
+                  "type": "number",
+                  "idtype": "EntrezGene"
+                },
+                {
+                  "columnName": "sample_id",
+                  "label": "Sample ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-tissue"
+                },
+                {
+                  "columnName": "expression",
+                  "label": "Normalized gene expression",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "titleColumn": "sample_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "GTEx Tissue",
+              "itemName": "Tissue",
+              "description": "The Genotype-Tissue Expression (GTEx) project is an ongoing effort to build a comprehensive public resource to study tissue-specific gene expression and regulation.",
+              "tableName": "gtex_tissues",
+              "color": "#E57C73",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "sampid",
+                  "label": "Sample ID",
+                  "width": 300,
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-tissue",
+                  "searchable": true
+                },
+                {
+                  "columnName": "smts",
+                  "label": "Tissue type",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "uberon_id",
+                  "label": "Uberon ID",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "uberon_name",
+                  "label": "Tissue",
+                  "width": 250,
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "gender",
+                  "label": "Gender",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "age",
+                  "label": "Age",
+                  "initialRanking": true,
+                  "type": "categorical"
+                }
+              ],
+              "icon": "dv-tissue",
+              "formatting": {
+                "titleColumn": "sampid",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "GTEx Expression",
+              "description": "GTEx Expression",
+              "tableName": "gtex_expression",
+              "enableQueryAll": true,
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": false,
+                "hiddenInColumnSidebar": false
+              },
+              "columns": [
+                {
+                  "columnName": "ensembl_id",
+                  "label": "Ensembl ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "primary": true,
+                  "icon": "dv-gene"
+                },
+                {
+                  "columnName": "gtex_sample_id",
+                  "label": "Gtex sample ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "icon": "dv-tissue"
+                },
+                {
+                  "columnName": "tpm",
+                  "label": "Expression (TPM)",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "titleColumn": "gtex_sample_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "hgnc_symbol"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.pathway_gene",
+        "key": "gene_symbol"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.transcript",
+        "key": "ensemblid"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": false
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.transcript",
+        "key": "transcript_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.protein",
+        "key": "transcript_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      },
+      "bidirectional": false
+    },
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "visyn_kb.ordino.genes",
+      "mapping": [
+        {
+          "column": "entrez_id",
+          "idtype": "EntrezGene"
+        },
+        {
+          "column": "hgnc_symbol",
+          "idtype": "GeneSymbol"
+        },
+        {
+          "column": "ensemblid",
+          "idtype": "EnsemblGene"
+        },
+        {
+          "column": "hgnc_id",
+          "idtype": "HGNCID"
+        }
+      ]
+    },
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "visyn_kb.ordino.cellline",
+      "mapping": [
+        {
+          "column": "depmap_id",
+          "idtype": "DepMap"
+        },
+        {
+          "column": "cell_line_name",
+          "idtype": "CellLineName"
+        },
+        {
+          "column": "cosmicid",
+          "idtype": "Cosmic"
+        },
+        {
+          "column": "cellosaurus_id",
+          "idtype": "CelloSaurus"
+        },
+        {
+          "column": "sanger_model_id",
+          "idtype": "SangerModel"
+        }
+      ]
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "hgnc_symbol"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.proteins",
+        "key": "hgnc_symbol"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "hgnc_symbol"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.gene_variants",
+        "key": "gene_symbol"
+      },
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 2000
+      },
+      "bidirectional": true
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "entrez_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.cellline",
+        "key": "depmap_id"
+      },
+      "mapping": [
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.depmap_expression",
+          "sourceKey": "entrez_id",
+          "targetKey": "depmap_id",
+          "order": 1
+        },
+        {
+          "name": "Copy number",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.depmap_copy_number",
+          "sourceKey": "entrez_id",
+          "targetKey": "depmap_id",
+          "order": 2
+        },
+        {
+          "name": "Mutation",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.depmap_mutations",
+          "sourceKey": "entrez_id",
+          "targetKey": "depmap_id",
+          "order": 3
+        },
+        {
+          "name": "Dependency",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.depmap_dependency",
+          "sourceKey": "entrez_id",
+          "targetKey": "depmap_id",
+          "order": 4
+        }
+      ],
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 50
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.drug",
+        "key": "compound_chembl_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.compound",
+        "key": "compound_chembl_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.cellline",
+        "key": "cellosaurus_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.assay_cell_dictionary",
+        "key": "cellosaurus_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.assay_cell_dictionary",
+        "key": "cell_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.activity",
+        "key": "cell_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.activity",
+        "key": "compound_chembl_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.compound",
+        "key": "compound_chembl_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.drug",
+        "key": "uniprot_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.proteins",
+        "key": "uniprot_accession"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.proteins",
+        "key": "uniprot_accession"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.activity",
+        "key": "target_protein"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.drug",
+        "filterColumn": "compound_chembl_id",
+        "key": "uniprot_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.activity",
+        "filterColumn": "compound_chembl_id",
+        "key": "target_protein"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.tcga_tissues",
+        "key": "sample_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.tcga_mutations",
+        "key": "sample_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "entrez_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.tcga_mutations",
+        "key": "entrez_id"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "hgnc_symbol"
+      },
+      "target": {
+        "label": "Fusion gene site 1",
+        "id": "visyn_kb.ordino.tcga_structural_variants",
+        "key": "site1_gene"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "hgnc_symbol"
+      },
+      "target": {
+        "label": "Fusion gene site 2",
+        "id": "visyn_kb.ordino.tcga_structural_variants",
+        "key": "site2_gene"
+      },
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 2000
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "entrez_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.tcga_tissues",
+        "key": "sample_id"
+      },
+      "mapping": [
+        {
+          "name": "Mutation",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.tcga_mutations",
+          "sourceKey": "entrez_id",
+          "targetKey": "sample_id",
+          "order": 3
+        },
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.tcga_expression",
+          "sourceKey": "entrez_id",
+          "targetKey": "sample_id",
+          "order": 1
+        },
+        {
+          "name": "Copy number",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.tcga_copy_number",
+          "sourceKey": "entrez_id",
+          "targetKey": "external_sample_id",
+          "order": 2
+        }
+      ],
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 50
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "entrez_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.tcga_tissues",
+        "key": "sample_id"
+      },
+      "mapping": [
+        {
+          "name": "Mutation",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.tcga_mutations",
+          "sourceKey": "entrez_id",
+          "targetKey": "sample_id"
+        },
+        {
+          "name": "Copy number",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.tcga_copy_number",
+          "sourceKey": "entrez_id",
+          "targetKey": "external_sample_id"
+        },
+        {
+          "name": "Fusion",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.tcga_structural_variants",
+          "sourceKey": "entrez_id",
+          "targetKey": "sample_id"
+        }
+      ],
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 50,
+        "views": [
+          {
+            "type": "oncoprint",
+            "name": "Oncoprint",
+            "icon": "fas fa-chart-bar",
+            "copynumber": {
+              "entityId": "visyn_kb.ordino.tcga_copy_number",
+              "defaultColumn": "copynumber_value",
+              "mapping": {
+                "0": "Diploid",
+                "1": "Gain",
+                "2": "Amp",
+                "-1": "Hetloss",
+                "-2": "Homdel"
+              },
+              "colorMapping": {
+                "Amp": "#1f77b4",
+                "Gain": "#316395",
+                "Diploid": "#3bc3f2",
+                "Hetloss": "#22aa99",
+                "Homdel": "#ff7f0e"
+              }
+            },
+            "mutation": {
+              "entityId": "visyn_kb.ordino.tcga_mutations",
+              "defaultColumn": "variant_classification",
+              "colorMapping": {
+                "Missense_Mutation": "#2ca02c",
+                "Silent": "#66c2a5",
+                "Nonsense_Mutation": "#d62728",
+                "Nonstop_Mutation": "#9467bd",
+                "De_novo_Start_OutOfFrame": "#8c564b",
+                "Splice_Site": "#e377c2",
+                "Splice_Region": "#e377c2",
+                "Frame_Shift_Del": "#bcbd22",
+                "Frame_Shift_Ins": "#6a3d9a",
+                "In_Frame_Del": "#17becf",
+                "In_Frame_Ins": "#e7298a",
+                "Start_Codon_SNP": "#7f7f7f",
+                "5'UTR": "#329262",
+                "5'Flank": "#5574a6",
+                "3'UTR": "#3311bb",
+                "3'Flank": "#3571a6",
+                "Intron": "#8da0cb",
+                "RNA": "#102418"
+              }
+            },
+            "fusion": {
+              "entityId": "visyn_kb.ordino.tcga_structural_variants",
+              "defaultColumn": "fusion_gene",
+              "colorMapping": {
+                "Fusion": "#b15551"
+              }
+            },
+            "clinicalData": {
+              "entityId": "visyn_kb.ordino.tcga_tissues",
+              "columns": [
+                "tumor_type",
+                "age"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "entrez_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.tcga_tissues",
+        "key": "sample_id"
+      },
+      "mapping": [
+        {
+          "name": "Copy number",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.tcga_copy_number",
+          "sourceKey": "entrez_id",
+          "targetKey": "external_sample_id"
+        },
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.tcga_expression",
+          "sourceKey": "entrez_id",
+          "targetKey": "sample_id"
+        }
+      ],
+      "workbench": {
+        "views": [
+          {
+            "type": "expression-vs-copynumber",
+            "name": "Expression vs Copy Number",
+            "icon": "fas fa-chart-bar",
+            "xAxis": {
+              "entityId": "visyn_kb.ordino.tcga_copy_number",
+              "defaultColumn": "log2_copynumber"
+            },
+            "yAxis": {
+              "entityId": "visyn_kb.ordino.tcga_expression",
+              "defaultColumn": "expression"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "entrez_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.tcga_tissues",
+        "key": "sample_id"
+      },
+      "mapping": [
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.tcga_expression",
+          "sourceKey": "entrez_id",
+          "targetKey": "sample_id"
+        }
+      ],
+      "workbench": {
+        "minSelection": 2,
+        "views": [
+          {
+            "type": "co-expression",
+            "name": "Co-Expression",
+            "icon": "fas fa-chart-bar",
+            "xAxis": {
+              "entityId": "visyn_kb.ordino.tcga_expression",
+              "defaultColumn": "expression"
+            },
+            "yAxis": {
+              "entityId": "visyn_kb.ordino.tcga_expression",
+              "defaultColumn": "expression"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "bidirectional": true,
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "entrez_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.cellline",
+        "key": "depmap_id"
+      },
+      "mapping": [
+        {
+          "name": "Mutation",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.depmap_mutations",
+          "sourceKey": "entrez_id",
+          "targetKey": "depmap_id"
+        },
+        {
+          "name": "Copy number",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.depmap_copy_number",
+          "sourceKey": "entrez_id",
+          "targetKey": "depmap_id"
+        }
+      ],
+      "workbench": {
+        "minSelection": 1,
+        "maxSelection": 50,
+        "views": [
+          {
+            "type": "oncoprint",
+            "name": "Oncoprint",
+            "icon": "fas fa-chart-bar",
+            "copynumber": {
+              "entityId": "visyn_kb.ordino.depmap_copy_number",
+              "defaultColumn": "class",
+              "mapping": {
+                "0": "Diploid",
+                "1": "Gain",
+                "2": "Amp",
+                "-1": "Hetloss",
+                "-2": "Homdel"
+              },
+              "colorMapping": {
+                "Amp": "#1f77b4",
+                "Gain": "#316395",
+                "Diploid": "#3bc3f2",
+                "Hetloss": "#22aa99",
+                "Homdel": "#ff7f0e"
+              }
+            },
+            "mutation": {
+              "entityId": "visyn_kb.ordino.depmap_mutations",
+              "defaultColumn": "variant_classification",
+              "colorMapping": {
+                "Missense_Mutation": "#2ca02c",
+                "Silent": "#66c2a5",
+                "Nonsense_Mutation": "#d62728",
+                "Nonstop_Mutation": "#9467bd",
+                "De_novo_Start_OutOfFrame": "#8c564b",
+                "Splice_Site": "#e377c2",
+                "Splice_Region": "#e377c2",
+                "Frame_Shift_Del": "#bcbd22",
+                "Frame_Shift_Ins": "#6a3d9a",
+                "In_Frame_Del": "#17becf",
+                "In_Frame_Ins": "#e7298a",
+                "Start_Codon_SNP": "#7f7f7f",
+                "5'UTR": "#329262",
+                "5'Flank": "#5574a6",
+                "3'UTR": "#3311bb",
+                "3'Flank": "#3571a6",
+                "Intron": "#8da0cb",
+                "RNA": "#102418"
+              }
+            },
+            "clinicalData": {
+              "entityId": "visyn_kb.ordino.cellline",
+              "columns": [
+                "lineage",
+                "lineage_subtype"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "entrez_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.cellline",
+        "key": "depmap_id"
+      },
+      "order": 2,
+      "mapping": [
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.depmap_expression",
+          "sourceKey": "entrez_id",
+          "targetKey": "depmap_id"
+        }
+      ],
+      "workbench": {
+        "minSelection": 2,
+        "views": [
+          {
+            "type": "co-expression",
+            "name": "Co-Expression",
+            "icon": "fas fa-chart-bar",
+            "xAxis": {
+              "entityId": "visyn_kb.ordino.depmap_expression",
+              "defaultColumn": "mrna_expression"
+            },
+            "yAxis": {
+              "entityId": "visyn_kb.ordino.depmap_expression",
+              "defaultColumn": "mrna_expression"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "entrez_id"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.cellline",
+        "key": "depmap_id"
+      },
+      "order": 3,
+      "mapping": [
+        {
+          "name": "Copy number",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.depmap_copy_number",
+          "sourceKey": "entrez_id",
+          "targetKey": "depmap_id"
+        },
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.depmap_expression",
+          "sourceKey": "entrez_id",
+          "targetKey": "depmap_id"
+        }
+      ],
+      "workbench": {
+        "views": [
+          {
+            "type": "expression-vs-copynumber",
+            "name": "Expression vs Copy number",
+            "icon": "fas fa-chart-bar",
+            "xAxis": {
+              "entityId": "visyn_kb.ordino.depmap_copy_number",
+              "defaultColumn": "copy_number"
+            },
+            "yAxis": {
+              "entityId": "visyn_kb.ordino.depmap_expression",
+              "defaultColumn": "mrna_expression"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.gtex_tissues",
+        "key": "sample_index"
+      },
+      "order": 3,
+      "mapping": [
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.gtex_expression",
+          "sourceKey": "ensembl_id",
+          "targetKey": "gtex_sample_id"
+        }
+      ],
+      "workbench": {
+        "minSelection": 0,
+        "maxSelection": 50
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "visyn_kb.ordino.genes",
+        "key": "ensemblid"
+      },
+      "target": {
+        "id": "visyn_kb.ordino.gtex_tissues",
+        "key": "sample_index"
+      },
+      "mapping": [
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "visyn_kb.ordino.gtex_expression",
+          "sourceKey": "ensembl_id",
+          "targetKey": "gtex_sample_id"
+        }
+      ],
+      "workbench": {
+        "minSelection": 2,
+        "views": [
+          {
+            "type": "co-expression",
+            "name": "Co-expression",
+            "icon": "fas fa-chart-bar",
+            "xAxis": {
+              "entityId": "visyn_kb.ordino.gtex_expression",
+              "defaultColumn": "tpm"
+            },
+            "yAxis": {
+              "entityId": "visyn_kb.ordino.gtex_expression",
+              "defaultColumn": "tpm"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "entities": [],
+  "idtypes": [
+    {
+      "id": "EntrezGene",
+      "label": "NCBI gene (Entrez)",
+      "icon": "dv-gene"
+    },
+    {
+      "id": "HGNCID",
+      "label": "HGNC ID"
+    },
+    {
+      "id": "EnsemblGene",
+      "label": "Ensembl",
+      "icon": "dv-gene",
+      "campaignType": {
+        "name": "Gene",
+        "type": "Gene",
+        "description": "Target campaigns are used to prioritize and answer questions of targets",
+        "color": "#4BB268",
+        "predefinedQuestions": [
+          {
+            "text": "Is there literature supporting the rationale of gene-disease association?",
+            "type": "freetext"
+          },
+          {
+            "text": "What is the druggability of the target?",
+            "type": "freetext"
+          },
+          {
+            "text": "What is the competition status of the target? Are there advanced clinical programs?",
+            "type": "freetext"
+          },
+          {
+            "text": "For the target, what is the gene/protein expression level in the relevant tissue?",
+            "type": "freetext"
+          }
+        ]
+      }
+    },
+    {
+      "id": "GeneSymbol",
+      "label": "Gene symbol",
+      "icon": "dv-gene",
+      "viewGroups": [
+        {
+          "name": "External resources",
+          "filter": {
+            "col": "species",
+            "op": "IN",
+            "val": "human"
+          },
+          "views": [
+            {
+              "name": "COSMIC gene",
+              "site": "https://cancer.sanger.ac.uk/cosmic/gene/analysis?ln=${genesymbol}&genome=38",
+              "fallbackSite": "https://cancer.sanger.ac.uk/cosmic/search?q=${genesymbol}",
+              "argument": "genesymbol",
+              "selection": "chooser",
+              "topics": [
+                "gene",
+                "external"
+              ],
+              "icon": "fas fa-external-link-alt"
+            },
+            {
+              "name": "HGNC",
+              "site": "https://www.genenames.org/tools/search/#!/?query=gene_symbol:${genesymbol}",
+              "argument": "genesymbol",
+              "selection": "chooser",
+              "topics": [
+                "cellline",
+                "external"
+              ],
+              "icon": "fas fa-external-link-alt"
+            },
+            {
+              "name": "ClinVar",
+              "site": "https://www.ncbi.nlm.nih.gov/clinvar/?term=${genesymbol}",
+              "argument": "genesymbol",
+              "selection": "chooser",
+              "topics": [
+                "cellline",
+                "external"
+              ],
+              "icon": "fas fa-external-link-alt"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "DepMap",
+      "label": "DepMap",
+      "viewGroups": []
+    },
+    {
+      "id": "CellLineName",
+      "label": "Cell line name",
+      "icon": "dv-cell-line",
+      "viewGroups": []
+    },
+    {
+      "id": "Cosmic",
+      "label": "COSMIC",
+      "viewGroups": []
+    },
+    {
+      "id": "CelloSaurus",
+      "label": "CelloSaurus",
+      "viewGroups": []
+    },
+    {
+      "id": "SangerModel",
+      "label": "Sanger model",
+      "viewGroups": []
+    }
+  ],
+  "dashboards": [],
+  "namedIdSets": [],
+  "app": {
+    "ui": {
+      "landscapeDescription": "An interactive gateway to explore interconnected biological data. Major biological entities (Genes, Proteins, Tissues, Cell Lines, Compounds, and Drugs) act as interactive nodes, each represented as distinct entry points into their respective data spaces. \n \n For example, users can:\n 1. Enter the Genes workbench and select specific genes of interest\n 2. Visualize these genes' expression level in various tissues types via GTEx Tissues workbench\n 3. Explore or visualise gene co-expression levels",
+      "defaultEntity": null
+    },
+    "banner": {
+      "backgroundColor": "#ffd645",
+      "message": "The June release brings more upload file support, searchable column types, and better data table navigation with selected rows! [Check out the release notes](/pages/news/release-june-2025) for more information."
+    }
+  }
+}

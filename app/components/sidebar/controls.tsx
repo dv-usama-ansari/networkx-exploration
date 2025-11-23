@@ -3,16 +3,127 @@
 import { GraphConfig } from "@/app/types";
 import {
   Accordion,
+  Badge,
   Button,
+  CheckIcon,
+  Combobox,
   Divider,
+  Group,
+  Pill,
+  PillsInput,
+  PillsInputProps,
   ScrollArea,
   SegmentedControl,
   Stack,
   Switch,
   Text,
+  useCombobox,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import * as React from "react";
+
+function SearchableMultiSelect({
+  items,
+  value,
+  setValue,
+  ...props
+}: {
+  items: string[];
+  value: string[];
+  setValue: React.Dispatch<React.SetStateAction<string[]>>;
+} & PillsInputProps) {
+  const combobox = useCombobox({
+    onDropdownClose: () => combobox.resetSelectedOption(),
+    onDropdownOpen: () => combobox.updateSelectedOptionIndex("active"),
+  });
+
+  const [search, setSearch] = React.useState("");
+
+  const handleValueSelect = (val: string) => {
+    return setValue((current) =>
+      current.includes(val)
+        ? current.filter((v) => v !== val)
+        : [...current, val]
+    );
+  };
+
+  const handleValueRemove = (val: string) =>
+    setValue((current) => current.filter((v) => v !== val));
+
+  const values = value.map((item) => (
+    <Pill key={item} withRemoveButton onRemove={() => handleValueRemove(item)}>
+      {item}
+    </Pill>
+  ));
+
+  const options = items
+    .filter((item) => item.toLowerCase().includes(search.trim().toLowerCase()))
+    .map((item) => (
+      <Combobox.Option value={item} key={item} active={value.includes(item)}>
+        <Group gap="sm">
+          {value.includes(item) ? <CheckIcon size={12} /> : null}
+          <span>{item}</span>
+        </Group>
+      </Combobox.Option>
+    ));
+
+  return (
+    <Combobox store={combobox} onOptionSubmit={handleValueSelect} withinPortal>
+      <Combobox.DropdownTarget>
+        <PillsInput onClick={() => combobox.openDropdown()} {...props}>
+          <Pill.Group>
+            {values}
+
+            <Combobox.EventsTarget>
+              <PillsInput.Field
+                onFocus={() => combobox.openDropdown()}
+                onBlur={() => combobox.closeDropdown()}
+                value={search}
+                placeholder="Search values"
+                onChange={(event) => {
+                  combobox.updateSelectedOptionIndex();
+                  setSearch(event.currentTarget.value);
+                }}
+                onKeyDown={(event) => {
+                  if (
+                    event.key === "Backspace" &&
+                    search.length === 0 &&
+                    value.length > 0
+                  ) {
+                    event.preventDefault();
+                    handleValueRemove(value[value.length - 1]);
+                  }
+                }}
+              />
+            </Combobox.EventsTarget>
+          </Pill.Group>
+        </PillsInput>
+      </Combobox.DropdownTarget>
+
+      <Combobox.Dropdown>
+        <Combobox.Header>
+          <Button
+            leftSection={items.length === value.length ? <CheckIcon /> : null}
+            onClick={() => {
+              setValue(items);
+            }}
+          >
+            Select all
+          </Button>
+        </Combobox.Header>
+        <Combobox.Options>
+          <ScrollArea.Autosize mah={200}>
+            {options.length > 0 ? (
+              options
+            ) : (
+              <Combobox.Empty>Nothing found...</Combobox.Empty>
+            )}
+          </ScrollArea.Autosize>
+        </Combobox.Options>
+      </Combobox.Dropdown>
+    </Combobox>
+  );
+}
 
 export function Controls({
   graph,
@@ -25,11 +136,23 @@ export function Controls({
   graphMode: "2d" | "3d";
   setGraphMode: React.Dispatch<React.SetStateAction<"2d" | "3d">>;
 }) {
-  const [withIdtypeNodes, { toggle: toggleIdtypeNodes }] = useDisclosure(true);
-  const [withIntermediateEdges, { toggle: toggleIntermediateEdges }] =
-    useDisclosure(true);
-  const [removeIsolatedNodes, { toggle: toggleRemoveIsolatedNodes }] =
-    useDisclosure(false);
+  const [
+    withIdtypeNodes,
+    { toggle: toggleIdtypeNodes, open: enableWithIdtypeNodes },
+  ] = useDisclosure(true);
+  const [
+    withIntermediateEdges,
+    { toggle: toggleIntermediateEdges, open: enableWithIntermediateEdges },
+  ] = useDisclosure(true);
+  const [
+    removeIsolatedNodes,
+    { toggle: toggleRemoveIsolatedNodes, close: disableRemoveIsolatedNodes },
+  ] = useDisclosure(false);
+  const [fileList, setFileList] = React.useState<string[]>([]);
+  const [selectedFileList, setSelectedFileList] = React.useState<string[]>([]);
+  const [loadedLandscapeList, setLoadedLandscapeList] = React.useState<
+    string[]
+  >([]);
 
   const fetchInitialGraph = React.useCallback(async () => {
     try {
@@ -156,44 +279,58 @@ export function Controls({
     toggleRemoveIsolatedNodes,
   ]);
 
-  const addTestDb1 = React.useCallback(async () => {
+  const addLandscapes = React.useCallback(async () => {
     try {
       const response = await fetch(
-        "http://localhost:8000/api/graph/add_test_db1",
-        { method: "POST" }
+        "http://localhost:8000/api/graph/add_landscapes",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(selectedFileList),
+        }
       );
       const data: GraphConfig = await response.json();
       setGraph(data);
     } catch (error) {
-      console.error("Error adding test db:", error);
+      console.error("Error adding landscapes:", error);
     }
-  }, [setGraph]);
+  }, [selectedFileList, setGraph]);
 
-  const addTestDb2 = React.useCallback(async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:8000/api/graph/add_test_db2",
-        { method: "POST" }
-      );
-      const data: GraphConfig = await response.json();
-      setGraph(data);
-    } catch (error) {
-      console.error("Error adding test db:", error);
-    }
-  }, [setGraph]);
+  React.useEffect(() => {
+    const fetchFileList = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/api/graph/get_available_landscapes",
+          { method: "GET" }
+        );
+        const data: string[] = await response.json();
+        setFileList(data);
+      } catch (error) {
+        console.error("Error fetching available landscapes:", error);
+      }
+    };
 
-  const addOrdinoPublic = React.useCallback(async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:8000/api/graph/add_ordino_public",
-        { method: "POST" }
-      );
-      const data: GraphConfig = await response.json();
-      setGraph(data);
-    } catch (error) {
-      console.error("Error adding test db:", error);
-    }
-  }, [setGraph]);
+    fetchFileList();
+  }, []);
+
+  React.useEffect(() => {
+    const fetchLoadedLandscapeList = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/api/graph/get_loaded_landscapes",
+          { method: "GET" }
+        );
+        const data: string[] = await response.json();
+        setLoadedLandscapeList(data);
+      } catch (error) {
+        console.error("Error fetching loaded landscapes:", error);
+      }
+    };
+
+    fetchLoadedLandscapeList();
+  }, [graph?.nodes.length]);
 
   return (
     <Stack>
@@ -205,7 +342,14 @@ export function Controls({
         styles={{ content: { padding: 0 } }}
       >
         <Accordion.Item value="landscapes">
-          <Accordion.Control>Landscape controls</Accordion.Control>
+          <Accordion.Control>
+            <Group justify="space-between">
+              <Text>Landscape controls</Text>
+              <Badge color="blue" variant="light">
+                {loadedLandscapeList.length}
+              </Badge>
+            </Group>
+          </Accordion.Control>
           <Accordion.Panel>
             <ScrollArea.Autosize mah={320}>
               <Stack px="md" pb="md">
@@ -214,7 +358,6 @@ export function Controls({
                 <Button onClick={fetchIdtypeRelations} disabled={!graph}>
                   Load visyn_kb idtype relations
                 </Button>
-
                 <Button onClick={fetchOneToNRelations} disabled={!graph}>
                   Load visyn_kb 1-n relations
                 </Button>
@@ -224,10 +367,20 @@ export function Controls({
                 >
                   Load visyn_kb drilldown relations
                 </Button>
+
                 <Divider label="Other landscapes" />
-                <Button onClick={addTestDb1}>Add test db 1</Button>
-                <Button onClick={addTestDb2}>Add test db 2</Button>
-                <Button onClick={addOrdinoPublic}>Add ordino public</Button>
+
+                <SearchableMultiSelect
+                  items={fileList}
+                  value={selectedFileList}
+                  setValue={setSelectedFileList}
+                />
+                <Button
+                  onClick={addLandscapes}
+                  disabled={selectedFileList.length === 0}
+                >
+                  Add selected landscapes
+                </Button>
               </Stack>
             </ScrollArea.Autosize>
           </Accordion.Panel>
@@ -272,7 +425,18 @@ export function Controls({
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion>
-      <Button onClick={fetchResetGraph} disabled={!graph} color="red">
+      <Button
+        onClick={() => {
+          setGraphMode("2d");
+          fetchResetGraph();
+          setSelectedFileList([]);
+          enableWithIdtypeNodes();
+          enableWithIntermediateEdges();
+          disableRemoveIsolatedNodes();
+        }}
+        disabled={!graph}
+        color="red"
+      >
         Reset graph
       </Button>
     </Stack>

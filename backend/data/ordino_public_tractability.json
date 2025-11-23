@@ -1,0 +1,486 @@
+{
+  "databases": [
+    {
+      "id": "hidden_dev",
+      "dbEngine": "postgresql",
+      "schemas": [
+        {
+          "name": "genentech_tractability",
+          "entities": [
+            {
+              "name": "Antibody tractability bucket",
+              "itemName": "Gene",
+              "tableName": "tractability_buckets_2022-11-17_ab",
+              "columns": [
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "idtype": "EnsemblGene",
+                  "description": "The Ensembl ID of the gene"
+                },
+                {
+                  "columnName": "symbol",
+                  "label": "Gene symbol",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "searchable": true,
+                  "idtype": "GeneSymbol"
+                },
+                {
+                  "columnName": "Top_bucket_ab",
+                  "label": "Top bucket AB",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": 1,
+                      "label": "(ChEMBL) Targets with approved (phase 4) AB drug"
+                    },
+                    {
+                      "name": 2,
+                      "label": "(ChEMBL) Targets with AB in clinical phase 2 or 3"
+                    },
+                    {
+                      "name": 3,
+                      "label": "(ChEMBL) Targets with AB in clinical phase 1"
+                    },
+                    {
+                      "name": 4,
+                      "label": "(UniProt loc) Targets with UniProt 'Subcellular location' terms indicative for plasma membrane, extracellular region/matrix, or secretion - high confidence"
+                    },
+                    {
+                      "name": 5,
+                      "label": "(GO CC) Targets with GO 'Cellular component' terms indicative for plasma membrane, extracellular region/matrix, or secretion - high confidence [‘ECO:0000269’ or ‘ECO:0000305’] Bucket 6 (UniProt loc) Targets with UniProt 'Subcellular location' terms indicative for plasma membrane, extracellular region/matrix, or secretion - medium confidence"
+                    },
+                    {
+                      "name": 7,
+                      "label": "(UniProt SigP or TMHMM): Targets with predicted Signal Peptide or Trans-membrane regions, and not destined to organelles"
+                    },
+                    {
+                      "name": 8,
+                      "label": "(GO CC) Targets with GO 'Cellular component' terms indicative for plasma membrane, extracellular region/matrix, or secretion - medium confidence"
+                    },
+                    {
+                      "name": 9,
+                      "label": "(Human Protein Atlas) Targets with main location “Plasma membrane” - high confidence"
+                    }
+                  ],
+                  "description": "Antibody top bucket"
+                },
+                {
+                  "columnName": "Bucket_1_ab",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_2_ab",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_3_ab",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_4_ab",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_5_ab",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_6_ab",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_7_ab",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_8_ab",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_9_ab",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "HPA_main_location",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "description": "The main location of the gene according to the Human Protein Atlas"
+                },
+                {
+                  "columnName": "Signal_peptide",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "description": "The number of predicted signal peptides for the gene"
+                },
+                {
+                  "columnName": "Clinical_Precedence_ab",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "number",
+                  "description": "The clinical precedence of the gene for antibody tractability"
+                },
+                {
+                  "columnName": "accession",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "categorical"
+                }
+              ],
+              "formatting": {
+                "template": "{{symbol}}",
+                "idColumn": "symbol",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              },
+              "description": "Small molecule tractability antibodies"
+            },
+            {
+              "name": "Clinical evidence tractability",
+              "itemName": "Gene",
+              "tableName": "tractability_buckets_2022-11-17_othercl",
+              "columns": [
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "idtype": "EnsemblGene"
+                },
+                {
+                  "columnName": "symbol",
+                  "label": "Gene symbol",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "searchable": true,
+                  "idtype": "GeneSymbol"
+                },
+                {
+                  "columnName": "Bucket_1_othercl",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_2_othercl",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_3_othercl",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "boolean"
+                }
+              ],
+              "formatting": {
+                "template": "{{symbol}}",
+                "idColumn": "symbol",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              },
+              "description": "Small molecule tractability other clinical evidence"
+            },
+            {
+              "name": "Small molecule tractability bucket",
+              "itemName": "Gene",
+              "tableName": "tractability_buckets_2022-11-17_sm",
+              "columns": [
+                {
+                  "columnName": "ensembl_gene_id",
+                  "label": "Ensembl",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "idtype": "EnsemblGene"
+                },
+                {
+                  "columnName": "symbol",
+                  "label": "Gene symbol",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "searchable": true,
+                  "idtype": "GeneSymbol"
+                },
+                {
+                  "columnName": "Top_bucket_sm",
+                  "label": "Top bucket small molecules",
+                  "width": 150,
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "1",
+                      "label": "(ChEMBL) targets with approved (phase 4) SM drug"
+                    },
+                    {
+                      "name": "2",
+                      "label": "(ChEMBL) targets with SM in clinical phase 2 or 3"
+                    },
+                    {
+                      "name": "3",
+                      "label": "(ChEMBL) targets with SM in clinical phase 1"
+                    },
+                    {
+                      "name": "4",
+                      "label": "(PDB) targets with crystal structures with ligands (excluding: buffer compounds, solvents, crystallization agents/additives and sugars)"
+                    },
+                    {
+                      "name": "5",
+                      "label": "(ChEMBL) targets with high quality ligands (PFI ≤7, structural_alerts ≤2, pchembl_value ≥5.5 or equivalent activity measure)"
+                    },
+                    {
+                      "name": "6",
+                      "label": "(DrugEBIlity) targets with score ≥0.7"
+                    },
+                    {
+                      "name": "7",
+                      "label": "(DrugEBIlity) targets with 0 < score < 0.7"
+                    },
+                    {
+                      "name": "8",
+                      "label": "(Finan et al. 2017) targets considered druggable using Finan et al's Druggable Genome"
+                    },
+                    {
+                      "name": "9",
+                      "label": "(SureChEMBL) targets with ‘chemical’ patents in the last 5 years"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Bucket_1_sm",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Bucket_2_sm",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Bucket_3_sm",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Bucket_4_sm",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Bucket_5_sm",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Bucket_6_sm",
+                  "initialRanking": true
+                },
+                {
+                  "columnName": "Bucket_7_sm",
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "Bucket_8_sm",
+                  "initialRanking": true,
+                  "type": "boolean"
+                },
+                {
+                  "columnName": "accession",
+                  "label": "Accession",
+                  "width": 150,
+                  "initialRanking": false,
+                  "type": "string"
+                }
+              ],
+              "formatting": {
+                "template": "{{symbol}}",
+                "idColumn": "symbol",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              },
+              "description": "Small molecule tractability (buckets are denoted with 'Top bucket small molecules')"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_ab",
+      "mapping": [
+        {
+          "column": "ensembl_gene_id",
+          "idtype": "EnsemblGene"
+        }
+      ]
+    },
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_sm",
+      "mapping": [
+        {
+          "column": "ensembl_gene_id",
+          "idtype": "EnsemblGene"
+        }
+      ]
+    },
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_othercl",
+      "mapping": [
+        {
+          "column": "ensembl_gene_id",
+          "idtype": "EnsemblGene"
+        }
+      ]
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_ab",
+        "key": "ensembl_gene_id"
+      },
+      "target": {
+        "id": "ordino_public.tissue.tdp_tissue",
+        "key": "tissuename"
+      },
+      "mapping": [
+        {
+          "name": "Copy number",
+          "connectorType": "GenericDBScore",
+          "entity": "ordino_public.tissue.tdp_copynumber",
+          "sourceKey": "ensg",
+          "targetKey": "tissuename"
+        },
+        {
+          "name": "Expression",
+          "connectorType": "GenericDBScore",
+          "entity": "ordino_public.tissue.tdp_expression",
+          "sourceKey": "ensg",
+          "targetKey": "tissuename"
+        },
+        {
+          "name": "Mutation",
+          "connectorType": "GenericDBScore",
+          "entity": "ordino_public.tissue.tdp_mutation",
+          "sourceKey": "ensg",
+          "targetKey": "tissuename"
+        }
+      ]
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_ab",
+        "key": "ensembl_gene_id"
+      },
+      "target": {
+        "id": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_othercl",
+        "key": "ensembl_gene_id"
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_sm",
+        "key": "ensembl_gene_id"
+      },
+      "target": {
+        "id": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_ab",
+        "key": "ensembl_gene_id"
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_sm",
+        "key": "ensembl_gene_id"
+      },
+      "target": {
+        "id": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_othercl",
+        "key": "ensembl_gene_id"
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_public.public.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_ab",
+        "key": "ensembl_gene_id"
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_public.public.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_sm",
+        "key": "ensembl_gene_id"
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "ordino_public.public.tdp_gene",
+        "key": "ensg"
+      },
+      "target": {
+        "id": "hidden_dev.genentech_tractability.tractability_buckets_2022-11-17_othercl",
+        "key": "ensembl_gene_id"
+      }
+    }
+  ],
+  "idtypes": [
+    {
+      "id": "GeneSymbol",
+      "label": "Gene symbol",
+      "icon": "dv-gene"
+    },
+    {
+      "id": "EnsemblGene",
+      "label": "Ensembl Gene ID",
+      "icon": "dv-gene"
+    }
+  ]
+}

@@ -1,0 +1,1054 @@
+{
+  "databases": [
+    {
+      "id": "solvent_picker",
+      "dbEngine": "postgresql",
+      "schemas": [
+        {
+          "name": "solvent_picker",
+          "entities": [
+            {
+              "name": "Solvents exchange data",
+              "itemName": "Solvent",
+              "tableName": "solvents_exchange",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "columns": [
+                {
+                  "columnName": "Comp1",
+                  "label": "Compound 1",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "searchable": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "Comp2",
+                  "label": "Compound 2",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "CAS Comp1",
+                  "label": "CAS Compound 1",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "mapping": "true",
+                  "searchable": true
+                },
+                {
+                  "columnName": "CAS Comp2",
+                  "label": "CAS Compound 2",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "mapping": "true",
+                  "searchable": true
+                },
+                {
+                  "columnName": "Name Comp1",
+                  "label": "Name Compound 1",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "searchable": true
+                },
+                {
+                  "columnName": "Name Comp2",
+                  "label": "Name Compound 2",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "searchable": true
+                },
+                {
+                  "columnName": "Dest 1a [kg]",
+                  "label": "Destination 1a [kg]",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "mapping": "true",
+                  "searchable": true
+                },
+                {
+                  "columnName": "Dest 1b [kg]",
+                  "label": "Destination 1b [kg]",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "mapping": "true",
+                  "searchable": true
+                },
+                {
+                  "columnName": "Dest 2a [kg]",
+                  "label": "Destination 2a [kg]",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "mapping": "true",
+                  "searchable": true
+                },
+                {
+                  "columnName": "Dest 2b [kg]",
+                  "label": "Destination 2b [kg]",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "mapping": "true",
+                  "searchable": true
+                },
+                {
+                  "columnName": "Liquid in Pot [kg]",
+                  "label": "Liquid in Pot [kg]",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "mapping": "true",
+                  "searchable": true
+                },
+                {
+                  "columnName": "Total Energy",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "mapping": "true",
+                  "searchable": true
+                },
+                {
+                  "columnName": "N Theoretical Stages",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "mapping": "true",
+                  "searchable": true
+                },
+                {
+                  "columnName": "steps",
+                  "type": "number",
+                  "width": 50,
+                  "initialRanking": true,
+                  "mapping": "true"
+                },
+                {
+                  "columnName": "LM-Verlust",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": true,
+                  "mapping": "true",
+                  "searchable": true
+                }
+              ]
+            },
+            {
+              "name": "Solvents",
+              "itemName": "Solvent",
+              "tableName": "smiles",
+              "description": "Sample chemical compounds with SMILES strings associated with them",
+              "sortingColumnName": "BP",
+              "sortingColumnOrder": "ascending",
+              "columns": [
+                {
+                  "columnName": "ID",
+                  "label": "ID",
+                  "type": "string",
+                  "width": 50,
+                  "initialRanking": false
+                },
+                {
+                  "columnName": "cas",
+                  "label": "CAS",
+                  "width": 120,
+                  "initialRanking": true,
+                  "primary": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "Synonyms",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "Name",
+                  "label": "Name (IUPAC)",
+                  "initialRanking": false,
+                  "type": "string",
+                  "searchable": true
+                },
+                {
+                  "columnName": "smiles",
+                  "label": "SMILES (Struktur)",
+                  "initialRanking": true,
+                  "type": "smiles",
+                  "idtype": "smiles",
+                  "width": 75
+                },
+                {
+                  "columnName": "Quadrant",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "1",
+                      "color": "#002733"
+                    },
+                    {
+                      "name": "2",
+                      "color": "#006280"
+                    },
+                    {
+                      "name": "3",
+                      "color": "#0089B3"
+                    },
+                    {
+                      "name": "4",
+                      "color": "#00B0E6"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "BP",
+                  "label": "Boiling point",
+                  "initialRanking": true,
+                  "type": "number",
+                  "renderer": "default"
+                },
+                {
+                  "columnName": "MP",
+                  "label": "Melting point",
+                  "initialRanking": true,
+                  "type": "number",
+                  "renderer": "default"
+                },
+                {
+                  "columnName": "Density",
+                  "initialRanking": true,
+                  "type": "number",
+                  "renderer": "default"
+                },
+                {
+                  "columnName": "Miscibility",
+                  "label": "Miscibility (water)",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": ["Y", "N", "Not Determined"]
+                },
+                {
+                  "columnName": "Viscosity Score",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "0",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "1",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "2",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "3",
+                      "color": "#dc3545"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Adjusted ranking",
+                  "label": "Adjusted Ranking (ACS)",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "Recommended",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "Problematic",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "Hazardous",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "Highly Hazardous",
+                      "color": "#000000"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "ICH Class",
+                  "label": "ICH Class",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "1",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "2",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "3",
+                      "color": "#198754"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Flammability",
+                  "label": "Flammability class",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "Class IIIB",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "Class IIIA",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "Class II",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "Class IC",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "Class IB",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "Class IA",
+                      "color": "#dc3545"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Health Ranking",
+                  "label": "Health Ranking",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "1",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "2",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "3",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "4",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "5",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "6",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "7",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "8",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "9",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "10",
+                      "color": "#dc3545"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Safety Ranking",
+                  "label": "Safety Ranking (ACS)",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "1",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "2",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "3",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "4",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "5",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "6",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "7",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "8",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "9",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "10",
+                      "color": "#dc3545"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Environment Ranking",
+                  "label": "Environment Ranking (ACS)",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "1",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "2",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "3",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "4",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "5",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "6",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "7",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "8",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "9",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "10",
+                      "color": "#dc3545"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "recovery BEK",
+                  "label": "Recovery BEK",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "width": 115,
+                  "categories": ["yes", "no", "currently no (process established)", "no (being planned)"]
+                },
+                {
+                  "columnName": "tank farm BEK",
+                  "label": "Tank farm BEK",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "width": 115,
+                  "categories": ["yes", "no"]
+                },
+                {
+                  "columnName": "tank farm ELB (ZTL)",
+                  "label": "Tank farm ELB (ZTL)",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "width": 150,
+                  "categories": ["yes", "no"]
+                },
+                {
+                  "columnName": "Octant",
+                  "label": "Octant",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "1Amide",
+                  "label": "1°Amide",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "1Amine",
+                  "label": "1°Amine",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "2Amide",
+                  "label": "2°Amide",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "2Amine",
+                  "label": "2°Amine",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "3Amide",
+                  "label": "3°Amide",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "3Amine",
+                  "label": "3°Amine",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Acid",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Alcohol",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Alkene",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Amide",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Amine",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Anhydride",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Anilines",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Aromatic",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Avoidance",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Carbonate",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Chloro",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Ester",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Ether",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Flammability Score",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "1",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "2",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "3",
+                      "color": "#dc3545"
+                    },
+                    {
+                      "name": "Not Assigned",
+                      "color": "#bbbbbb"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Fluoro",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Halogen",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Heteroaromatic Amines",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Hydrocarbon",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Impact in Air",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "1",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "2",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "3",
+                      "color": "#dc3545"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Impact in Water",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "1",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "2",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "3",
+                      "color": "#dc3545"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Ketone/Aldehyde",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "LCA",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "Y",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "N",
+                      "color": "#dc3545"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Nitrile",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Nitro",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Nitrogen Bases",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Other",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Phosphorus Containing",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Silicone",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Static",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "Sulfide",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Sulfite",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Sulfone",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Sulfoxide",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "Sulfur Containing",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "T-Rating",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "T1",
+                      "value": "#198754"
+                    },
+                    {
+                      "name": "T2",
+                      "value": "#198754"
+                    },
+                    {
+                      "name": "T3",
+                      "value": "#ffff00"
+                    },
+                    {
+                      "name": "T4",
+                      "value": "#ffff00"
+                    },
+                    {
+                      "name": "T6",
+                      "value": "#dc3545"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Urea",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": ["Y", "N"]
+                },
+                {
+                  "columnName": "VOC Potential",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "categories": [
+                    {
+                      "name": "1",
+                      "color": "#198754"
+                    },
+                    {
+                      "name": "2",
+                      "color": "#ffc107"
+                    },
+                    {
+                      "name": "3",
+                      "color": "#dc3545"
+                    }
+                  ]
+                },
+                {
+                  "columnName": "Refractive Index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "PC1",
+                  "label": "PC1",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "PC2",
+                  "label": "PC2",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "PC3",
+                  "label": "PC3",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "PC4",
+                  "label": "PC4",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "PC5",
+                  "label": "PC5",
+                  "initialRanking": true,
+                  "type": "number"
+                }
+              ],
+              "formatting": {
+                "template": "{{Synonyms}}",
+                "idColumn": "cas",
+                "titleColumn": "smiles",
+                "tokenSeparatorsRegex": "/[\r\n;,]+/mg",
+                "defaultTokenSeparator": ";"
+              },
+              "workbench": {
+                "primaryView": {
+                  "type": "visyn-table",
+                  "name": "Data table"
+                },
+                "views": [
+                  {
+                    "type": "visualization",
+                    "name": "Principal component visualization",
+                    "visConfig": {
+                      "type": "Scatter plot",
+                      "numColumnsSelected": [
+                        {
+                          "name": "PC2"
+                        },
+                        {
+                          "name": "PC1"
+                        }
+                      ],
+                      "color": {
+                        "name": "Adjusted ranking"
+                      },
+                      "shape": {
+                        "name": "ICH Class"
+                      },
+                      "showLabels": "Never"
+                    },
+                    "open": false
+                  },
+                  {
+                    "type": "solvent-heatmap",
+                    "name": "Distillation Heatmap",
+                    "icon": "fas fa-chart-bar",
+                    "entityId": "solvent_picker.solvent_picker.solvents_exchange",
+                    "open": false,
+                    "defaultColumn": "steps",
+                    "defaultSpec": "0.01",
+                    "specs": [
+                      {
+                        "label": "Purity 1%",
+                        "value": "0.01"
+                      },
+                      {
+                        "label": "Purity 0.5%",
+                        "value": "0.005"
+                      },
+                      {
+                        "label": "Purity 5%",
+                        "value": "0.05"
+                      }
+                    ],
+                    "columns": [
+                      {
+                        "column": "steps",
+                        "label": "Solvent Swap Evap. Steps",
+                        "valueRange": [0, 3, 6, 9, 10],
+                        "colorScale": ["#198754", "#ffc107", "#dc3545", "#14225d"]
+                      },
+                      {
+                        "column": "N Theoretical Stages",
+                        "label": "N Theoretical Stages",
+                        "valueRange": [0, 5, 10, 15, 20],
+                        "colorScale": ["#198754", "#ffc107", "#dc3545", "#14225d"]
+                      },
+                      {
+                        "column": "LM-Verlust",
+                        "label": "LM-Verlust",
+                        "valueRange": [0, 0.5, 1, 1.5, 2.5, 3.5, 4.5],
+                        "colorScale": ["#198754", "#ffc107", "#dc3545", "#8f222d", "#7030a0", "#660066"]
+                      },
+                      {
+                        "column": "Total Energy",
+                        "label": "Total Energy [MJ/kg_solv1]",
+                        "valueRange": [0, 0.5, 1, 1.5, 2, 2.5, 3.5],
+                        "colorScale": ["#198754", "#ffc107", "#dc3545", "#8f222d", "#7030a0", "#660066"]
+                      }
+                    ]
+                  },
+                  {
+                    "type": "azeotrope-heatmap",
+                    "name": "Binary Azeotropes",
+                    "icon": "fas fa-chart-bar",
+                    "entityId": "solvent_picker.solvent_picker.solvents_exchange",
+                    "open": false,
+                    "defaultColumn": "steps",
+                    "defaultSpec": "0.01",
+                    "specs": [
+                      {
+                        "label": "Purity 1%",
+                        "value": "0.01"
+                      },
+                      {
+                        "label": "Purity 0.5%",
+                        "value": "0.005"
+                      },
+                      {
+                        "label": "Purity 5%",
+                        "value": "0.05"
+                      }
+                    ]
+                  },
+
+                  {
+                    "type": "cime-scatter-plot",
+                    "name": "Projection plot",
+                    "open": false
+                  },
+                  {
+                    "type": "cime-flame-tree",
+                    "name": "Hierarchical facet plot",
+                    "open": false
+                  }
+                ]
+              },
+              "color": "#00617F"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "relations": [],
+  "idtypes": [],
+  "namedIdSets": [
+    {
+      "providerType": "dataTableProvider",
+      "databaseId": "solvent_picker",
+      "schemaName": "solvent_picker",
+      "entityId": "smiles",
+      "metadata": {
+        "databaseId": "solvent_picker",
+        "schemaName": "solvent_picker",
+        "tableName": "smiles_panel",
+        "nameColumn": "panel",
+        "descriptionColumn": "paneldescription"
+      },
+      "data": {
+        "databaseId": "solvent_picker",
+        "schemaName": "solvent_picker",
+        "tableName": "smiles_panelassignment",
+        "idColumn": "cas",
+        "keyColumn": "panel"
+      }
+    }
+  ]
+}

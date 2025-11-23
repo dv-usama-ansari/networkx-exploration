@@ -1,0 +1,2854 @@
+{
+  "databases": [
+    {
+      "id": "qiagen_omicsoft_tcga",
+      "dbEngine": "awsathena",
+      "schemas": [
+        {
+          "name": "qiagen_tcga_b38_gc33",
+          "entities": [
+            {
+              "name": "Project",
+              "tableName": "projects",
+              "color": "#EB9D96",
+              "description": "Project level metadata.",
+              "columns": [
+                {
+                  "columnName": "project_id",
+                  "label": "Project ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "searchable": true,
+                  "idtype": "ProjectId"
+                },
+                {
+                  "columnName": "land_platforms",
+                  "label": "Land Platforms",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "accession",
+                  "label": "Accession",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "experiment_type",
+                  "label": "Experiment Type",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "release_date",
+                  "label": "Release Date",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "platform_organism",
+                  "label": "Platform Organism",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "description",
+                  "label": "Description",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "design",
+                  "label": "Design",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "title",
+                  "label": "Title",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "web_link",
+                  "label": "Web Link",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "pub_med",
+                  "label": "PubMed",
+                  "initialRanking": true,
+                  "type": "string",
+                  "idtype": "PubMedId"
+                },
+                {
+                  "columnName": "disease",
+                  "label": "Disease",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "therapeutic_area",
+                  "label": "Therapeutic Area",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "os_landed_date",
+                  "label": "OS landed Date",
+                  "initialRanking": true,
+                  "type": "string"
+                }
+              ],
+              "formatting": {
+                "template": "{{project_id}}",
+                "idColumn": "project_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Sample",
+              "tableName": "samples",
+              "color": "#E57C73",
+              "description": "Sample Index  to Sample ID mapping, and main sample metadata.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "sample_id",
+                  "label": "Sample ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true,
+                  "idtype": "SampleId"
+                },
+                {
+                  "columnName": "project_name",
+                  "label": "Project Name",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "platform_gpl",
+                  "label": "Platform GPL",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "platform_name",
+                  "label": "Platform Name",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "age_at_diagnosis_years",
+                  "label": "Age at Diagnosis Years",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "numbers-letters"
+                },
+                {
+                  "columnName": "bcr_patient_uuid",
+                  "label": "BCR Patient UUID",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "bcr_sample_uuid",
+                  "label": "BCR Sample UUID",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "cancer_grading",
+                  "label": "Cancer Grading",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "disease_tcga",
+                  "label": "Disease TCGA",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "disease_classification_icd10",
+                  "label": "Disease Classification ICD10",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "disease_location_icdo3",
+                  "label": "Disease Location ICDO3",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "disease_location_primary_site",
+                  "label": "Disease Location Primary Site",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "disease_state",
+                  "label": "Disease State",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "gender",
+                  "label": "Gender",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categories": [
+                    { "name": "male", "label": "male", "value": 0 },
+                    { "name": "female", "label": "female", "value": 1 }
+                  ]
+                },
+                {
+                  "columnName": "group",
+                  "label": "Group",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "histology_tumor",
+                  "label": "Histology Tumor",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "histology_tumor_icdo3",
+                  "label": "Histology Tumor ICDO3",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "necrosis_content_sample",
+                  "label": "Necrosis Content Sample",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "onco_sample_type",
+                  "label": "Onco Sample Type",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "organism",
+                  "label": "Organism",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "overall_survival_os_days",
+                  "label": "Overall Survival OS Days",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "overall_survival_os_event",
+                  "label": "Overall Survival OS Event",
+                  "initialRanking": false,
+                  "type": "categorical"
+                }
+              ],
+              "formatting": {
+                "template": "{{sample_id}}",
+                "idColumn": "sample_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Clinical Triplet",
+              "itemName": "Triplet",
+              "tableName": "clinical_triplets",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "Extended metadata in three column format, where SampleId is column 1, metadata header is column 2, and metadata value is column 3. If metadata are missing for the sample, it will not be listed in this file.",
+              "columns": [
+                {
+                  "columnName": "sample_id",
+                  "label": "Sample ID",
+                  "type": "string",
+                  "initialRanking": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "attribute",
+                  "label": "Attribute",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "value",
+                  "label": "Value",
+                  "initialRanking": true,
+                  "type": "number"
+                }
+              ],
+              "formatting": {
+                "template": "{{sample_id}}",
+                "idColumn": "sample_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Gene",
+              "tableName": "gene_annotation",
+              "color": "#4BB268",
+              "description": "Gene Index to GeneID mapping and annotation of genes in the gene model used.",
+              "sortingColumnName": "gene_name",
+              "sortingColumnOrder": "ascending",
+              "columns": [
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "gene_id",
+                  "label": "Gene ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true,
+                  "idtype": "EnsemblGene"
+                },
+                {
+                  "columnName": "entrez_id",
+                  "label": "Entrez ID",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true,
+                  "searchable": true,
+                  "idtype": "EntrezId"
+                },
+                {
+                  "columnName": "gene_name",
+                  "label": "Gene Name",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true,
+                  "searchable": true,
+                  "idtype": "GeneName"
+                },
+                {
+                  "columnName": "transcript_number",
+                  "label": "Transcript Number",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "strand",
+                  "label": "Strand",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "mapping": true
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true,
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "start",
+                  "label": "Start",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "end",
+                  "label": "End",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "exon_length",
+                  "label": "Exon Length",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "source",
+                  "label": "Source",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{gene_name}}",
+                "idColumn": "gene_name",
+                "titleColumn": "gene_name",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Gene FPKM",
+              "tableName": "gene_fpkm",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "Gene level RNAseq expression level, as raw counts and normalized FPKM data.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "type": "number",
+                  "initialRanking": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "fpkm",
+                  "label": "FPKM",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "count",
+                  "label": "Count",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{gene_index}}",
+                "idColumn": "gene_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Comparison",
+              "tableName": "comparisons",
+              "color": "#77C68D",
+              "description": "Comparison Index to Comparison ID mapping and annotation of comparisons.",
+              "columns": [
+                {
+                  "columnName": "comparison_index",
+                  "label": "Comparison Index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "comparison_id",
+                  "label": "Comparison ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "collection",
+                  "label": "Collection",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "comparison_category",
+                  "label": "Comparison Category",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "comparison_contrast",
+                  "label": "Comparison Contrast",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "comparison_type",
+                  "label": "Comparison Type",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "data_source",
+                  "label": "Data Source",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "gene_model_id",
+                  "label": "Gene Model ID",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "length",
+                  "label": "Length",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "organism",
+                  "label": "Organism",
+                  "initialRanking": true,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "platform_name",
+                  "label": "Platform Name",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "project_name",
+                  "label": "Project Name",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "reference_library_id",
+                  "label": "Reference Library ID",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "sample_data_mode",
+                  "label": "Sample Data Mode",
+                  "initialRanking": true,
+                  "type": "string"
+                }
+              ],
+              "formatting": {
+                "template": "{{comparison_id}}",
+                "idColumn": "comparison_id",
+                "titleColumn": "comparison_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Comparison Data",
+              "itemName": "Comparison",
+              "tableName": "comparison_data",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "Comparison data (fold change, p value, etc)",
+              "columns": [
+                {
+                  "columnName": "comparison_index",
+                  "label": "Comparison index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "name",
+                  "label": "Name",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "log2_fold_change",
+                  "label": "Log2 fold change",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "p_value",
+                  "label": "P Value",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "adjusted_p_value",
+                  "label": "Adjusted p value",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "numerator_value",
+                  "label": "Numerator value",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "denominator_value",
+                  "label": "Denominator value",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{comparison_index}}",
+                "idColumn": "comparison_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Mutation",
+              "tableName": "mutations",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "color": "#f0f0f0",
+              "description": "Mutation Index to Mutation ID mapping and annotation of mutations. It is recommended to use mutations_canonical, which uses the Mutation Gene Model with a single canonical transcript for each gene.",
+              "columns": [
+                {
+                  "columnName": "mutation_index",
+                  "label": "Mutation Index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "mutation_id",
+                  "label": "Mutation id",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true,
+                  "searchable": true
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "position",
+                  "label": "Position",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "reference",
+                  "label": "Reference",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "alternative",
+                  "label": "Alternative",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "gene_name",
+                  "label": "Gene Name",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "transcript_id",
+                  "label": "Transcript ID",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "type",
+                  "label": "Type",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "location",
+                  "label": "Location",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "consequence",
+                  "label": "Consequence",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "position_on_cds",
+                  "label": "Position on CDs",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "aa_mutation",
+                  "label": "AA Mutation",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "rs_id",
+                  "label": "RS ID",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_clinical_significance",
+                  "label": "Clin Var Clinical Significance",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_rc_vaccession",
+                  "label": "Clin Var RC VAccession",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_tested_in_gtr",
+                  "label": "Clin Var Tested in GTR",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_review_status",
+                  "label": "Clin Var Review Status",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_phenotype",
+                  "label": "Clin Var Phenotype",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_phenotype_category",
+                  "label": "Clin Var Phenotype Category",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "functional_mutation_ensembl_transcript_id",
+                  "label": "Functional Mutation Ensembl Transcript ID",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "functional_mutation_sift_pred",
+                  "label": "Functional Mutation Sift Pred",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_allele_frequency",
+                  "label": "1000 Genomes SIMPLE Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_afr_allele_frequency",
+                  "label": "1000 Genomes Simple AFR Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_amr_allele_frequency",
+                  "label": "1000 Genomes Simple AMR Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_eas_allele_frequency",
+                  "label": "1000 Genomes Simple EAS Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_eur_allele_frequency",
+                  "label": "1000 Genomes Simple EUR Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_sas_allele_frequency",
+                  "label": "1000 Genomes Simple SAS Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_allele_frequency",
+                  "label": "Ex AC Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_afr_allele_frequency",
+                  "label": "Ex AC AFR Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_amr_allele_frequency",
+                  "label": "Ex AC AMR Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_eas_allele_frequency",
+                  "label": "Ex AC EAS Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_fin_allele_frequency",
+                  "label": "Ex AC FIN Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_nfe_allele_frequency",
+                  "label": "Ex AC NFE Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_sas_allele_frequency",
+                  "label": "Ex AC SAS Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_oth_allele_frequency",
+                  "label": "Ex AC OTH Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "esp6500_ea_allele_frequency",
+                  "label": "ESP6500 EA Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "esp6500_aa_allele_frequency",
+                  "label": "ESP6500 AA Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "esp6500_allele_frequency",
+                  "label": "ESP6500 Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_frequency",
+                  "label": "UK10K Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_count",
+                  "label": "UK10K Allele Count",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_frequency_twinsuk",
+                  "label": "UK10K Allele Frequency Twinsuk",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_count_twinsuk",
+                  "label": "UK10K Allele Count Twinsuk",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_frequency_alspac",
+                  "label": "UK10K Allele Frequency Alspac",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_count_alspac",
+                  "label": "UK10K Allele Count Alspac",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "regulome_db_category",
+                  "label": "Regulome DB Category",
+                  "initialRanking": false,
+                  "type": "string"
+                }
+              ],
+              "formatting": {
+                "template": "{{mutation_id}}",
+                "idColumn": "mutation_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Mutation",
+              "tableName": "mutations_canonical",
+              "enableQueryAll": false,
+              "color": "#84a86b",
+              "description": "Mutation Index to Mutation ID mapping and annotation of mutations, based on the Mutation Gene Model (recommended file), which uses a single canonical transcript for each gene.",
+              "columns": [
+                {
+                  "columnName": "mutation_index",
+                  "label": "Mutation index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "mutation_id",
+                  "label": "Mutation id",
+                  "initialRanking": true,
+                  "type": "string",
+                  "searchable": true,
+                  "primary": true
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "position",
+                  "label": "Position",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "reference",
+                  "label": "Reference",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "alternative",
+                  "label": "Alternative",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "gene_name",
+                  "label": "Gene name",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "transcript_id",
+                  "label": "Transcript id",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "type",
+                  "label": "Type",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "location",
+                  "label": "Location",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "consequence",
+                  "label": "Consequence",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "position_on_cds",
+                  "label": "Position on cds",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "aa_mutation",
+                  "label": "AA mutation",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "rs_id",
+                  "label": "Rs id",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_clinical_significance",
+                  "label": "Clin var clinical significance",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_rc_vaccession",
+                  "label": "Clin var rc v-accession",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_tested_in_gtr",
+                  "label": "Clin Var Tested in GTR",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_review_status",
+                  "label": "Clin Var Review Status",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_phenotype",
+                  "label": "Clin Var Phenotype",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "clin_var_phenotype_category",
+                  "label": "Clin Var Phenotype Category",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "functional_mutation_ensembl_transcript_id",
+                  "label": "Functional Mutation Ensembl Transcript ID",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "functional_mutation_sift_pred",
+                  "label": "Functional Mutation Sift Pred",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_allele_frequency",
+                  "label": "1000 Genomes SIMPLE Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_afr_allele_frequency",
+                  "label": "1000 Genomes Simple AFR Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_amr_allele_frequency",
+                  "label": "1000 Genomes Simple AMR Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_eas_allele_frequency",
+                  "label": "1000 Genomes Simple EAS Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_eur_allele_frequency",
+                  "label": "1000 Genomes Simple EUR Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "_1000_genomes_simple_sas_allele_frequency",
+                  "label": "1000 Genomes Simple SAS Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_allele_frequency",
+                  "label": "Ex AC Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_afr_allele_frequency",
+                  "label": "Ex AC AFR Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_amr_allele_frequency",
+                  "label": "Ex AC AMR Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_eas_allele_frequency",
+                  "label": "Ex AC EAS Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_fin_allele_frequency",
+                  "label": "Ex AC FIN Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_nfe_allele_frequency",
+                  "label": "Ex AC NFE Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_sas_allele_frequency",
+                  "label": "Ex AC SAS Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "ex_ac_oth_allele_frequency",
+                  "label": "Ex AC OTH Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "esp6500_ea_allele_frequency",
+                  "label": "ESP6500 EA Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "esp6500_aa_allele_frequency",
+                  "label": "ESP6500 AA Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "esp6500_allele_frequency",
+                  "label": "ESP6500 Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_frequency",
+                  "label": "UK10K Allele Frequency",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_count",
+                  "label": "UK10K Allele Count",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_frequency_twinsuk",
+                  "label": "UK10K Allele Frequency Twinsuk",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_count_twinsuk",
+                  "label": "UK10K Allele Count Twinsuk",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_frequency_alspac",
+                  "label": "UK10K Allele Frequency Alspac",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "uk10k_allele_count_alspac",
+                  "label": "UK10K Allele Count Alspac",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "regulome_db_category",
+                  "label": "Regulome DB Category",
+                  "initialRanking": false,
+                  "type": "string"
+                }
+              ],
+              "formatting": {
+                "template": "{{mutation_id}}",
+                "idColumn": "mutation_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "RNA Seq Mutation",
+              "tableName": "rna_seq_mutation",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "mutation_index",
+                  "label": "Mutation Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "start",
+                  "label": "Start",
+                  "initialRanking": false,
+                  "mapping": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "end",
+                  "label": "End",
+                  "initialRanking": false,
+                  "mapping": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "mutation",
+                  "label": "Mutation",
+                  "mapping": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "coverage",
+                  "label": "Coverage",
+                  "mapping": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "frequency",
+                  "label": "Frequency",
+                  "mapping": true,
+                  "type": "number"
+                }
+              ],
+              "formatting": {
+                "template": "{{mutation}}",
+                "idColumn": "mutation",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "RNA Seq Somatic Mutation",
+              "tableName": "rna_seq_somatic_mutation",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "enableQueryAll": false,
+              "color": "#ec6836",
+              "description": "Mutation calls from RNAseq data, excluding any germline mutations.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "mutation_index",
+                  "label": "Mutation Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true,
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "start",
+                  "label": "Start",
+                  "initialRanking": false,
+                  "mapping": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "end",
+                  "label": "End",
+                  "initialRanking": false,
+                  "mapping": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "mutation",
+                  "label": "Mutation",
+                  "mapping": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "coverage",
+                  "label": "Coverage",
+                  "mapping": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "frequency",
+                  "label": "Frequency",
+                  "mapping": true,
+                  "type": "number"
+                }
+              ],
+              "formatting": {
+                "template": "{{mutation}}",
+                "idColumn": "mutation",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Fusion Data",
+              "itemName": "Fusion",
+              "tableName": "fusion_data",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "enableQueryAll": false,
+              "description": "Quantification of reads supporting fusions from single end and paired end data.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "fusion_index",
+                  "label": "Fusion Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "gene_id1",
+                  "label": "Gene ID1",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "gene_id2",
+                  "label": "Gene ID2",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "unique_cutting_position",
+                  "label": "Unique Cutting Position",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "seed_count",
+                  "label": "Seed Count",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "rescued_count",
+                  "label": "Rescued Count",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "unique_read1_position",
+                  "label": "Unique Read1 Position",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "unique_read2_position",
+                  "label": "Unique Read2 Position",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "paired_end_count",
+                  "label": "Paired End Count",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "single_end_rpkm",
+                  "label": "Single End RPKM",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{fusion_index}}",
+                "idColumn": "fusion_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Fusion",
+              "tableName": "fusion_annotation",
+              "enableQueryAll": false,
+              "description": "Fusion Index to Fusion ID lookup table, annotation of detected fusions.",
+              "color": "#eca39d",
+              "columns": [
+                {
+                  "columnName": "fusion_index",
+                  "label": "Fusion Index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "fusion_id",
+                  "label": "Fusion ID",
+                  "initialRanking": false,
+                  "primary": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "strand",
+                  "label": "Strand",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true
+                },
+                {
+                  "columnName": "chromosome1",
+                  "label": "Chromosome1",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true,
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "position1",
+                  "label": "Position1",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "chromosome2",
+                  "label": "Chromosome2",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true,
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "position2",
+                  "label": "Position2",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "known_gene1",
+                  "label": "Known Gene1",
+                  "initialRanking": false,
+                  "idtype": "EnsemblGene",
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "known_transcript1",
+                  "label": "Known Transcript1",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "known_exon_number1",
+                  "label": "Known Exon Number1",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "known_transcript_strand1",
+                  "label": "Known Transcript Strand1",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "known_gene2",
+                  "label": "Known Gene2",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "known_transcript2",
+                  "label": "Known Transcript2",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "known_exon_number2",
+                  "label": "Known Exon Number2",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "known_transcript_strand2",
+                  "label": "Known Transcript Strand2",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "fusion_gene",
+                  "label": "Fusion Gene",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "splice_pattern",
+                  "label": "Splice Pattern",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "splice_pattern_class",
+                  "label": "Splice Pattern Class",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true
+                },
+                {
+                  "columnName": "frame_shift",
+                  "label": "Frame Shift",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "frame_shift_class",
+                  "label": "Frame Shift Class",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true
+                },
+                {
+                  "columnName": "distance",
+                  "label": "Distance",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "on_exon_boundary",
+                  "label": "On Exon Boundary",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true
+                },
+                {
+                  "columnName": "filter",
+                  "label": "Filter",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{fusion_id}}",
+                "idColumn": "fusion_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Exon Data",
+              "itemName": "Exon",
+              "tableName": "exon_data",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "RNAseq read counts and RPKM detected for each annotated exon for each sample.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "exon_index",
+                  "label": "Exon Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "read_count",
+                  "label": "Read Count",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "rpkm",
+                  "label": "RPKM",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{exon_index}}",
+                "idColumn": "exon_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Exon",
+              "tableName": "exon_annotation",
+              "color": "#aa9c6e",
+              "description": "Exon Index to Exon ID mapping and annotation of detected exons.",
+              "columns": [
+                {
+                  "columnName": "exon_index",
+                  "label": "Exon Index",
+                  "initialRanking": false,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "exon_id",
+                  "label": "Exon ID",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "start",
+                  "label": "Start",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "end",
+                  "label": "End",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "gene_id",
+                  "label": "Gene ID",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "gene_name",
+                  "label": "Gene Name",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "transcripts",
+                  "label": "Transcripts",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "is_unique",
+                  "label": "Is Unique",
+                  "initialRanking": true,
+                  "type": "categorical"
+                }
+              ],
+              "formatting": {
+                "template": "{{exon_id}}",
+                "idColumn": "exon_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Exon Junction Data",
+              "itemName": "Exon Junction",
+              "tableName": "exon_junction_data",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "RNAseq read counts detected for each annotated exon junction.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "exon_junction_index",
+                  "label": "Exon Junction Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "read_count",
+                  "label": "Read Count",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{exon_junction_index}}",
+                "idColumn": "exon_junction_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Exon Junction",
+              "tableName": "exon_junction_annotation",
+              "enableQueryAll": false,
+              "color": "#aa9c6e",
+              "description": "Exon Junction Index to Exon Junction ID mapping and annotation of detected exon junctions.",
+              "columns": [
+                {
+                  "columnName": "exon_junction_index",
+                  "label": "Exon junction index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "exon_junction_id",
+                  "label": "Exon junction id",
+                  "initialRanking": true,
+                  "searchable": true,
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "strand",
+                  "label": "Strand",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "mapping": true,
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "intron_position",
+                  "label": "Intron position",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "intron_size",
+                  "label": "Intron size",
+                  "initialRanking": false,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "type",
+                  "label": "Type",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "mapping": true
+                },
+                {
+                  "columnName": "known_gene",
+                  "label": "Known Gene",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "known_transcript",
+                  "label": "Known Transcript",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "known_exon_number",
+                  "label": "Known Exon Number",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "inferred_name",
+                  "label": "Inferred Name",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "frame_shift",
+                  "label": "Frame Shift",
+                  "initialRanking": false,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "frame_shift_type",
+                  "label": "Frame Shift Type",
+                  "initialRanking": false,
+                  "type": "categorical",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{exon_junction_id}}",
+                "idColumn": "exon_junction_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Transcript",
+              "tableName": "transcript_annotation",
+              "color": "#aa9c6e",
+              "description": "Transcript Index to TranscriptID mapping and annotation of transcripts in the gene model used.",
+              "columns": [
+                {
+                  "columnName": "transcript_index",
+                  "label": "Transcript Index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "transcript_id",
+                  "label": "Transcript ID",
+                  "initialRanking": true,
+                  "type": "string",
+                  "primary": true
+                },
+                {
+                  "columnName": "transcript_name",
+                  "label": "Transcript Name",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "gene_id",
+                  "label": "Gene ID",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "gene_name",
+                  "label": "Gene Name",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "exon_number",
+                  "label": "Exon Number",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "strand",
+                  "label": "Strand",
+                  "initialRanking": false,
+                  "type": "categorical"
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "start",
+                  "label": "Start",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "end",
+                  "label": "End",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "exon_length",
+                  "label": "Exon Length",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "source",
+                  "label": "Source",
+                  "initialRanking": false,
+                  "type": "string"
+                },
+                {
+                  "columnName": "ref_seq_id",
+                  "label": "Ref Seq ID",
+                  "initialRanking": false,
+                  "type": "string"
+                }
+              ],
+              "formatting": {
+                "template": "{{transcript_id}}",
+                "idColumn": "transcript_id",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Transcript FPKM",
+              "tableName": "transcript_fpkm",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "Transcript level RNAseq expression level, as raw counts and normalized FPKM data.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "transcript_index",
+                  "label": "Transcript Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "fpkm",
+                  "label": "FPKM",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "count",
+                  "label": "Count",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{transcript_index}}",
+                "idColumn": "transcript_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Reverse Phase Protein Array",
+              "tableName": "rppa",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "Reverse Phase Protein Array ratios compared to Universal Human Reference data.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "transcript",
+                  "label": "Transcript",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "value",
+                  "label": "Reverse phase protein array ratios",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{gene_index}}",
+                "idColumn": "gene_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Mass Spectrometry",
+              "tableName": "ms",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "Mass Spectrometry of protein and modification detection compared to Universal Human Reference data.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "transcript",
+                  "label": "Transcript",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "value",
+                  "label": "Mass spectrometry value",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{gene_index}}",
+                "idColumn": "gene_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "DNA Seq Somatic Mutation",
+              "tableName": "dna_seq_somatic_mutation",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "Mutation calls from DNAseq data, excluding any germline mutations.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "mutation_index",
+                  "label": "Mutation Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "start",
+                  "label": "Start",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "end",
+                  "label": "End",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "mutation",
+                  "label": "Mutation",
+                  "initialRanking": true,
+                  "type": "string"
+                },
+                {
+                  "columnName": "coverage",
+                  "label": "Coverage",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "frequency",
+                  "label": "Frequency",
+                  "initialRanking": true,
+                  "type": "number"
+                }
+              ],
+              "formatting": {
+                "template": "{{mutation_index}}",
+                "idColumn": "mutation_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "CNV Gene Level Data",
+              "tableName": "cnv_gene_level_data",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "Gene level copy number (log2ratio) for each sample. For genes across two or more segments, the value is the length-weighted average across segments.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample index",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene index",
+                  "initialRanking": false,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "value",
+                  "label": "CNV gene level",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "min_segment_length",
+                  "label": "Min segment length",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{sample_index}}",
+                "idColumn": "sample_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Copy Number (CNV) Segment",
+              "itemName": "Segment",
+              "tableName": "cnv_segments",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "Log2ratio value of copy number for each segment (log2(copynumber/2)), centered on 0.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "segment_index",
+                  "label": "Segment Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "chromosome",
+                  "label": "Chromosome",
+                  "initialRanking": true,
+                  "type": "categorical",
+                  "categoryOrder": "chromosomes"
+                },
+                {
+                  "columnName": "start",
+                  "label": "Start",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "end",
+                  "label": "End",
+                  "initialRanking": false,
+                  "type": "number"
+                },
+                {
+                  "columnName": "log2_ratio",
+                  "label": "Log2 Ratio",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "homozygosity_rate",
+                  "label": "Homozygosity Rate",
+                  "initialRanking": true,
+                  "type": "number"
+                }
+              ],
+              "formatting": {
+                "template": "{{segment_index}}",
+                "idColumn": "segment_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "CNV Segment Gene Mapping",
+              "tableName": "cnv_segment_gene_mapping",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "Copy number segment to gene mapping.",
+              "columns": [
+                {
+                  "columnName": "segment_index",
+                  "label": "Segment Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": true,
+                  "type": "number"
+                }
+              ],
+              "formatting": {
+                "template": "{{segment_index}}",
+                "idColumn": "segment_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            },
+            {
+              "name": "Micro RNA Seq",
+              "tableName": "mirna_seq",
+              "visibility": {
+                "hiddenInLandscape": true,
+                "hiddenInViewChooser": true,
+                "hiddenInColumnSidebar": true
+              },
+              "description": "microRNAseq expression level, as raw counts and normalized Reads Per Million data.",
+              "columns": [
+                {
+                  "columnName": "sample_index",
+                  "label": "Sample Index",
+                  "initialRanking": true,
+                  "type": "number",
+                  "primary": true
+                },
+                {
+                  "columnName": "gene_index",
+                  "label": "Gene Index",
+                  "initialRanking": true,
+                  "type": "number"
+                },
+                {
+                  "columnName": "transcript_name",
+                  "label": "Transcript Name",
+                  "initialRanking": true,
+                  "type": "string",
+                  "mapping": true
+                },
+                {
+                  "columnName": "normalized_count",
+                  "label": "Normalized Count",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                },
+                {
+                  "columnName": "count",
+                  "label": "Count",
+                  "initialRanking": true,
+                  "type": "number",
+                  "mapping": true
+                }
+              ],
+              "formatting": {
+                "template": "{{sample_index}}",
+                "idColumn": "sample_index",
+                "tokenSeparatorsRegex": "[\r\n;,]",
+                "defaultTokenSeparator": ";"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "idtypes": [
+    {
+      "id": "EntrezId",
+      "label": "Entrez ID"
+    },
+    {
+      "id": "EnsemblGene",
+      "label": "Ensembl Gene ID",
+      "campaignType": {
+        "name": "Gene",
+        "type": "Gene",
+        "description": "Target campaigns are used to prioritize and answer questions of targets",
+        "color": "#4BB268",
+        "predefinedQuestions": [
+          {
+            "text": "Is there literature supporting the rationale of gene-disease association?",
+            "type": "freetext"
+          },
+          {
+            "text": "What is the druggability of the target?",
+            "type": "freetext"
+          },
+          {
+            "text": "What is the competition status of the target? Are there advanced clinical programs?",
+            "type": "freetext"
+          },
+          {
+            "text": "For the target, what is the gene/protein expression level in the relevant tissue?",
+            "type": "freetext"
+          }
+        ]
+      }
+    },
+    {
+      "id": "GeneName",
+      "label": "Gene Name"
+    },
+    {
+      "id": "ProjectId",
+      "label": "Project ID"
+    },
+    {
+      "id": "PubMedId",
+      "label": "PubMed ID"
+    },
+    {
+      "id": "SampleId",
+      "label": "Sample ID"
+    }
+  ],
+  "namedIdSets": [],
+  "relations": [
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.projects",
+      "mapping": [
+        {
+          "column": "project_id",
+          "idtype": "ProjectId"
+        },
+        {
+          "column": "pub_med",
+          "idtype": "PubMedId"
+        }
+      ]
+    },
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.samples",
+      "mapping": [
+        {
+          "column": "sample_id",
+          "idtype": "SampleId"
+        }
+      ]
+    },
+    {
+      "type": "entity-mapping-same-table",
+      "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+      "mapping": [
+        {
+          "column": "entrez_id",
+          "idtype": "EntrezId"
+        },
+        {
+          "column": "gene_id",
+          "idtype": "EntrezId"
+        },
+        {
+          "column": "gene_name",
+          "idtype": "GeneName"
+        }
+      ]
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+        "key": "gene_id"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.transcript_annotation",
+        "key": "gene_id"
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+        "key": "gene_name"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.mutations_canonical",
+        "key": "gene_name"
+      },
+      "bidirectional": false,
+      "workbench": {
+        "maxSelection": 10
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+        "key": "gene_name"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.fusion_annotation",
+        "key": "known_gene1"
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+        "key": "gene_name"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.fusion_annotation",
+        "key": "known_gene2"
+      },
+      "workbench": {
+        "maxSelection": 10
+      }
+    },
+    {
+      "type": "1-n",
+      "label": "Exon Junction filter",
+      "bidirectional": false,
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+        "key": "gene_name"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.exon_junction_annotation",
+        "key": "known_gene"
+      },
+      "workbench": {
+        "maxSelection": 10
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.transcript_annotation",
+        "key": "transcript_id"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.mutations_canonical",
+        "key": "transcript_id"
+      },
+      "workbench": {
+        "maxSelection": 10
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.transcript_annotation",
+        "key": "gene_index"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+        "key": "gene_index"
+      }
+    },
+    {
+      "type": "1-n",
+      "bidirectional": false,
+      "label": "Exon filter",
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+        "key": "gene_id"
+      },
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.exon_annotation",
+        "key": "gene_id"
+      },
+      "workbench": {
+        "maxSelection": 10
+      }
+    },
+    {
+      "type": "1-n",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.projects",
+        "key": "project_id"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.samples",
+        "key": "project_name"
+      }
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.samples",
+        "key": "sample_index"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+        "key": "gene_index"
+      },
+      "mapping": [
+        {
+          "name": "Gene FPKM",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_fpkm",
+          "sourceKey": "sample_index",
+          "targetKey": "gene_index"
+        },
+        {
+          "name": "Micro RNA Seq",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.mirna_seq",
+          "sourceKey": "sample_index",
+          "targetKey": "gene_index"
+        },
+        {
+          "name": "Micro RNA Seq",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.rna_seq_somatic_mutation",
+          "sourceKey": "sample_index",
+          "targetKey": "gene_index"
+        },
+        {
+          "name": "RPPA",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.rppa",
+          "sourceKey": "sample_index",
+          "targetKey": "gene_index"
+        },
+        {
+          "name": "MS",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.ms",
+          "sourceKey": "sample_index",
+          "targetKey": "gene_index"
+        },
+        {
+          "name": "CNV Gene Level Data",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.cnv_gene_level_data",
+          "sourceKey": "sample_index",
+          "targetKey": "gene_index"
+        }
+      ]
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.samples",
+        "key": "sample_index"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.exon_annotation",
+        "key": "exon_index"
+      },
+      "mapping": [
+        {
+          "name": "Sample to Exon Data",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.exon_data",
+          "sourceKey": "sample_index",
+          "targetKey": "exon_index"
+        }
+      ]
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.samples",
+        "key": "sample_index"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.exon_junction_annotation",
+        "key": "exon_junction_index"
+      },
+      "mapping": [
+        {
+          "name": "Sample to Exon Junction Data",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.exon_junction_data",
+          "sourceKey": "sample_index",
+          "targetKey": "exon_junction_index"
+        }
+      ]
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.samples",
+        "key": "sample_index"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.transcript_annotation",
+        "key": "transcript_index"
+      },
+      "mapping": [
+        {
+          "name": "Samples to Transcript Mapping",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.transcript_fpkm",
+          "sourceKey": "sample_index",
+          "targetKey": "transcript_index"
+        }
+      ]
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.samples",
+        "key": "sample_index"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.fusion_annotation",
+        "key": "fusion_index"
+      },
+      "bidirectional": false,
+      "mapping": [
+        {
+          "name": "Samples to Fusion Mapping",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.fusion_data",
+          "sourceKey": "sample_index",
+          "targetKey": "fusion_index"
+        }
+      ]
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+        "key": "gene_index"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.exon_annotation",
+        "key": "exon_index"
+      },
+      "mapping": [
+        {
+          "name": "Gene to Exon Data",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.exon_data",
+          "sourceKey": "gene_index",
+          "targetKey": "exon_index"
+        }
+      ]
+    },
+    {
+      "type": "ordino-drilldown",
+      "bidirectional": false,
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.exon_junction_annotation",
+        "key": "exon_junction_index"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+        "key": "gene_index"
+      },
+      "mapping": [
+        {
+          "name": "Gene to Exon Junction Data",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.exon_junction_data",
+          "sourceKey": "gene_index",
+          "targetKey": "exon_junction_index"
+        }
+      ]
+    },
+    {
+      "type": "ordino-drilldown",
+      "source": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.gene_annotation",
+        "key": "gene_index"
+      },
+      "target": {
+        "id": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.comparisons",
+        "key": "comparison_index"
+      },
+      "mapping": [
+        {
+          "name": "Comparison Data",
+          "connectorType": "GenericDBScore",
+          "entity": "qiagen_omicsoft_tcga.qiagen_tcga_b38_gc33.comparison_data",
+          "sourceKey": "gene_index",
+          "targetKey": "comparison_index"
+        }
+      ]
+    }
+  ],
+  "app": {
+    "authentication": {
+      "refreshUrl": ""
+    },
+    "ui": {
+      "defaultEntity": ""
+    }
+  }
+}

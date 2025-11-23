@@ -1,0 +1,2477 @@
+{
+    "databases": [
+        {
+            "id": "gyst_mars",
+            "dbEngine": "postgresql",
+            "schemas": [
+                {
+                    "name": "general",
+                    "entities": [
+                        {
+                            "name": "Pathways",
+                            "tableName": "pathways_msigdb_germline",
+                            "requiresQueryEnum": false,
+                            "visibility": {
+                                "hiddenInLandscape": false,
+                                "hiddenInViewChooser": false,
+                                "hiddenInColumnSidebar": false
+                            },
+                            "columns": [
+                                {
+                                    "columnName": "pascal_pathway",
+                                    "initialRanking": false,
+                                    "label": "Pathway id",
+                                    "description": "Pascal pathway",
+                                    "type": "string",
+                                    "primary": true,
+                                    "width": 100
+                                },
+                                {
+                                    "columnName": "gene_symbol",
+                                    "initialRanking": true,
+                                    "label": "Gene",
+                                    "description": "Gene name symbol",
+                                    "type": "string",
+                                    "idtype": "GeneName",
+                                    "searchable": true,
+                                    "width": 100,
+                                    "order": 2
+                                },
+                                {
+                                    "columnName": "ensembl_geneid",
+                                    "initialRanking": true,
+                                    "label": "Ensembl id",
+                                    "type": "string",
+                                    "idtype": "Ensembl",
+                                    "primary": true,
+                                    "searchable": true,
+                                    "width": 100,
+                                    "order": 1
+                                },
+                                {
+                                    "columnName": "pascal_pathway_category",
+                                    "initialRanking": true,
+                                    "label": "Pathway",
+                                    "description": "Pascal pathway",
+                                    "type": "categorical",
+                                    "width": 500
+                                },
+                                {
+                                    "columnName": "pascal_geneset_url",
+                                    "initialRanking": true,
+                                    "label": "Pathway URL",
+                                    "description": "Pascal pathway URL",
+                                    "type": "link",
+                                    "width": 500
+                                },
+                                {
+                                    "columnName": "index",
+                                    "initialRanking": false,
+                                    "type": "string",
+                                    "primary": true
+                                }
+                            ],
+                            "formatting": {
+                                "template": "{{gene_symbol}}",
+                                "idColumn": "gene_symbol",
+                                "titleColumn": "gene_symbol",
+                                "tokenSeparatorsRegex": "[\r\n;,]"
+                            },
+                            "description": "Pathways from MSigDB (source: Germline DB)",
+                            "color": "#eb8b67",
+                            "order": 105
+                        },
+                        {
+                            "name": "Open Targets Tractability",
+                            "tableName": "ot_tractability",
+                            "requiresQueryEnum": false,
+                            "visibility": {
+                                "hiddenInLandscape": false,
+                                "hiddenInViewChooser": false,
+                                "hiddenInColumnSidebar": false
+                            },
+                            "columns": [
+                                {
+                                    "columnName": "symbol",
+                                    "initialRanking": true,
+                                    "label": "Gene",
+                                    "type": "string",
+                                    "idtype": "GeneName",
+                                    "width": 100,
+                                    "searchable": true,
+                                    "order": 4
+                                },
+                                {
+                                    "columnName": "ensembl_gene_id",
+                                    "initialRanking": true,
+                                    "label": "Ensembl geneid",
+                                    "type": "string",
+                                    "idtype": "Ensembl",
+                                    "primary": true,
+                                    "width": 140,
+                                    "searchable": true,
+                                    "order": 1
+                                },
+                                {
+                                    "columnName": "accession",
+                                    "initialRanking": true,
+                                    "label": "Uniprot accession",
+                                    "type": "string",
+                                    "idtype": "UniProtAcc",
+                                    "width": 170,
+                                    "searchable": true,
+                                    "order": 2
+                                },
+                                {
+                                    "columnName": "Entry Name",
+                                    "initialRanking": false,
+                                    "type": "string",
+                                    "idtype": "UniProtEntry",
+                                    "searchable": true,
+                                    "order": 3
+                                },
+                                {
+                                    "columnName": "IDG_fam",
+                                    "initialRanking": true,
+                                    "label": "TCRD Family",
+                                    "type": "categorical",
+                                    "width": 110
+                                },
+                                {
+                                    "columnName": "IDG_tdl",
+                                    "initialRanking": true,
+                                    "label": "TCRD Level",
+                                    "type": "categorical",
+                                    "width": 100
+                                },
+                                {
+                                    "columnName": "IDG_family",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "IDG_dtoclass",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "HPA_main_location",
+                                    "initialRanking": true,
+                                    "label": "HPA location",
+                                    "type": "categorical",
+                                    "width": 120
+                                },
+                                {
+                                    "columnName": "SM_B1_Approved Drug",
+                                    "initialRanking": true,
+                                    "label": "SM_B1_Approved Drug",
+                                    "description": "Bucket 1 (ChEMBL) Targets with approved (phase 4) SM drug",
+                                    "type": "categorical",
+                                    "width": 190
+                                },
+                                {
+                                    "columnName": "SM_B2_Advanced Clinical",
+                                    "initialRanking": true,
+                                    "label": "SM_B2_Advanced Clinical",
+                                    "description": "Bucket 2 (ChEMBL) Targets with SM in clinical phase 2 or 3",
+                                    "type": "categorical",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "SM_B3_Phase 1 Clinical",
+                                    "initialRanking": true,
+                                    "label": "SM_B3_Phase 1 Clinical",
+                                    "description": "Bucket 3 (ChEMBL) Targets with SM in clinical phase 1",
+                                    "type": "categorical",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "SM_B4_Structure with Ligand",
+                                    "initialRanking": true,
+                                    "label": "SM_B4_Structure with Ligand",
+                                    "description": "Bucket 4 (PDB) Targets with crystal structures with ligands (excluding: buffer compounds, solvents, crystallization agents/additives and sugars)",
+                                    "type": "categorical",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "SM_B5_High-Quality Ligand",
+                                    "initialRanking": true,
+                                    "label": "SM_B5_High-Quality Ligand",
+                                    "description": "Bucket 5 (ChEMBL) Targets with high quality ligands (PFI \u22647, structural_alerts \u22642, pchembl_value \u22655.5 or equivalent activity measure)",
+                                    "type": "categorical",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "SM_B6_High-Quality Pocket",
+                                    "initialRanking": true,
+                                    "label": "SM_B6_High-Quality Pocket",
+                                    "description": "Bucket 6 (DrugEBIlity) Targets with score \u22650.7",
+                                    "type": "categorical",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "SM_B7_Med-Quality Pocket",
+                                    "initialRanking": true,
+                                    "label": "SM_B7_Med-Quality Pocket",
+                                    "description": "Bucket 7 (DrugEBIlity) Targets with 0 < score < 0.7",
+                                    "type": "categorical",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "SM_B8_Druggable Family",
+                                    "initialRanking": true,
+                                    "label": "SM_B8_Druggable Family",
+                                    "description": "Bucket 8 (Finan et al. 2017) Targets considered druggable using Finan et al's Druggable Genome",
+                                    "type": "categorical",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Bucket_sum_sm",
+                                    "initialRanking": true,
+                                    "label": "SM Bucket_sum",
+                                    "type": "number",
+                                    "color": "#41b6c4",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin",
+                                    "width": 130
+                                },
+                                {
+                                    "columnName": "Top_bucket_sm",
+                                    "initialRanking": true,
+                                    "label": "SM Top_bucket",
+                                    "type": "number",
+                                    "color": "#41b6c4",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin",
+                                    "width": 130
+                                },
+                                {
+                                    "columnName": "DrugEBIlity_score",
+                                    "initialRanking": true,
+                                    "label": "Draggability score",
+                                    "type": "number",
+                                    "color": "#41b6c4",
+                                    "width": 180
+                                },
+                                {
+                                    "columnName": "Clinical_Precedence_sm",
+                                    "initialRanking": true,
+                                    "label": "SM Clinical precedence",
+                                    "description": "Assigned if any of the SM clinical buckets 1-3 are positive. (The category score is calculated by 1 * ['Bucket_1_sm'] + 0.7 * ['Bucket_2_sm'] + 0.2 * ['Bucket_3_sm'].)",
+                                    "type": "number",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Discovery_Precedence_sm",
+                                    "initialRanking": true,
+                                    "label": "SM Discovery precedence",
+                                    "description": "Assigned if SM bucket 4 or 5 is the highest assigned bucket. (The category score is calculated by 0.7 * ['Bucket_4_sm'] + 0.3 * ['Bucket_5_sm'].)",
+                                    "type": "number",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Predicted_Tractable_sm",
+                                    "initialRanking": true,
+                                    "label": "SM Predicted tractable",
+                                    "description": "Assigned if SM bucket 6, 7 or 8 is the highest assigned bucket. (The category score is calculated by 0.7 * ['Bucket_6_sm'] + 0.3 * ['Bucket_7_sm'] + 0.3 * ['Bucket_8_sm'].)",
+                                    "type": "number",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Small_Molecule_Druggable_Genome_Member",
+                                    "initialRanking": true,
+                                    "label": "SM Druggable genome member",
+                                    "type": "categorical",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "drug_chembl_ids_sm",
+                                    "initialRanking": true,
+                                    "label": "SM ChEMBL IDs",
+                                    "type": "string",
+                                    "width": 130
+                                },
+                                {
+                                    "columnName": "High_Quality_ChEMBL_compounds",
+                                    "initialRanking": true,
+                                    "label": "SM High_Quality_ChEMBL_compounds",
+                                    "type": "number",
+                                    "color": "#41b6c4",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Category_sm",
+                                    "initialRanking": true,
+                                    "label": "SM Category",
+                                    "type": "categorical",
+                                    "width": 110
+                                },
+                                {
+                                    "columnName": "AB_B1_Approved Drug",
+                                    "initialRanking": true,
+                                    "label": "AB_B1_Approved Drug",
+                                    "description": "Bucket 1 (ChEMBL) Targets with approved (phase 4) AB drug",
+                                    "type": "categorical",
+                                    "color": "#41b6c4",
+                                    "width": 190
+                                },
+                                {
+                                    "columnName": "AB_B2_Advanced Clinical",
+                                    "initialRanking": true,
+                                    "label": "AB_B2_Advanced Clinical",
+                                    "description": "Bucket 2 (ChEMBL) Targets with AB in clinical phase 2 or 3",
+                                    "type": "categorical",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "AB_B3_Phase 1 Clinical",
+                                    "initialRanking": true,
+                                    "label": "AB_B3_Phase 1 Clinical",
+                                    "description": "Bucket 3 (ChEMBL) Targets with AB in clinical phase 1",
+                                    "type": "categorical",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "AB_B4_UniProt loc high conf",
+                                    "initialRanking": true,
+                                    "label": "AB_B4_UniProt loc high conf",
+                                    "description": "Bucket 4 (UniProt loc) Targets with UniProt 'Subcellular location' terms indicative for plasma membrane, extracellular region/matrix, or secretion - high confidence",
+                                    "type": "categorical",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "AB_B5_GO CC high conf",
+                                    "initialRanking": true,
+                                    "label": "AB_B5_GO CC high conf",
+                                    "description": "Bucket 5 (GO CC) Targets with GO 'Cellular component' terms indicative for plasma membrane, extracellular region/matrix, or secretion - high confidence [\u2018ECO:0000269\u2019 or \u2018ECO:0000305\u2019]",
+                                    "type": "categorical",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "AB_B6_UniProt loc med conf",
+                                    "initialRanking": true,
+                                    "label": "AB_B6_UniProt loc med conf",
+                                    "description": "Bucket 6 (UniProt loc) Targets with UniProt 'Subcellular location' terms indicative for plasma membrane, extracellular region/matrix, or secretion - medium confidence",
+                                    "type": "categorical",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "AB_B7_UniProt SigP or TMHMM",
+                                    "initialRanking": true,
+                                    "label": "AB_B7_UniProt SigP or TMHMM",
+                                    "description": "Bucket 7 (UniProt SigP or TMHMM): Targets with predicted Signal Peptide or Trans-membrane regions, and not destined to organelles",
+                                    "type": "categorical",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "AB_B8_GO CC med conf",
+                                    "initialRanking": true,
+                                    "label": "AB_B8_GO CC med conf",
+                                    "description": "Bucket 8 (GO CC) Targets with GO 'Cellular component' terms indicative for plasma membrane, extracellular region/matrix, or secretion - medium confidence",
+                                    "type": "categorical",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "AB_B9_Human Protein Atlas loc",
+                                    "initialRanking": true,
+                                    "label": "AB_B9_Human Protein Atlas loc",
+                                    "description": "Bucket 9 (Human Protein Atlas) Targets with main location \u201cPlasma membrane\u201d - high confidence",
+                                    "type": "categorical",
+                                    "color": "#41b6c4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Bucket_sum_ab",
+                                    "initialRanking": true,
+                                    "label": "AB Bucket_sum",
+                                    "type": "number",
+                                    "color": "#96d396",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin",
+                                    "width": 130
+                                },
+                                {
+                                    "columnName": "Top_bucket_ab",
+                                    "initialRanking": true,
+                                    "label": "AB Top_bucket",
+                                    "type": "number",
+                                    "color": "#96d396",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin",
+                                    "width": 130
+                                },
+                                {
+                                    "columnName": "Clinical_Precedence_ab",
+                                    "initialRanking": true,
+                                    "label": "AB Clinical precedence",
+                                    "description": "Assigned if any of the AB clinical buckets 1-3 are positive. (The category score is calculated by 1 * ['Bucket_1_ab'] + 0.7 * ['Bucket_2_ab'] + 0.2 * ['Bucket_3_ab'].)",
+                                    "type": "number",
+                                    "color": "#96d396",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Predicted_Tractable_ab_High_confidence",
+                                    "initialRanking": true,
+                                    "label": "AB Predicted Tractable High confidence",
+                                    "description": "Assigned if AB bucket 4 or 5 is the highest assigned bucket. (The category score is calculated by 0.7 * ['Bucket_4_ab'] + 0.3 * ['Bucket_5_ab'].)",
+                                    "type": "number",
+                                    "color": "#96d396",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Predicted_Tractable_ab_Medium_to_low_confidence",
+                                    "initialRanking": true,
+                                    "label": "AB Predicted Tractable Medium to low confidence",
+                                    "description": "Assigned if AB bucket 6, 7, 8 or 9 is the highest assigned bucket. (The category score is calculated by 0.4 * ['Bucket_6_ab'] + 0.25 * ['Bucket_7_ab'] + 0.25 * ['Bucket_8_ab'] + 0.1 * ['Bucket_9_ab'].)",
+                                    "type": "number",
+                                    "color": "#96d396",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Category_ab",
+                                    "initialRanking": true,
+                                    "label": "AB Category",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 110
+                                },
+                                {
+                                    "columnName": "PR_B1_Approved Drug",
+                                    "initialRanking": true,
+                                    "label": "PR_B1_Approved Drug",
+                                    "description": "Bucket 1 (-) Targets with approved (phase 4) PROTAC drug",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 190
+                                },
+                                {
+                                    "columnName": "PR_B2_Advanced Clinical",
+                                    "initialRanking": true,
+                                    "label": "PR_B2_Advanced Clinical",
+                                    "description": "Bucket 2 (-) Targets with PROTAC in clinical phase 2 or 3",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "PR_B3_Phase 1 Clinical",
+                                    "initialRanking": true,
+                                    "label": "PR_B3_Phase 1 Clinical",
+                                    "description": "Bucket 3 (-) Targets with PROTAC in clinical phase 1",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "PR_B4_Literature",
+                                    "initialRanking": true,
+                                    "label": "PR_B4_Literature",
+                                    "description": "Bucket 4 (Europe PMC) Targets mentioned in PROTAC literature (manually curated) + additional information via automated assessments",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 160
+                                },
+                                {
+                                    "columnName": "PR_B5_UniProt Ubiquitination",
+                                    "initialRanking": true,
+                                    "label": "PR_B5_UniProt Ubiquitination",
+                                    "description": "Bucket 5 (UniProt) Targets with UniProt keyword: \"Ubl conjugation [KW-0832]\"",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "PR_B6_Database Ubiquitination",
+                                    "initialRanking": true,
+                                    "label": "PR_B6_Database Ubiquitination",
+                                    "description": "Bucket 6 (PhosphoSitePlus, mUbiSiDa, Kim et al. 2011) Targets with reported ubiquitination sites in PhosphoSitePlus, mUbiSiDa (2013), or Kim et al. 2011",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "PR_B7_Half-life Data",
+                                    "initialRanking": true,
+                                    "label": "PR_B7_Half-life Data",
+                                    "description": "Bucket 7 (Mathieson et al. 2018) Targets with available half-life data",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "PR_B8_Small Molecule Binder",
+                                    "initialRanking": true,
+                                    "label": "PR_B8_Small Molecule Binder",
+                                    "description": "Bucket 8 (ChEMBL) Targets with SM in ChEMBL with activity on target-based assay (pChEMBL \u22655)",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "PR_locB_Location Score",
+                                    "initialRanking": true,
+                                    "label": "PR_locB_Location Score",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Bucket_sum_PROTAC",
+                                    "initialRanking": true,
+                                    "label": "PR Bucket_sum",
+                                    "type": "number",
+                                    "color": "#d4cce4",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin",
+                                    "width": 130
+                                },
+                                {
+                                    "columnName": "Top_bucket_PROTAC",
+                                    "initialRanking": true,
+                                    "label": "PR Top_bucket",
+                                    "type": "number",
+                                    "color": "#d4cce4",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin",
+                                    "width": 130
+                                },
+                                {
+                                    "columnName": "Clinical_Precedence_PROTAC",
+                                    "initialRanking": true,
+                                    "label": "PROTAC Clinical_Precedence",
+                                    "description": "Assigned if any of the clinical buckets 1-3 are positive.",
+                                    "type": "number",
+                                    "color": "#d4cce4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Literature_Precedence_PROTAC",
+                                    "initialRanking": true,
+                                    "label": "PROTAC Literature_Precedence",
+                                    "description": "Assigned if literature bucket 4 is positive",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Discovery_Opportunity_PROTAC",
+                                    "initialRanking": true,
+                                    "label": "PROTAC Discovery_Opportunity",
+                                    "description": "Assigned for a given target if bucket (5 or 6) and bucket 7 and bucket 8 are assigned and the PROTAC_location_Bucket annotates high or medium confidence for \"good\" or \"grey\" location (location bucket score of 1, 2, 3 or 4).",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "count_compound_chembl_ids_PROTAC",
+                                    "initialRanking": true,
+                                    "label": "PROTAC count_compound_chembl_ids",
+                                    "type": "number",
+                                    "color": "#d4cce4",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "literature_count_PROTAC",
+                                    "initialRanking": true,
+                                    "label": "PROTAC literature_count",
+                                    "type": "number",
+                                    "color": "#d4cce4",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "mentioned_in_PROTAC_literature",
+                                    "initialRanking": true,
+                                    "label": "PROTAC literature",
+                                    "type": "categorical",
+                                    "color": "#d4cce4",
+                                    "width": 170
+                                },
+                                {
+                                    "columnName": "Category_PROTAC",
+                                    "initialRanking": true,
+                                    "label": "PROTAC Category",
+                                    "type": "categorical",
+                                    "width": 150
+                                },
+                                {
+                                    "columnName": "OC_B1_Approved Drug",
+                                    "initialRanking": true,
+                                    "label": "OC_B1_Approved Drug",
+                                    "description": "Bucket 1 (ChEMBL) Targets with approved (phase4) drug (other than SM or AB)",
+                                    "type": "categorical",
+                                    "color": "#fbb4ae",
+                                    "width": 190
+                                },
+                                {
+                                    "columnName": "OC_B2_Advanced Clinical",
+                                    "initialRanking": true,
+                                    "label": "OC_B2_Advanced Clinical",
+                                    "description": "Bucket 2 (ChEMBL) Targets with drug (other than SM or AB) in clinical phase 2 or 3",
+                                    "type": "categorical",
+                                    "color": "#fbb4ae",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "OC_B3_Phase 1 Clinical",
+                                    "initialRanking": true,
+                                    "label": "OC_B3_Phase 1 Clinical",
+                                    "description": "Bucket 3 (ChEMBL) Targets with drug (other than SM or AB) in clinical phase 1",
+                                    "type": "categorical",
+                                    "color": "#fbb4ae",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Bucket_sum_othercl",
+                                    "initialRanking": true,
+                                    "label": "OC Bucket_sum",
+                                    "type": "number",
+                                    "color": "#fbb4ae",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin",
+                                    "width": 130
+                                },
+                                {
+                                    "columnName": "Top_bucket_othercl",
+                                    "initialRanking": true,
+                                    "label": "OC Top_bucket",
+                                    "type": "number",
+                                    "color": "#fbb4ae",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin",
+                                    "width": 130
+                                },
+                                {
+                                    "columnName": "Clinical_Precedence_othercl",
+                                    "initialRanking": true,
+                                    "label": "OC Clinical_Precedence",
+                                    "description": "Assigned if any of the OtherCl clinical buckets 1-3 are positive.",
+                                    "type": "number",
+                                    "color": "#fbb4ae",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "Category_othercl",
+                                    "initialRanking": true,
+                                    "label": "OC Category",
+                                    "type": "categorical",
+                                    "width": 110
+                                },
+                                {
+                                    "columnName": "Hepatocytes_mean",
+                                    "initialRanking": true,
+                                    "type": "number",
+                                    "color": "#b7b7b7"
+                                },
+                                {
+                                    "columnName": "Bcell_mean",
+                                    "initialRanking": true,
+                                    "type": "number",
+                                    "color": "#b7b7b7"
+                                },
+                                {
+                                    "columnName": "NKcell_mean",
+                                    "initialRanking": true,
+                                    "type": "number",
+                                    "color": "#b7b7b7"
+                                },
+                                {
+                                    "columnName": "MouseNeuorons_mean",
+                                    "initialRanking": true,
+                                    "type": "number",
+                                    "color": "#b7b7b7"
+                                },
+                                {
+                                    "columnName": "Ub_PhosphoSitePlus",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "Ub_mUbiSiDa_2013",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "number_of_ubiquitination_sites",
+                                    "initialRanking": true,
+                                    "type": "number",
+                                    "color": "#b7b7b7",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin"
+                                },
+                                {
+                                    "columnName": "Uniprot_high_conf_loc",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "Uniprot_med_conf_loc",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "Uniprot_keyword",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "Uniprot_CrossLink",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "Uniprot_PTM",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "Min_halflife",
+                                    "initialRanking": true,
+                                    "type": "number",
+                                    "color": "#b7b7b7"
+                                },
+                                {
+                                    "columnName": "Max_halflife",
+                                    "initialRanking": true,
+                                    "type": "number",
+                                    "color": "#b7b7b7"
+                                },
+                                {
+                                    "columnName": "PDB_Known_Ligand",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "label": "PDB known ligand",
+                                    "width": 160
+                                },
+                                {
+                                    "columnName": "PDB_other",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "label": "PDB other",
+                                    "width": 100
+                                },
+                                {
+                                    "columnName": "Signal_peptide",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "Transmembrane",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "Gene ontology (cellular component)",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "GO_med_conf_loc",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "GO_high_conf_loc",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "GO_MolFunction",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "GO_BioProcess",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "Protein names",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "pub_id",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "full_id",
+                                    "initialRanking": true,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "title",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "width": 150
+                                },
+                                {
+                                    "columnName": "index",
+                                    "initialRanking": false,
+                                    "type": "string",
+                                    "primary": true
+                                }
+                            ],
+                            "formatting": {
+                                "template": "{{symbol}}",
+                                "idColumn": "symbol",
+                                "titleColumn": "symbol",
+                                "tokenSeparatorsRegex": "[\r\n;,]"
+                            },
+                            "description": "Open Targets Tractability Pipeline ([version 2](https://github.com/chembl/tractability_pipeline_v2/blob/master/README.md)), March 2025 [Brown et. al., 2018](https://pubs.rsc.org/en/content/articlelanding/2018/md/c7md00633k#!divAbstract)",
+                            "color": "#eb8b67",
+                            "order": 101
+                        },
+                        {
+                            "name": "GENE",
+                            "tableName": "gene_name",
+                            "requiresQueryEnum": false,
+                            "visibility": {
+                                "hiddenInLandscape": false,
+                                "hiddenInViewChooser": false,
+                                "hiddenInColumnSidebar": false
+                            },
+                            "columns": [
+                                {
+                                    "columnName": "gene_symbol",
+                                    "initialRanking": true,
+                                    "label": "Gene symbol",
+                                    "type": "string",
+                                    "idtype": "GeneName",
+                                    "primary": true,
+                                    "width": 110,
+                                    "searchable": true,
+                                    "order": 3
+                                },
+                                {
+                                    "columnName": "ensembl_geneid",
+                                    "initialRanking": true,
+                                    "label": "Ensembl geneid",
+                                    "type": "string",
+                                    "idtype": "Ensembl",
+                                    "width": 140,
+                                    "searchable": true,
+                                    "order": 1,
+                                    "primary": true
+                                },
+                                {
+                                    "columnName": "uniprot_accession",
+                                    "initialRanking": true,
+                                    "label": "Uniprot accession",
+                                    "type": "string",
+                                    "idtype": "UniProtAcc",
+                                    "width": 170,
+                                    "searchable": true,
+                                    "order": 2
+                                },
+                                {
+                                    "columnName": "entrez_id",
+                                    "initialRanking": true,
+                                    "label": "Entrez ID",
+                                    "type": "string",
+                                    "width": 100
+                                },
+                                {
+                                    "columnName": "chromosome",
+                                    "initialRanking": true,
+                                    "label": "CHR",
+                                    "type": "categorical",
+                                    "width": 100
+                                },
+                                {
+                                    "columnName": "strand",
+                                    "initialRanking": false,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "start",
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin"
+                                },
+                                {
+                                    "columnName": "end",
+                                    "initialRanking": false,
+                                    "type": "number",
+                                    "numberFormat": ".0f",
+                                    "renderer": "circle",
+                                    "summaryRenderer": "violin",
+                                    "groupRenderer": "violin"
+                                },
+                                {
+                                    "columnName": "biotype",
+                                    "initialRanking": false,
+                                    "label": "Biotype",
+                                    "type": "categorical",
+                                    "width": 100
+                                },
+                                {
+                                    "columnName": "ensembl_canonical_transcript",
+                                    "initialRanking": false,
+                                    "label": "Canonical transcript",
+                                    "type": "string",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "gene_description",
+                                    "initialRanking": false,
+                                    "label": "Description",
+                                    "type": "string",
+                                    "width": 500
+                                },
+                                {
+                                    "columnName": "uniprot_synonyms",
+                                    "initialRanking": false,
+                                    "label": "Uniprot synonyms",
+                                    "type": "string",
+                                    "width": 160
+                                },
+                                {
+                                    "columnName": "species",
+                                    "initialRanking": false,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "source",
+                                    "initialRanking": false,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "db_display_name",
+                                    "label": "Uniprot DB",
+                                    "initialRanking": false,
+                                    "type": "categorical",
+                                    "width": 100
+                                },
+                                {
+                                    "columnName": "index",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                }
+                            ],
+                            "formatting": {
+                                "template": "{{gene_symbol}}",
+                                "idColumn": "gene_symbol",
+                                "titleColumn": "gene_symbol",
+                                "tokenSeparatorsRegex": "[\r\n;,]"
+                            },
+                            "description": "Gene reference based on gene symbol synonyms (sources: GiHDAP, Uniprot, Ensembl, Entrez). ",
+                            "color": "#ec6836",
+                            "order": 1
+                        },
+                        {
+                            "name": "HPA Cell/Tissue/Organ",
+                            "tableName": "hpa_germline",
+                            "requiresQueryEnum": false,
+                            "visibility": {
+                                "hiddenInLandscape": false,
+                                "hiddenInViewChooser": false,
+                                "hiddenInColumnSidebar": false
+                            },
+                            "columns": [
+                                {
+                                    "columnName": "uniq_id",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "gene",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "idtype": "Ensembl",
+                                    "primary": true,
+                                    "searchable": true,
+                                    "order": 1
+                                },
+                                {
+                                    "columnName": "gene_name",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "idtype": "GeneName",
+                                    "searchable": true,
+                                    "order": 2
+                                },
+                                {
+                                    "columnName": "cell_type",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "tissue",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "organ_term",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "level",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "reliability",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "ensembl_version_hpa",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "version_hpa",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "index",
+                                    "initialRanking": false,
+                                    "type": "string",
+                                    "primary": true
+                                }
+                            ],
+                            "formatting": {
+                                "template": "{{gene_name}}",
+                                "idColumn": "gene_name",
+                                "titleColumn": "gene_name",
+                                "tokenSeparatorsRegex": "[\r\n;,]"
+                            },
+                            "description": "Source: Germline DB. Human Protein Atlas (HPA) v23; Ensembl v109",
+                            "color": "#eb8b67",
+                            "order": 106
+                        },
+                        {
+                            "name": "TCRD",
+                            "tableName": "tcrd",
+                            "requiresQueryEnum": false,
+                            "visibility": {
+                                "hiddenInLandscape": false,
+                                "hiddenInViewChooser": false,
+                                "hiddenInColumnSidebar": false
+                            },
+                            "columns": [
+                                {
+                                    "columnName": "uniprot_accession",
+                                    "initialRanking": true,
+                                    "label": "Uniprot accession",
+                                    "type": "string",
+                                    "idtype": "UniProtAcc",
+                                    "primary": true,
+                                    "width": 170,
+                                    "searchable": true,
+                                    "order": 1
+                                },
+                                {
+                                    "columnName": "gene_symbol",
+                                    "initialRanking": true,
+                                    "label": "Gene",
+                                    "type": "string",
+                                    "idtype": "GeneName",
+                                    "width": 100,
+                                    "searchable": true,
+                                    "order": 2,
+                                    "primary": true
+                                },
+                                {
+                                    "columnName": "target_development_level",
+                                    "initialRanking": true,
+                                    "label": "Level",
+                                    "description": "Tclin - These targets have activities in DrugCentral (ie. approved drugs) with known mechanism of action. Tchem - These targets have activities in ChEMBL, Guide to Pharmacology or DrugCentral that satisfy the activity thresholds. Tbio - These targets do not have known drug or small molecule activities that satisfy the activity thresholds AND satisfy one or more of the following criteria: 1. target is above the cutoff criteria for Tdark; 2. target is annotated with a Gene Ontology Molecular Function or Biological Process leaf term(s) with an Experimental Evidence code. Tdark - These are targets about which virtually nothing is known.",
+                                    "type": "categorical",
+                                    "width": 100,
+                                    "searchable": true
+                                },
+                                {
+                                    "columnName": "idg_family",
+                                    "initialRanking": true,
+                                    "label": "Family",
+                                    "type": "categorical",
+                                    "width": 100,
+                                    "searchable": true
+                                },
+                                {
+                                    "columnName": "description",
+                                    "initialRanking": false,
+                                    "label": "Full protein description",
+                                    "type": "string",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "novelty",
+                                    "initialRanking": true,
+                                    "label": "Novelty",
+                                    "type": "number",
+                                    "width": 100
+                                },
+                                {
+                                    "columnName": "index",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                }
+                            ],
+                            "formatting": {
+                                "template": "{{uniprot_accession}}",
+                                "idColumn": "uniprot_accession",
+                                "titleColumn": "gene_symbol",
+                                "tokenSeparatorsRegex": "[\r\n;,]"
+                            },
+                            "description": "Target Central Resource Database. Version: 6.13.5; 9/6/2025 ",
+                            "color": "#eb8b67",
+                            "order": 108
+                        },
+                        {
+                            "name": "Chembl Open Targets",
+                            "tableName": "ot_tractability_chembl",
+                            "requiresQueryEnum": false,
+                            "visibility": {
+                                "hiddenInLandscape": false,
+                                "hiddenInViewChooser": false,
+                                "hiddenInColumnSidebar": false
+                            },
+                            "columns": [
+                                {
+                                    "columnName": "symbol",
+                                    "initialRanking": true,
+                                    "label": "Gene",
+                                    "type": "string",
+                                    "idtype": "GeneName",
+                                    "width": 100,
+                                    "searchable": true,
+                                    "order": 2
+                                },
+                                {
+                                    "columnName": "ensembl_gene_id",
+                                    "initialRanking": true,
+                                    "label": "Ensembl geneid",
+                                    "type": "string",
+                                    "idtype": "Ensembl",
+                                    "width": 140,
+                                    "searchable": true,
+                                    "order": 1
+                                },
+                                {
+                                    "columnName": "chembl_id",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "primary": true,
+                                    "order": 3
+                                },
+                                {
+                                    "columnName": "clinical_data_source",
+                                    "initialRanking": false,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "drug_value",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "drug_data_source",
+                                    "initialRanking": false,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "clinical_value",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "index",
+                                    "initialRanking": false,
+                                    "type": "string",
+                                    "primary": true
+                                }
+                            ],
+                            "formatting": {
+                                "template": "{{chembl_id}}",
+                                "idColumn": "chembl_id",
+                                "titleColumn": "chembl_id",
+                                "tokenSeparatorsRegex": "[\r\n;,]"
+                            },
+                            "description": "The extract from OT tractability table. The data is based on 'drug_names_dict_sm' column. ",
+                            "color": "#eb8b67",
+                            "order": 102
+                        },
+                        {
+                            "name": "Open Targets Expression",
+                            "tableName": "ot_expression_metadata",
+                            "requiresQueryEnum": false,
+                            "visibility": {
+                                "hiddenInLandscape": false,
+                                "hiddenInViewChooser": false,
+                                "hiddenInColumnSidebar": false
+                            },
+                            "columns": [
+                                {
+                                    "columnName": "tissue_type",
+                                    "initialRanking": false,
+                                    "type": "string",
+                                    "label": "Tissue name",
+                                    "width": 110
+                                },
+                                {
+                                    "columnName": "tissue_type_category",
+                                    "initialRanking": true,
+                                    "type": "categorical",
+                                    "label": "Tissue",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "efo_code",
+                                    "initialRanking": false,
+                                    "type": "string",
+                                    "label": "EFO ",
+                                    "width": 100
+                                },
+                                {
+                                    "columnName": "label",
+                                    "initialRanking": false,
+                                    "type": "string",
+                                    "label": "Label",
+                                    "width": 100
+                                },
+                                {
+                                    "columnName": "anatomical_systems",
+                                    "initialRanking": true,
+                                    "type": "categorical",
+                                    "label": "Anatomical systems",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "organs",
+                                    "initialRanking": true,
+                                    "type": "categorical",
+                                    "label": "Organs",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "version",
+                                    "initialRanking": false,
+                                    "type": "string",
+                                    "label": "OT version",
+                                    "width": 100
+                                },
+                                {
+                                    "columnName": "index",
+                                    "initialRanking": false,
+                                    "type": "string",
+                                    "primary": true
+                                }
+                            ],
+                            "formatting": {
+                                "template": "{{tissue_type}}",
+                                "idColumn": "tissue_type",
+                                "titleColumn": "tissue_type",
+                                "tokenSeparatorsRegex": "[\r\n;,]"
+                            },
+                            "description": "Open Targets tissues expression data. v25.09",
+                            "color": "#eb8b67",
+                            "order": 104
+                        },
+                        {
+                            "name": "HPA Subcellular",
+                            "tableName": "hpa_subcellular",
+                            "requiresQueryEnum": false,
+                            "visibility": {
+                                "hiddenInLandscape": false,
+                                "hiddenInViewChooser": false,
+                                "hiddenInColumnSidebar": false
+                            },
+                            "columns": [
+                                {
+                                    "columnName": "ensembl_geneid",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "idtype": "Ensembl",
+                                    "primary": true,
+                                    "width": 110,
+                                    "searchable": true,
+                                    "order": 1
+                                },
+                                {
+                                    "columnName": "gene_symbol",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "idtype": "GeneName",
+                                    "primary": true,
+                                    "searchable": true,
+                                    "order": 2
+                                },
+                                {
+                                    "columnName": "main_location",
+                                    "initialRanking": true,
+                                    "label": "Location",
+                                    "type": "categorical",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "main_location_text",
+                                    "initialRanking": true,
+                                    "label": "Location (search)",
+                                    "type": "string",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "subcellular_category",
+                                    "initialRanking": true,
+                                    "label": "High level location",
+                                    "type": "categorical",
+                                    "width": 200
+                                },
+                                {
+                                    "columnName": "reliability",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "additional_location",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "extracellular_location",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "enhanced",
+                                    "initialRanking": false,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "supported",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "approved",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "uncertain",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "cell_cycle_dependency",
+                                    "initialRanking": true,
+                                    "type": "categorical"
+                                },
+                                {
+                                    "columnName": "singlecell_variation_spatial",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "go_id",
+                                    "initialRanking": false,
+                                    "label": "GO subcellular",
+                                    "type": "categorical",
+                                    "width": 400
+                                },
+                                {
+                                    "columnName": "singlecell_variation_intensity",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                },
+                                {
+                                    "columnName": "index",
+                                    "initialRanking": false,
+                                    "type": "string"
+                                }
+                            ],
+                            "formatting": {
+                                "template": "{{gene_symbol}}",
+                                "idColumn": "gene_symbol",
+                                "titleColumn": "gene_symbol",
+                                "tokenSeparatorsRegex": "[\r\n;,]"
+                            },
+                            "description": "Source: Human Protein atlas (HPA) v24 [download resources](https://www.proteinatlas.org/humanproteome/subcellular/data#locations). ",
+                            "color": "#eb8b67",
+                            "order": 107
+                        },
+                        {
+                            "name": "Expression ",
+                            "tableName": "ot_expression",
+                            "requiresQueryEnum": false,
+                            "visibility": {
+                                "hiddenInLandscape": true,
+                                "hiddenInViewChooser": false,
+                                "hiddenInColumnSidebar": false
+                            },
+                            "columns": [
+                                {
+                                    "columnName": "ensembl_geneid",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "primary": true
+                                },
+                                {
+                                    "columnName": "tissue_type",
+                                    "initialRanking": true,
+                                    "type": "string",
+                                    "primary": true
+                                },
+                                {
+                                    "columnName": "expression",
+                                    "initialRanking": true,
+                                    "label": "Expression",
+                                    "description": "Binned expression",
+                                    "type": "number",
+                                    "color": "#4daf4a",
+                                    "mapping": true,
+                                    "width": 100,
+                                    "show": "always"
+                                },
+                                {
+                                    "columnName": "expression_counts",
+                                    "initialRanking": true,
+                                    "label": "Counts",
+                                    "description": "Raw counts",
+                                    "type": "number",
+                                    "color": "#377eb8",
+                                    "min": 0,
+                                    "numberFormat": ".0f",
+                                    "mapping": true,
+                                    "width": 100,
+                                    "show": "always"
+                                },
+                                {
+                                    "columnName": "expression_zscores",
+                                    "initialRanking": true,
+                                    "label": "ZScores",
+                                    "description": "Z scores for binned counts",
+                                    "type": "number",
+                                    "color": "#fb9a99",
+                                    "min": 0,
+                                    "numberFormat": ".0f",
+                                    "mapping": true,
+                                    "width": 100,
+                                    "show": "always"
+                                }
+                            ],
+                            "formatting": {
+                                "template": "{{ensembl_geneid}}",
+                                "idColumn": "ensembl_geneid",
+                                "titleColumn": "ensembl_geneid",
+                                "tokenSeparatorsRegex": "[\r\n;,]"
+                            },
+                            "color": "#eb8b67",
+                            "order": 103
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "relations": [
+        {
+            "type": "entity-mapping-same-table",
+            "entity": "gyst_mars.general.gene_name",
+            "mapping": [
+                {
+                    "column": "gene_symbol",
+                    "idtype": "GeneName"
+                },
+                {
+                    "column": "ensembl_geneid",
+                    "idtype": "Ensembl"
+                },
+                {
+                    "column": "uniprot_accession",
+                    "idtype": "UniProtAcc"
+                }
+            ]
+        },
+        {
+            "type": "entity-mapping-same-table",
+            "entity": "gyst_mars.general.pathways_msigdb_germline",
+            "mapping": [
+                {
+                    "column": "gene_symbol",
+                    "idtype": "GeneName"
+                },
+                {
+                    "column": "ensembl_geneid",
+                    "idtype": "Ensembl"
+                }
+            ]
+        },
+        {
+            "type": "entity-mapping-same-table",
+            "entity": "gyst_mars.general.hpa_germline",
+            "mapping": [
+                {
+                    "column": "gene",
+                    "idtype": "Ensembl"
+                },
+                {
+                    "column": "gene_name",
+                    "idtype": "GeneName"
+                }
+            ]
+        },
+        {
+            "type": "entity-mapping-same-table",
+            "entity": "gyst_mars.general.ot_tractability",
+            "mapping": [
+                {
+                    "column": "symbol",
+                    "idtype": "GeneName"
+                },
+                {
+                    "column": "ensembl_gene_id",
+                    "idtype": "Ensembl"
+                },
+                {
+                    "column": "accession",
+                    "idtype": "UniProtAcc"
+                },
+                {
+                    "column": "Entry Name",
+                    "idtype": "UniProtEntry"
+                }
+            ]
+        },
+        {
+            "type": "entity-mapping-same-table",
+            "entity": "gyst_mars.general.ot_tractability_chembl",
+            "mapping": [
+                {
+                    "column": "symbol",
+                    "idtype": "GeneName"
+                },
+                {
+                    "column": "ensembl_gene_id",
+                    "idtype": "Ensembl"
+                }
+            ]
+        },
+        {
+            "type": "entity-mapping-same-table",
+            "entity": "gyst_mars.general.hpa_subcellular",
+            "mapping": [
+                {
+                    "column": "ensembl_geneid",
+                    "idtype": "Ensembl"
+                },
+                {
+                    "column": "gene_symbol",
+                    "idtype": "GeneName"
+                }
+            ]
+        },
+        {
+            "type": "entity-mapping-same-table",
+            "entity": "gyst_mars.general.tcrd",
+            "mapping": [
+                {
+                    "column": "uniprot_accession",
+                    "idtype": "UniProtAcc"
+                },
+                {
+                    "column": "gene_symbol",
+                    "idtype": "GeneName"
+                }
+            ]
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.gene_name",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.tractability.tracndrug_view",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            },
+            "bidirectional": false
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.gene_name",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.tractability.tracndrug_regions",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.gene_name",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.tractability_lm.tracndrug_lm_view",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.gene_name",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.tractability.tracndrug_regions_full_view",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.gene_name",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.tractability.tracndrug_regions_raw_view",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.gene_name",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.pathways_msigdb_germline",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.gene_name",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_germline",
+                "key": "gene"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.gene_name",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.gene_name",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability_chembl",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.gene_name",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_subcellular",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.gene_name",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.tcrd",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.pathways_msigdb_germline",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_germline",
+                "key": "gene"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_view",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability",
+                "key": "accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability_chembl",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_subcellular",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_view",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.tcrd",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.pathways_msigdb_germline",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_germline",
+                "key": "gene"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability",
+                "key": "accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability_chembl",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_subcellular",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.tcrd",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability_lm.tracndrug_lm_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.pathways_msigdb_germline",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability_lm.tracndrug_lm_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_germline",
+                "key": "gene"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability_lm.tracndrug_lm_view",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability",
+                "key": "accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability_lm.tracndrug_lm_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability_chembl",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability_lm.tracndrug_lm_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_subcellular",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability_lm.tracndrug_lm_view",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.tcrd",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_full_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.pathways_msigdb_germline",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_full_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_germline",
+                "key": "gene"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_full_view",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability",
+                "key": "accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_full_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability_chembl",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_full_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_subcellular",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_full_view",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.tcrd",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_raw_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.pathways_msigdb_germline",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_raw_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_germline",
+                "key": "gene"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_raw_view",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability",
+                "key": "accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_raw_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability_chembl",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_raw_view",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_subcellular",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.tractability.tracndrug_regions_raw_view",
+                "key": "uniprot_accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.tcrd",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.pathways_msigdb_germline",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_germline",
+                "key": "gene"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.pathways_msigdb_germline",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.pathways_msigdb_germline",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability_chembl",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.pathways_msigdb_germline",
+                "key": "ensembl_geneid"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_subcellular",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.pathways_msigdb_germline",
+                "key": "gene_symbol"
+            },
+            "target": {
+                "id": "gyst_mars.general.tcrd",
+                "key": "gene_symbol"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.hpa_germline",
+                "key": "gene"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.hpa_germline",
+                "key": "gene"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability_chembl",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.hpa_germline",
+                "key": "gene"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_subcellular",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.hpa_germline",
+                "key": "gene_name"
+            },
+            "target": {
+                "id": "gyst_mars.general.tcrd",
+                "key": "gene_symbol"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.ot_tractability",
+                "key": "ensembl_gene_id"
+            },
+            "target": {
+                "id": "gyst_mars.general.ot_tractability_chembl",
+                "key": "ensembl_gene_id"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.ot_tractability",
+                "key": "ensembl_gene_id"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_subcellular",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.ot_tractability",
+                "key": "accession"
+            },
+            "target": {
+                "id": "gyst_mars.general.tcrd",
+                "key": "uniprot_accession"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.ot_tractability_chembl",
+                "key": "ensembl_gene_id"
+            },
+            "target": {
+                "id": "gyst_mars.general.hpa_subcellular",
+                "key": "ensembl_geneid"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.ot_tractability_chembl",
+                "key": "symbol"
+            },
+            "target": {
+                "id": "gyst_mars.general.tcrd",
+                "key": "gene_symbol"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        },
+        {
+            "type": "1-n",
+            "source": {
+                "id": "gyst_mars.general.hpa_subcellular",
+                "key": "gene_symbol"
+            },
+            "target": {
+                "id": "gyst_mars.general.tcrd",
+                "key": "gene_symbol"
+            },
+            "workbench": {
+                "minSelection": 1,
+                "maxSelection": 2000
+            }
+        }
+    ],
+    "idtypes": [],
+    "namedIdSets": [],
+    "app": {
+        "authentication": {
+            "refreshUrl": "refresh"
+        },
+        "ui": {}
+    }
+}
