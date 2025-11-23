@@ -143,43 +143,52 @@ def get_loaded_landscapes_route():
 
 @graph_router.post("/add_landscapes")
 def add_landscapes_route(landscape_names: list[str]):
-    # global G
-    # for landscape_name in landscape_names:
-    #     # Load landscape data from file
-    #     landscape_json = json.load(open(f"data/{landscape_name}.json"))
-    #     # Create the initial graph
-    #     populate_graph(G, landscape_json, landscape_name=landscape_name)
-    #     loaded_landscapes_map[landscape_name] = landscape_json
-    #     populate_idtype_relations(G, landscape_name)
-    #     populate_one_to_n_relations(G, landscape_json, landscape_name)
-    #     populate_ordino_drilldown_relations(
-    #         G, landscape_json, landscape_name=landscape_name
-    #     )
-    # deduplicate_relations(G)
-    # data = json_graph.node_link_data(G)
-    # return data
-    pass
+    global G
+    for landscape_name in landscape_names:
+        # Load landscape data from file
+        landscape_json = json.load(open(f"data/{landscape_name}.json"))
+        loaded_landscapes_map[landscape_name] = landscape_json
+        # Create the initial graph
+        landscape_graph = populate_graph(landscape_json, landscape_name)
+        landscape_graph = populate_idtype_relations(landscape_graph, landscape_name)
+        landscape_graph = populate_one_to_n_relations(
+            landscape_graph, landscape_json, landscape_name
+        )
+        landscape_graph = populate_ordino_drilldown_relations(
+            landscape_graph, landscape_json, landscape_name
+        )
+        landscape_graph = deduplicate_relations(landscape_graph)
+        loaded_landscapes_graph_map[landscape_name] = landscape_graph
+        G = merge_graphs([G, landscape_graph])
+
+    data = json_graph.node_link_data(G)
+    return data
 
 
 @graph_router.post("/add_custom_landscape")
 def add_custom_landscape_route(payload: dict):
-    # global G
+    global G
 
-    # name: str = payload.get("name", "")
-    # data: str = payload.get("data", "{}")
+    landscape_name: str = payload.get("name", "")
+    data: str = payload.get("data", "{}")
 
-    # # Load landscape data from file
-    # landscape_json = json.loads(data)
-    # # Create the initial graph
-    # populate_graph(G, landscape_json, landscape_name=name)
-    # loaded_landscapes_map[name] = landscape_json
-    # populate_idtype_relations(G, landscape_name=name)
-    # populate_one_to_n_relations(G, landscape_json, landscape_name=name)
-    # populate_ordino_drilldown_relations(G, landscape_json, landscape_name=name)
-    # deduplicate_relations(G)
-    # data = json_graph.node_link_data(G)
-    # return data
-    pass
+    # Load landscape data from file
+    landscape_json = json.loads(data)
+    loaded_landscapes_map[landscape_name] = landscape_json
+    # Create the initial graph
+    landscape_graph = populate_graph(landscape_json, landscape_name)
+    landscape_graph = populate_idtype_relations(landscape_graph, landscape_name)
+    landscape_graph = populate_one_to_n_relations(
+        landscape_graph, landscape_json, landscape_name
+    )
+    landscape_graph = populate_ordino_drilldown_relations(
+        landscape_graph, landscape_json, landscape_name
+    )
+    landscape_graph = deduplicate_relations(landscape_graph)
+    loaded_landscapes_graph_map[landscape_name] = landscape_graph
+    G = merge_graphs([G, landscape_graph])
+    data = json_graph.node_link_data(G)
+    return data
 
 
 @graph_router.post("/remove_landscape")
