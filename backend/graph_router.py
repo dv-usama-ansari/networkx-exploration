@@ -140,6 +140,26 @@ def add_landscapes_route(landscape_names: list[str]):
     return data
 
 
+@graph_router.post("/add_custom_landscape")
+def add_custom_landscape_route(payload: dict):
+    global G, landscape
+
+    name: str = payload.get("name", "")
+    data: str = payload.get("data", "{}")
+
+    # Load landscape data from file
+    landscape = json.loads(data)
+    # Create the initial graph
+    populate_graph(G, landscape, landscape_name=name)
+    loaded_landscapes_set.add(name)
+    populate_idtype_relations(G, landscape_name=name)
+    populate_one_to_n_relations(G, landscape, landscape_name=name)
+    populate_ordino_drilldown_relations(G, landscape, landscape_name=name)
+    deduplicate_relations(G)
+    data = json_graph.node_link_data(G)
+    return data
+
+
 @graph_router.post("/reset_graph")
 def reset_graph():
     global G, landscape

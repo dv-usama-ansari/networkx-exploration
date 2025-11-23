@@ -3,12 +3,16 @@
 import { GraphConfig } from "@/app/types";
 import {
   Accordion,
+  ActionIcon,
   Badge,
+  Box,
   Button,
   CheckIcon,
   Combobox,
   Divider,
   Group,
+  HoverCard,
+  Modal,
   Pill,
   PillsInput,
   PillsInputProps,
@@ -17,20 +21,27 @@ import {
   Stack,
   Switch,
   Text,
+  Textarea,
+  TextInput,
+  Tooltip,
   useCombobox,
 } from "@mantine/core";
+import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
+import { IconTrash } from "@tabler/icons-react";
 import * as React from "react";
 
 function SearchableMultiSelect({
   items,
   value,
   setValue,
+  addLandscapes,
   ...props
 }: {
   items: string[];
   value: string[];
   setValue: React.Dispatch<React.SetStateAction<string[]>>;
+  addLandscapes: () => void;
 } & PillsInputProps) {
   const combobox = useCombobox({
     onDropdownClose: () => combobox.resetSelectedOption(),
@@ -39,16 +50,24 @@ function SearchableMultiSelect({
 
   const [search, setSearch] = React.useState("");
 
-  const handleValueSelect = (val: string) => {
-    return setValue((current) =>
-      current.includes(val)
-        ? current.filter((v) => v !== val)
-        : [...current, val]
-    );
-  };
+  const handleValueSelect = React.useCallback(
+    (val: string) => {
+      setValue((current) =>
+        current.includes(val)
+          ? current.filter((v) => v !== val)
+          : [...current, val]
+      );
+      setSearch("");
+    },
+    [setValue]
+  );
 
-  const handleValueRemove = (val: string) =>
-    setValue((current) => current.filter((v) => v !== val));
+  const handleValueRemove = React.useCallback(
+    (val: string) => {
+      setValue((current) => current.filter((v) => v !== val));
+    },
+    [setValue]
+  );
 
   const values = value.map((item) => (
     <Pill key={item} withRemoveButton onRemove={() => handleValueRemove(item)}>
@@ -101,16 +120,6 @@ function SearchableMultiSelect({
       </Combobox.DropdownTarget>
 
       <Combobox.Dropdown>
-        <Combobox.Header>
-          <Button
-            leftSection={items.length === value.length ? <CheckIcon /> : null}
-            onClick={() => {
-              setValue(items);
-            }}
-          >
-            Select all
-          </Button>
-        </Combobox.Header>
         <Combobox.Options>
           <ScrollArea.Autosize mah={200}>
             {options.length > 0 ? (
@@ -120,6 +129,28 @@ function SearchableMultiSelect({
             )}
           </ScrollArea.Autosize>
         </Combobox.Options>
+        <Combobox.Footer>
+          <Group>
+            <Button
+              leftSection={items.length === value.length ? <CheckIcon /> : null}
+              variant="subtle"
+              onClick={() => {
+                setValue(items);
+              }}
+            >
+              Select all
+            </Button>
+            <Button
+              leftSection={items.length === value.length ? <CheckIcon /> : null}
+              onClick={() => {
+                addLandscapes();
+                combobox.closeDropdown();
+              }}
+            >
+              Add landscapes
+            </Button>
+          </Group>
+        </Combobox.Footer>
       </Combobox.Dropdown>
     </Combobox>
   );
@@ -153,6 +184,8 @@ export function Controls({
   const [loadedLandscapeList, setLoadedLandscapeList] = React.useState<
     string[]
   >([]);
+  const form = useForm<{ name: string; data: Record<string, unknown> }>();
+  const [opened, { open, close }] = useDisclosure(false);
 
   const fetchInitialGraph = React.useCallback(async () => {
     try {
@@ -279,6 +312,19 @@ export function Controls({
     toggleRemoveIsolatedNodes,
   ]);
 
+  const fetchGraph = React.useCallback(async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:8000/api/graph/get_graph?with_idtype_nodes=${withIdtypeNodes}&with_intermediate_edges=${withIntermediateEdges}&remove_isolated_nodes=${removeIsolatedNodes}`,
+        { method: "GET" }
+      );
+      const data: GraphConfig = await response.json();
+      setGraph(data);
+    } catch (error) {
+      console.error("Error fetching graph data:", error);
+    }
+  }, [withIdtypeNodes, withIntermediateEdges, removeIsolatedNodes, setGraph]);
+
   const addLandscapes = React.useCallback(async () => {
     try {
       const response = await fetch(
@@ -297,6 +343,25 @@ export function Controls({
       console.error("Error adding landscapes:", error);
     }
   }, [selectedFileList, setGraph]);
+
+  const addCustomLandscape = React.useCallback(async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/graph/add_custom_landscape",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(form.values),
+        }
+      );
+      const data: GraphConfig = await response.json();
+      setGraph(data);
+    } catch (error) {
+      console.error("Error adding custom landscape:", error);
+    }
+  }, [form.values, setGraph]);
 
   React.useEffect(() => {
     const fetchFileList = async () => {
@@ -334,6 +399,42 @@ export function Controls({
 
   return (
     <Stack>
+      <Modal
+        opened={opened}
+        onClose={close}
+        title="Add Custom Landscape"
+        size="auto"
+      >
+        <form>
+          <Stack miw={400}>
+            <TextInput label="Landscape Name" {...form.getInputProps("name")} />
+            <Textarea
+              resize="both"
+              minRows={8}
+              maxRows={24}
+              label="Landscape Data (JSON)"
+              styles={{ input: { fontFamily: "monospace", fontSize: 12 } }}
+              {...form.getInputProps("data")}
+            />
+            <Group justify="flex-end">
+              <Button
+                type="submit"
+                onClick={(e) => {
+                  e.preventDefault();
+                  addCustomLandscape();
+                  close();
+                }}
+                disabled={!form.isValid()}
+              >
+                Add Landscape
+              </Button>
+              <Button variant="outline" onClick={close}>
+                Cancel
+              </Button>
+            </Group>
+          </Stack>
+        </form>
+      </Modal>
       <Accordion
         defaultValue={["landscapes", "graph_controls"]}
         w={320}
@@ -345,9 +446,31 @@ export function Controls({
           <Accordion.Control>
             <Group justify="space-between">
               <Text>Landscape controls</Text>
-              <Badge color="blue" variant="light">
-                {loadedLandscapeList.length}
-              </Badge>
+              <HoverCard>
+                <HoverCard.Target>
+                  <Badge color="blue" variant="light">
+                    {loadedLandscapeList.length}
+                  </Badge>
+                </HoverCard.Target>
+                <HoverCard.Dropdown>
+                  <Stack>
+                    <Text>Currently loaded landscapes:</Text>
+                    <ScrollArea.Autosize mah={200}>
+                      <Stack gap={0}>
+                        {loadedLandscapeList.map((landscape) => (
+                          <Group
+                            key={landscape}
+                            justify="space-between"
+                            wrap="nowrap"
+                          >
+                            <Text size="sm">{landscape}</Text>
+                          </Group>
+                        ))}
+                      </Stack>
+                    </ScrollArea.Autosize>
+                  </Stack>
+                </HoverCard.Dropdown>
+              </HoverCard>
             </Group>
           </Accordion.Control>
           <Accordion.Panel>
@@ -374,6 +497,7 @@ export function Controls({
                   items={fileList}
                   value={selectedFileList}
                   setValue={setSelectedFileList}
+                  addLandscapes={addLandscapes}
                 />
                 <Button
                   onClick={addLandscapes}
@@ -381,6 +505,9 @@ export function Controls({
                 >
                   Add selected landscapes
                 </Button>
+
+                <Divider label="Custom landscapes" />
+                <Button onClick={open}>Add a custom landscape</Button>
               </Stack>
             </ScrollArea.Autosize>
           </Accordion.Panel>
@@ -425,20 +552,30 @@ export function Controls({
           </Accordion.Panel>
         </Accordion.Item>
       </Accordion>
-      <Button
-        onClick={() => {
-          setGraphMode("2d");
-          fetchResetGraph();
-          setSelectedFileList([]);
-          enableWithIdtypeNodes();
-          enableWithIntermediateEdges();
-          disableRemoveIsolatedNodes();
-        }}
-        disabled={!graph}
-        color="red"
+      <Box
+        style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px" }}
       >
-        Reset graph
-      </Button>
+        <Button
+          onClick={() => {
+            setGraphMode("2d");
+            fetchResetGraph();
+            setSelectedFileList([]);
+            enableWithIdtypeNodes();
+            enableWithIntermediateEdges();
+            disableRemoveIsolatedNodes();
+          }}
+          disabled={!graph}
+          color="red"
+        >
+          Reset graph
+        </Button>
+        <Button
+          disabled={loadedLandscapeList.length === 0}
+          onClick={fetchGraph}
+        >
+          Refresh
+        </Button>
+      </Box>
     </Stack>
   );
 }

@@ -83,13 +83,16 @@ export function Graph2D({
           ? "red"
           : "gray"
       }
-      nodeRelSize={2}
+      // nodeId={(n) => n.id as string}
+      nodeRelSize={8}
       linkLabel={(l) => `${JSON.stringify(l.data, null, 2)}`}
       linkColor={(l) =>
         l.data.type === "idtype-mapping"
           ? "green"
           : l.data.type === "1-1"
-          ? "green"
+          ? l.data.via_idtype
+            ? "lightgreen"
+            : "green"
           : l.data.type === "1-n"
           ? "orange"
           : l.data.type === "n-1"
@@ -138,7 +141,6 @@ export function Graph2D({
         const label = node.id as string;
         const fontSize = 12 / globalScale;
         ctx.font = `${fontSize}px Sans-Serif`;
-
         ctx.fillStyle =
           node.data?.type === "entity"
             ? "orange"
@@ -147,10 +149,8 @@ export function Graph2D({
             : node.data?.type === "upload"
             ? "red"
             : "gray";
-
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
-
         if (
           node.data?.type !== "entity" &&
           node.data?.type !== "idtype" &&
