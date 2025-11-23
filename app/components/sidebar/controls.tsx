@@ -293,6 +293,26 @@ export function Controls({
     }
   }, [withIdtypeNodes, removeIsolatedNodes, setGraph]);
 
+  const removeLandscape = React.useCallback(
+    async (landscape: string) => {
+      try {
+        const response = await fetch(
+          `http://localhost:8000/api/graph/remove_landscape?landscape_name=${encodeURIComponent(
+            landscape
+          )}`,
+          { method: "DELETE" }
+        );
+        const data: GraphConfig = await response.json();
+        setGraph(data);
+        setLoadedLandscapeList((current) =>
+          current.filter((l) => l !== landscape)
+        );
+      } catch (error) {
+        console.error("Error fetching graph data:", error);
+      }
+    },
+    [setGraph]
+  );
 
   const addLandscapes = React.useCallback(async () => {
     try {
@@ -425,7 +445,7 @@ export function Controls({
                   <Stack>
                     <Text>Currently loaded landscapes:</Text>
                     <ScrollArea.Autosize mah={200}>
-                      <Stack gap={0}>
+                      <Stack gap="xs">
                         {loadedLandscapeList.map((landscape) => (
                           <Group
                             key={landscape}
@@ -433,6 +453,19 @@ export function Controls({
                             wrap="nowrap"
                           >
                             <Text size="sm">{landscape}</Text>
+                            <Group>
+                              <ActionIcon
+                                color="red"
+                                size="sm"
+                                variant="light"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  removeLandscape(landscape);
+                                }}
+                              >
+                                <IconTrash />
+                              </ActionIcon>
+                            </Group>
                           </Group>
                         ))}
                       </Stack>

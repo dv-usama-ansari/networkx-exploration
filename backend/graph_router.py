@@ -191,24 +191,24 @@ def add_custom_landscape_route(payload: dict):
     return data
 
 
-@graph_router.post("/remove_landscape")
+@graph_router.delete("/remove_landscape")
 def remove_landscape_route(landscape_name: str):
-#     global G
+    global G
 
-#     # Load landscape data from file
-#     landscape_json = json.loads(data)
-#     # Create the initial graph
-#     populate_graph(G, landscape_json, landscape_name=name)
-#     loaded_landscapes_set.add(name)
-#     populate_idtype_relations(G, landscape_json, landscape_name=name)
-#     populate_one_to_n_relations(G, landscape_json, landscape_name=name)
-#     populate_ordino_drilldown_relations(
-#         G, landscape_json, landscape_name=name
-#     )
-#     deduplicate_relations(G)
-#     data = json_graph.node_link_data(G)
-#     return data
-    pass
+    graphs_to_merge = [
+        Gl for name, Gl in loaded_landscapes_graph_map.items() if name != landscape_name
+    ]
+
+    loaded_landscapes_map.pop(landscape_name, None)
+    loaded_landscapes_graph_map.pop(landscape_name, None)
+
+    if len(graphs_to_merge) != 0:
+        G = merge_graphs(graphs_to_merge)
+        data = json_graph.node_link_data(G)
+        return data
+    else:
+        G = nx.MultiDiGraph()
+        return None
 
 
 @graph_router.post("/reset_graph")
