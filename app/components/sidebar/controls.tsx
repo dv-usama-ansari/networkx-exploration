@@ -27,7 +27,7 @@ import {
 } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { useDisclosure } from "@mantine/hooks";
-import { IconTrash } from "@tabler/icons-react";
+import { IconRefresh, IconReload, IconTrash } from "@tabler/icons-react";
 import * as React from "react";
 
 function SearchableMultiSelect({
@@ -314,24 +314,27 @@ export function Controls({
     [setGraph]
   );
 
-  const addLandscapes = React.useCallback(async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:8000/api/graph/add_landscapes",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(selectedFileList),
-        }
-      );
-      const data: GraphConfig = await response.json();
-      setGraph(data);
-    } catch (error) {
-      console.error("Error adding landscapes:", error);
-    }
-  }, [selectedFileList, setGraph]);
+  const addLandscapes = React.useCallback(
+    async (overrideSelectedFileList: string[] | null) => {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/api/graph/add_landscapes",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(overrideSelectedFileList ?? selectedFileList),
+          }
+        );
+        const data: GraphConfig = await response.json();
+        setGraph(data);
+      } catch (error) {
+        console.error("Error adding landscapes:", error);
+      }
+    },
+    [selectedFileList, setGraph]
+  );
 
   const addCustomLandscape = React.useCallback(async () => {
     try {
@@ -479,18 +482,30 @@ export function Controls({
             <ScrollArea.Autosize mah={320}>
               <Stack px="md" pb="md">
                 <Divider label="visyn_kb landscape" />
-                <Button onClick={fetchInitialGraph}>Load visyn_kb graph</Button>
-                <Button onClick={fetchIdtypeRelations} disabled={!graph}>
-                  Load visyn_kb idtype relations
+                <Button onClick={fetchInitialGraph}>Load nodes</Button>
+                <Button
+                  onClick={fetchIdtypeRelations}
+                  disabled={!graph}
+                  variant="light"
+                >
+                  Load idtype relations
                 </Button>
-                <Button onClick={fetchOneToNRelations} disabled={!graph}>
-                  Load visyn_kb 1-n relations
+                <Button
+                  onClick={fetchOneToNRelations}
+                  disabled={!graph}
+                  variant="light"
+                >
+                  Load 1-n relations
                 </Button>
                 <Button
                   onClick={fetchOrdinoDrilldownRelations}
                   disabled={!graph}
+                  variant="light"
                 >
-                  Load visyn_kb drilldown relations
+                  Load drilldown relations
+                </Button>
+                <Button onClick={() => addLandscapes(["visyn_kb"])}>
+                  Load full graph
                 </Button>
 
                 <Divider label="Other landscapes" />
@@ -499,10 +514,10 @@ export function Controls({
                   items={fileList}
                   value={selectedFileList}
                   setValue={setSelectedFileList}
-                  addLandscapes={addLandscapes}
+                  addLandscapes={() => addLandscapes(null)}
                 />
                 <Button
-                  onClick={addLandscapes}
+                  onClick={() => addLandscapes(null)}
                   disabled={selectedFileList.length === 0}
                 >
                   Add selected landscapes
@@ -560,12 +575,14 @@ export function Controls({
           }}
           disabled={!graph}
           color="red"
+          leftSection={<IconRefresh size={16} />}
         >
           Reset graph
         </Button>
         <Button
           disabled={loadedLandscapeList.length === 0}
           onClick={fetchGraph}
+          leftSection={<IconReload size={16} />}
         >
           Refresh
         </Button>
