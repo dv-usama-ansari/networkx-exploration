@@ -103,11 +103,7 @@ export function Graph2D({
           ? "rgba(0, 0, 255, 0.25)"
           : "gray"
       }
-      linkLineDash={(l) =>
-        l.data.is_derived
-          ? [3, 1]
-          : null
-      }
+      linkLineDash={(l) => (l.data.is_derived ? [3, 1] : null)}
       linkDirectionalArrowLength={3.5}
       linkDirectionalArrowRelPos={1}
       linkCurvature={(l) => {

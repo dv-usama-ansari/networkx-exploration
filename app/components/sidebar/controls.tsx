@@ -177,8 +177,12 @@ export function Controls({
   const [fileList, setFileList] = React.useState<string[]>([]);
   const [selectedFileList, setSelectedFileList] = React.useState<string[]>([]);
   const [loadedLandscapeList, setLoadedLandscapeList] = React.useState<
+    { name: string; source: string }[]
+  >([]);
+  const [uploadedDatasetList, setUploadedDatasetList] = React.useState<
     string[]
   >([]);
+
   const form = useForm<{ name: string; data: Record<string, unknown> }>();
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -305,7 +309,7 @@ export function Controls({
         const data: GraphConfig = await response.json();
         setGraph(data);
         setLoadedLandscapeList((current) =>
-          current.filter((l) => l !== landscape)
+          current.filter((l) => l.name !== landscape)
         );
       } catch (error) {
         console.error("Error fetching graph data:", error);
@@ -355,6 +359,46 @@ export function Controls({
     }
   }, [form.values, setGraph]);
 
+  const addRandomUploadedDataset = React.useCallback(async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/graph/add_random_uploaded_dataset",
+        {
+          method: "POST",
+        }
+      );
+      const data: { datasetId: string; graph: GraphConfig } =
+        await response.json();
+      setGraph(data.graph);
+      setUploadedDatasetList((current) => [
+        ...new Set([...current, data.datasetId]),
+      ]);
+    } catch (error) {
+      console.error("Error adding random uploaded dataset:", error);
+    }
+  }, [setGraph]);
+
+  const removeUploadedDataset = React.useCallback(
+    async (datasetId: string) => {
+      try {
+        const response = await fetch(
+          `http://localhost:8000/api/graph/remove_uploaded_dataset?dataset_id=${encodeURIComponent(
+            datasetId
+          )}`,
+          { method: "DELETE" }
+        );
+        const data: GraphConfig = await response.json();
+        setGraph(data);
+        setUploadedDatasetList((current) =>
+          current.filter((d) => d !== datasetId)
+        );
+      } catch (error) {
+        console.error("Error removing uploaded dataset:", error);
+      }
+    },
+    [setGraph]
+  );
+
   React.useEffect(() => {
     const fetchFileList = async () => {
       try {
@@ -379,7 +423,7 @@ export function Controls({
           "http://localhost:8000/api/graph/get_loaded_landscapes",
           { method: "GET" }
         );
-        const data: string[] = await response.json();
+        const data: { name: string; source: string }[] = await response.json();
         setLoadedLandscapeList(data);
       } catch (error) {
         console.error("Error fetching loaded landscapes:", error);
@@ -387,6 +431,23 @@ export function Controls({
     };
 
     fetchLoadedLandscapeList();
+  }, [graph?.nodes.length]);
+
+  React.useEffect(() => {
+    const fetchUploadedDatasetList = async () => {
+      try {
+        const response = await fetch(
+          "http://localhost:8000/api/graph/get_uploaded_datasets",
+          { method: "GET" }
+        );
+        const data: string[] = await response.json();
+        setUploadedDatasetList(data);
+      } catch (error) {
+        console.error("Error fetching loaded landscapes:", error);
+      }
+    };
+
+    fetchUploadedDatasetList();
   }, [graph?.nodes.length]);
 
   return (
@@ -451,11 +512,11 @@ export function Controls({
                       <Stack gap="xs">
                         {loadedLandscapeList.map((landscape) => (
                           <Group
-                            key={landscape}
+                            key={landscape.name}
                             justify="space-between"
                             wrap="nowrap"
                           >
-                            <Text size="sm">{landscape}</Text>
+                            <Text size="sm">{landscape.name}</Text>
                             <Group>
                               <ActionIcon
                                 color="red"
@@ -463,7 +524,7 @@ export function Controls({
                                 variant="light"
                                 onClick={(e) => {
                                   e.stopPropagation();
-                                  removeLandscape(landscape);
+                                  removeLandscape(landscape.name);
                                 }}
                               >
                                 <IconTrash />

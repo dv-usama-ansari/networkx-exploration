@@ -4,8 +4,9 @@ from landscape_merge import get_relation_string
 
 
 def populate_idtype_nodes(
-    G: nx.MultiDiGraph, idtypes: list[dict], landscape_name: str
-) -> None:
+    G_In: nx.MultiDiGraph, idtypes: list[dict], landscape_name: str
+) -> nx.MultiDiGraph:
+    G = G_In.copy()
     for idtype in idtypes:
         G.add_node(
             idtype.get("id"),
@@ -24,11 +25,13 @@ def populate_idtype_nodes(
                 **idtype,
             },
         )
+    return G
 
 
 def populate_entity_nodes(
-    G: nx.MultiDiGraph, entities: list[dict], landscape_name: str
-) -> None:
+    G_In: nx.MultiDiGraph, entities: list[dict], landscape_name: str
+) -> nx.MultiDiGraph:
+    G = G_In.copy()
     for entity in entities:
         G.add_node(
             entity.get("id"),
@@ -47,9 +50,13 @@ def populate_entity_nodes(
                 **entity,
             },
         )
+    return G
 
 
-def populate_idtype_mapping_relations(G: nx.MultiDiGraph, landscape_name: str) -> None:
+def populate_idtype_mapping_relations(
+    G_In: nx.MultiDiGraph, landscape_name: str
+) -> nx.MultiDiGraph:
+    G = G_In.copy()
     entities_in_graph_with_idtype_columns = [
         (
             n,
@@ -59,12 +66,12 @@ def populate_idtype_mapping_relations(G: nx.MultiDiGraph, landscape_name: str) -
                 if col.get("idtype", None) is not None
             ],
         )
-        for n, attr in G.nodes(data=True)
+        for n, attr in G_In.nodes(data=True)
         if attr.get("data", {}).get("type") == "entity"
     ]
     idtypes_in_graph = [
         n
-        for n, attr in G.nodes(data=True)
+        for n, attr in G_In.nodes(data=True)
         if attr.get("data", {}).get("type") == "idtype"
     ]
     for entity, columns in entities_in_graph_with_idtype_columns:
@@ -87,7 +94,7 @@ def populate_idtype_mapping_relations(G: nx.MultiDiGraph, landscape_name: str) -
                         "origins": {
                             *(
                                 list(
-                                    G.edges.get(
+                                    G_In.edges.get(
                                         (
                                             entity,
                                             idtype,
@@ -103,11 +110,13 @@ def populate_idtype_mapping_relations(G: nx.MultiDiGraph, landscape_name: str) -
                         },
                     },
                 )
+    return G
 
 
 def derive_one_to_one_relations_from_idtype(
-    G: nx.MultiDiGraph, idtype: dict, landscape_name: str
-) -> None:
+    G_In: nx.MultiDiGraph, idtype: dict, landscape_name: str
+) -> nx.MultiDiGraph:
+    G = G_In.copy()
     idtype_node_id = idtype.get("id")
     connected_entities = [
         predecessor
@@ -220,11 +229,14 @@ def derive_one_to_one_relations_from_idtype(
                     **reverse_relation,
                 },
             )
+    return G
 
 
 def populate_graph(payload: dict, landscape_name: str) -> nx.MultiDiGraph:
     G = nx.MultiDiGraph()
-    populate_idtype_nodes(G, payload.get("idtypes", []), landscape_name=landscape_name)
+    G = populate_idtype_nodes(
+        G, payload.get("idtypes", []), landscape_name=landscape_name
+    )
 
     entities = [
         {
@@ -238,26 +250,28 @@ def populate_graph(payload: dict, landscape_name: str) -> nx.MultiDiGraph:
         for entity in schema.get("entities", [])
     ]
 
-    populate_entity_nodes(G, entities, landscape_name=landscape_name)
+    G = populate_entity_nodes(G, entities, landscape_name=landscape_name)
 
     return G
 
 
 def populate_idtype_relations(
-    G: nx.MultiDiGraph, landscape_name: str
+    G_In: nx.MultiDiGraph, landscape_name: str
 ) -> nx.MultiDiGraph:
-    populate_idtype_mapping_relations(G, landscape_name)
+    G = G_In.copy()
+    G = populate_idtype_mapping_relations(G, landscape_name)
     for n, attr in G.nodes(data=True):
         if attr.get("data", {}).get("type") == "idtype":
-            derive_one_to_one_relations_from_idtype(
+            G = derive_one_to_one_relations_from_idtype(
                 G, attr.get("data", {}), landscape_name
             )
     return G
 
 
 def populate_one_to_n_relations(
-    G: nx.MultiDiGraph, payload: dict, landscape_name: str
+    G_In: nx.MultiDiGraph, payload: dict, landscape_name: str
 ) -> nx.MultiDiGraph:
+    G = G_In.copy()
     for relation in payload.get("relations", []):
         if relation.get("type") == "1-n":
             relation_hash, _ = get_relation_string(relation)
@@ -323,8 +337,9 @@ def populate_one_to_n_relations(
 
 
 def populate_ordino_drilldown_relations(
-    G: nx.MultiDiGraph, payload: dict, landscape_name: str
+    G_In: nx.MultiDiGraph, payload: dict, landscape_name: str
 ) -> nx.MultiDiGraph:
+    G = G_In.copy()
     for relation in payload.get("relations", []):
         if relation.get("type") == "ordino-drilldown":
             relation_hash, _ = get_relation_string(relation)
@@ -375,8 +390,12 @@ def populate_ordino_drilldown_relations(
                                 list(
                                     G.edges.get(
                                         (
-                                            relation.get("target", {"id": None}).get("id"),
-                                            relation.get("source", {"id": None}).get("id"),
+                                            relation.get("target", {"id": None}).get(
+                                                "id"
+                                            ),
+                                            relation.get("source", {"id": None}).get(
+                                                "id"
+                                            ),
                                             reverse_relation_hash,  # For MultiDiGraph, need to specify the key
                                         ),
                                         {},
@@ -389,6 +408,21 @@ def populate_ordino_drilldown_relations(
                         },
                     },
                 )
+    return G
+
+
+def remove_uploaded_dataset_from_graph(
+    G_In: nx.MultiDiGraph, dataset_id: str
+) -> nx.MultiDiGraph:
+    G = G_In.copy()
+
+    nodes_to_remove = [
+        n
+        for n, attr in G.nodes(data=True)
+        if dataset_id == attr.get("data", {}).get("id", None)
+    ]
+    G.remove_nodes_from(nodes_to_remove)
+
     return G
 
 
