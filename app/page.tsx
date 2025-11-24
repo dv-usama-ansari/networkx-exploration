@@ -32,13 +32,13 @@ export default function Home() {
                 <Graph2D
                   graph={graph}
                   height={height - 86}
-                  width={width - (sidebarWidth ?? 0) - 96}
+                  width={width - (sidebarWidth ?? 0) - 100}
                 />
               ) : graphMode === "3d" ? (
                 <Graph3D
                   graph={graph}
                   height={height - 86}
-                  width={width - (sidebarWidth ?? 0) - 96}
+                  width={width - (sidebarWidth ?? 0) - 100}
                 />
               ) : null}
             </Fieldset>

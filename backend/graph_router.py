@@ -5,6 +5,7 @@ from networkx.readwrite import json_graph
 import networkx as nx
 from graph import (
     deduplicate_relations,
+    get_flattened_landscape,
     get_relations_for_node,
     get_subgraph_with_idtype_nodes,
     get_subgraph_with_isolated_nodes_removed,
@@ -237,3 +238,16 @@ def get_relations_route(node_id: str):
 
     relations = get_relations_for_node(G, node_id)
     return relations
+
+
+@graph_router.get("/get_flattened_landscape")
+def get_flattened_landscape_route():
+    global G
+    if G is None:
+        raise HTTPException(
+            status_code=400,
+            detail="Graph not initialized. Please populate the graph first.",
+        )
+
+    landscape = get_flattened_landscape(G)
+    return landscape

@@ -500,3 +500,75 @@ def get_subgraph_with_isolated_nodes_removed(
         SG.remove_nodes_from(list(nx.isolates(G)))
 
     return SG
+
+
+def get_flattened_landscape(G: nx.MultiDiGraph) -> dict:
+    flattened_landscape = {
+        "idtypes": [],
+        "databases": [],
+        "relations": [],
+    }
+
+    idtype_nodes = [
+        attr.get("data", {})
+        for n, attr in G.nodes(data=True)
+        if attr.get("data", {}).get("type") == "idtype"
+    ]
+    flattened_landscape["idtypes"] = idtype_nodes
+
+    entity_nodes = [
+        attr.get("data", {})
+        for n, attr in G.nodes(data=True)
+        if attr.get("data", {}).get("type") == "entity"
+    ]
+
+    # group entities by database and schema
+    databases_map = {}
+    for entity in entity_nodes:
+        # const [db, schema, table] = entity.id.split(".");
+        id_parts = entity.get("id", "").split(".")
+        db_id = id_parts[0] if len(id_parts) > 0 else ""
+        schema_name = (
+            id_parts[1] if len(id_parts) > 2 else "_unnamed_internal_ordino_schema_"
+        )
+
+        if db_id not in databases_map:
+            databases_map[db_id] = {
+                "id": db_id,
+                "schemas": {},
+            }
+
+        if schema_name not in databases_map[db_id]["schemas"]:
+            databases_map[db_id]["schemas"][schema_name] = (
+                {
+                    "name": schema_name,
+                    "entities": [],
+                }
+                if schema_name != "_unnamed_internal_ordino_schema_"
+                else {
+                    "entities": [],
+                }
+            )
+
+        databases_map[db_id]["schemas"][schema_name]["entities"].append(entity)
+
+    flattened_landscape["databases"] = [
+        {
+            **db,
+            "schemas": list(db["schemas"].values()),
+        }
+        for db in databases_map.values()
+    ]
+
+    relation_edges = [
+        {
+            "source": u,
+            "target": v,
+            **attr.get("data", {}),
+        }
+        for u, v, attr in G.edges(data=True)
+        if not attr.get("data", {}).get("is_derived", False)
+    ]
+    flattened_landscape["relations"] = relation_edges
+
+    return flattened_landscape
