@@ -17,7 +17,10 @@ from graph import (
     remove_uploaded_dataset_from_graph,
 )
 from networkx.readwrite import json_graph
-from util import generate_landscape_with_random_uploaded_dataset
+from util import (
+    generate_landscape_with_random_uploaded_dataset,
+    generate_landscape_with_real_uploaded_dataset,
+)
 
 graph_router = APIRouter(prefix="/api/graph")
 
@@ -28,7 +31,7 @@ loaded_landscapes_map: dict[str, tuple[str, dict]] = {}
 loaded_landscapes_graph_map: dict[str, nx.MultiDiGraph] = {}
 
 uploaded_landscape_name: str = "uploaded_dataset"
-uploaded_dataset_landscape = {
+uploaded_landscape = {
     "databases": [
         {
             "id": "db",
@@ -39,7 +42,7 @@ uploaded_dataset_landscape = {
 }
 uploaded_landscape_graph = nx.MultiDiGraph()
 
-random_uploaded_dataset_map: dict[str, dict] = {}
+uploaded_dataset_map: dict[str, tuple[str, dict]] = {}
 
 _log = logging.getLogger(__name__)
 
@@ -232,24 +235,23 @@ def remove_landscape_route(landscape_name: str):
         return None
 
 
-@graph_router.post("/add_random_uploaded_dataset")
-def add_random_uploaded_dataset_route():
+@graph_router.post("/add_real_uploaded_dataset")
+def add_real_uploaded_dataset_route():
     global \
         G, \
-        random_uploaded_dataset_map, \
         uploaded_landscape, \
         uploaded_landscape_name, \
         uploaded_landscape_graph, \
-        random_uploaded_dataset_map, \
+        uploaded_dataset_map, \
         loaded_landscapes_map, \
         loaded_landscapes_graph_map
 
-    copied_uploaded_landscape = uploaded_dataset_landscape.copy()
+    copied_uploaded_landscape = uploaded_landscape.copy()
 
-    dataset_id, uploaded_landscape = generate_landscape_with_random_uploaded_dataset(
+    dataset_id, uploaded_landscape = generate_landscape_with_real_uploaded_dataset(
         G, copied_uploaded_landscape
     )
-    random_uploaded_dataset_map[dataset_id] = uploaded_landscape
+    uploaded_dataset_map[dataset_id] = ("real", uploaded_landscape)
 
     # Load landscape data from file
     loaded_landscapes_map[uploaded_landscape_name] = ("system", uploaded_landscape)
@@ -258,15 +260,54 @@ def add_random_uploaded_dataset_route():
     uploaded_landscape_graph = populate_graph(
         uploaded_landscape, uploaded_landscape_name
     )
-    uploaded_landscape_graph = populate_idtype_relations(
-        uploaded_landscape_graph, uploaded_landscape_name
+    G = merge_graphs([G, uploaded_landscape_graph])
+    uploaded_landscape_graph = populate_idtype_relations(G, uploaded_landscape_name)
+    # uploaded_landscape_graph = populate_one_to_n_relations(
+    #     G, uploaded_landscape, uploaded_landscape_name
+    # )
+    # uploaded_landscape_graph = populate_ordino_drilldown_relations(
+    #     G, uploaded_landscape, uploaded_landscape_name
+    # )
+    uploaded_landscape_graph = deduplicate_relations(uploaded_landscape_graph)
+    loaded_landscapes_graph_map[uploaded_landscape_name] = uploaded_landscape_graph
+    G = merge_graphs([G, uploaded_landscape_graph])
+    data = json_graph.node_link_data(G)
+    return {"datasetId": dataset_id, "graph": data}
+
+
+@graph_router.post("/add_random_uploaded_dataset")
+def add_random_uploaded_dataset_route():
+    global \
+        G, \
+        uploaded_landscape, \
+        uploaded_landscape_name, \
+        uploaded_landscape_graph, \
+        uploaded_dataset_map, \
+        loaded_landscapes_map, \
+        loaded_landscapes_graph_map
+
+    copied_uploaded_landscape = uploaded_landscape.copy()
+
+    dataset_id, uploaded_landscape = generate_landscape_with_random_uploaded_dataset(
+        G, copied_uploaded_landscape
     )
-    uploaded_landscape_graph = populate_one_to_n_relations(
-        uploaded_landscape_graph, uploaded_landscape, uploaded_landscape_name
+    uploaded_dataset_map[dataset_id] = ("random", uploaded_landscape)
+
+    # Load landscape data from file
+    loaded_landscapes_map[uploaded_landscape_name] = ("system", uploaded_landscape)
+
+    # Create the initial graph
+    uploaded_landscape_graph = populate_graph(
+        uploaded_landscape, uploaded_landscape_name
     )
-    uploaded_landscape_graph = populate_ordino_drilldown_relations(
-        uploaded_landscape_graph, uploaded_landscape, uploaded_landscape_name
-    )
+    G = merge_graphs([G, uploaded_landscape_graph])
+    uploaded_landscape_graph = populate_idtype_relations(G, uploaded_landscape_name)
+    # uploaded_landscape_graph = populate_one_to_n_relations(
+    #     G, uploaded_landscape, uploaded_landscape_name
+    # )
+    # uploaded_landscape_graph = populate_ordino_drilldown_relations(
+    #     G, uploaded_landscape, uploaded_landscape_name
+    # )
     # uploaded_landscape_graph = deduplicate_relations(uploaded_landscape_graph)
     loaded_landscapes_graph_map[uploaded_landscape_name] = uploaded_landscape_graph
     G = merge_graphs([G, uploaded_landscape_graph])
@@ -277,15 +318,15 @@ def add_random_uploaded_dataset_route():
 @graph_router.get("/get_uploaded_datasets")
 def get_uploaded_datasets_route():
     # For simplicity, we assume the available landscapes are the JSON files in the data directory
-    global random_uploaded_dataset_map
-    return list(random_uploaded_dataset_map.keys())
+    global uploaded_dataset_map
+    return list(uploaded_dataset_map.keys())
 
 
 @graph_router.delete("/remove_uploaded_dataset")
 def remove_uploaded_dataset_route(dataset_id: str):
     global G
 
-    random_uploaded_dataset_map.pop(dataset_id, None)
+    uploaded_dataset_map.pop(dataset_id, None)
     uploaded_landscape_graph = loaded_landscapes_graph_map.get(
         "uploaded_dataset", nx.MultiDiGraph()
     )
@@ -309,10 +350,12 @@ def remove_uploaded_dataset_route(dataset_id: str):
 def reset_graph():
     global \
         G, \
-        loaded_landscapes_map, \
         loaded_landscapes_graph_map, \
-        random_uploaded_dataset_map, \
-        uploaded_dataset_landscape
+        loaded_landscapes_map, \
+        uploaded_dataset_map, \
+        uploaded_landscape_graph, \
+        uploaded_landscape_name, \
+        uploaded_landscape
     if G is None:
         raise HTTPException(
             status_code=400,
@@ -322,8 +365,8 @@ def reset_graph():
     G.clear()
     loaded_landscapes_map.clear()
     loaded_landscapes_graph_map.clear()
-    random_uploaded_dataset_map.clear()
-    uploaded_dataset_landscape = {
+    uploaded_dataset_map.clear()
+    uploaded_landscape = {
         "databases": [
             {
                 "id": "db",
@@ -332,6 +375,7 @@ def reset_graph():
             }
         ]
     }
+    uploaded_landscape_graph = nx.MultiDiGraph()
     return None
 
 

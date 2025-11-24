@@ -3,6 +3,61 @@ from uuid import uuid4 as uuid
 import random
 
 
+def generate_landscape_with_real_uploaded_dataset(
+    G: nx.MultiDiGraph, payload: dict
+) -> tuple[str, dict]:
+    entities = [
+        attr.get("data")
+        for n, attr in G.nodes(data=True)
+        if attr.get("data", {"type": None}).get("type") == "entity"
+        and attr.get("data", {"name": None}).get("name")
+        in ["Gene", "Cell Line", "ClinVar Variants"]
+    ]
+
+    random_entity_configuration = random.choice(entities) if entities else {}
+
+    random_entity_columns = (
+        random.choices(
+            [c for c in random_entity_configuration.get("columns", [])],
+            k=random.randint(1, len(random_entity_configuration.get("columns", [])))
+            if random_entity_configuration.get("columns") is not None
+            else 0,
+        )
+        if entities
+        else []
+    )
+
+    unique_id = f"db.upload.{uuid().hex}"
+    random_entity = {
+        **random_entity_configuration,
+        "id": unique_id,
+        "name": f"Uploaded {random_entity_configuration.get('name')}",
+        "type": "entity",
+        "isUploaded": True,
+        "columns": random_entity_columns,
+    }
+
+    output_landscape = {
+        **payload,
+        "databases": [
+            {
+                **payload.get("databases", [{}])[0],
+                "schemas": [
+                    {
+                        **payload.get("databases", [{}])[0].get("schemas", [{}])[0],
+                        "entities": payload.get("databases", [{}])[0]
+                        .get("schemas", [{}])[0]
+                        .get("entities", [])
+                        + [random_entity],
+                    }
+                ],
+            }
+        ],
+    }
+
+    return (unique_id, output_landscape)
+
+
 def generate_landscape_with_random_uploaded_dataset(
     G: nx.MultiDiGraph, payload: dict
 ) -> tuple[str, dict]:

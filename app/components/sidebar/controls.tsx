@@ -378,6 +378,25 @@ export function Controls({
     }
   }, [setGraph]);
 
+  const addRealUploadedDataset = React.useCallback(async () => {
+    try {
+      const response = await fetch(
+        "http://localhost:8000/api/graph/add_real_uploaded_dataset",
+        {
+          method: "POST",
+        }
+      );
+      const data: { datasetId: string; graph: GraphConfig } =
+        await response.json();
+      setGraph(data.graph);
+      setUploadedDatasetList((current) => [
+        ...new Set([...current, data.datasetId]),
+      ]);
+    } catch (error) {
+      console.error("Error adding real uploaded dataset:", error);
+    }
+  }, [setGraph]);
+
   const removeUploadedDataset = React.useCallback(
     async (datasetId: string) => {
       try {
@@ -627,6 +646,9 @@ export function Controls({
                 <Divider label="Uploaded datasets" />
                 <Button onClick={addRandomUploadedDataset}>
                   Add a random uploaded dataset
+                </Button>
+                <Button onClick={addRealUploadedDataset}>
+                  Add a real uploaded dataset
                 </Button>
                 <ScrollArea.Autosize mah={100}>
                   <Stack gap="xs">
