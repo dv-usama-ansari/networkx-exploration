@@ -525,6 +525,80 @@ export function Controls({
 
                 <Divider label="Custom landscapes" />
                 <Button onClick={open}>Add a custom landscape</Button>
+                <ScrollArea.Autosize mah={200}>
+                  <Stack gap="xs">
+                    {loadedLandscapeList.filter((l) => l.source === "db")
+                      .length === 0 ? (
+                      <Text size="sm" ta="center" c="dimmed">
+                        No custom landscapes
+                      </Text>
+                    ) : (
+                      loadedLandscapeList
+                        .filter((l) => l.source === "db")
+                        .map((landscape) => (
+                          <Group
+                            key={landscape.name}
+                            justify="space-between"
+                            wrap="nowrap"
+                          >
+                            <Text size="sm" truncate>
+                              {landscape.name}
+                            </Text>
+                            <Group>
+                              <ActionIcon
+                                color="red"
+                                size="sm"
+                                variant="light"
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  removeLandscape(landscape.name);
+                                }}
+                              >
+                                <IconTrash />
+                              </ActionIcon>
+                            </Group>
+                          </Group>
+                        ))
+                    )}
+                  </Stack>
+                </ScrollArea.Autosize>
+
+                <Divider label="Uploaded datasets" />
+                <Button onClick={addRandomUploadedDataset}>
+                  Add a random uploaded dataset
+                </Button>
+                <ScrollArea.Autosize mah={100}>
+                  <Stack gap="xs">
+                    {uploadedDatasetList.length === 0 ? (
+                      <Text size="sm" ta="center" c="dimmed">
+                        No uploaded datasets
+                      </Text>
+                    ) : (
+                      uploadedDatasetList.map((datasetId) => (
+                        <Group
+                          key={datasetId}
+                          justify="space-between"
+                          wrap="nowrap"
+                        >
+                          <Text size="sm" truncate>
+                            {datasetId}
+                          </Text>
+                          <ActionIcon
+                            color="red"
+                            size="sm"
+                            variant="light"
+                            onClick={async (e) => {
+                              e.stopPropagation();
+                              removeUploadedDataset(datasetId);
+                            }}
+                          >
+                            <IconTrash />
+                          </ActionIcon>
+                        </Group>
+                      ))
+                    )}
+                  </Stack>
+                </ScrollArea.Autosize>
               </Stack>
             </ScrollArea.Autosize>
           </Accordion.Panel>
