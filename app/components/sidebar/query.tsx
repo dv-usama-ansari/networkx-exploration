@@ -81,7 +81,7 @@ export function Query({ graph }: { graph: GraphConfig | null }) {
                 display: "grid",
                 gridTemplateColumns: relations ? "1fr auto" : "1fr",
                 alignItems: "center",
-                gap: "1rem",
+                gap: "0.5rem",
               }}
             >
               <Button onClick={fetchRelationsForNode} disabled={!graphNode}>
@@ -149,7 +149,7 @@ export function Query({ graph }: { graph: GraphConfig | null }) {
                 display: "grid",
                 gridTemplateColumns: landscape ? "1fr auto" : "1fr",
                 alignItems: "center",
-                gap: "1rem",
+                gap: "0.5rem",
               }}
             >
               <Button onClick={fetchFlattenedLandscape} disabled={!graph}>
